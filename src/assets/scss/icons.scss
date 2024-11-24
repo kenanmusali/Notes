@@ -15,84 +15,84 @@
     }
   }
 
-  .icons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+  // .icons {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   align-items: center;
 
-    %icon {
-      opacity: 0.71;
-      height: 34px;
-      margin: 0 8px;
-      width: 34px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 18px 18px;
-      position: relative;
-    }
+  //   %icon {
+  //     opacity: 0.71;
+  //     height: 34px;
+  //     margin: 0 8px;
+  //     width: 34px;
+  //     background-position: center;
+  //     background-repeat: no-repeat;
+  //     background-size: 18px 18px;
+  //     position: relative;
+  //   }
 
-    .alarm {
-      @extend %icon;
-      background-image: url(/assets/images/svg/alarm.svg);
-    }
+  //   .alarm {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/alarm.svg);
+  //   }
 
-    .colab {
-      @extend %icon;
-      background-image: url(/assets/images/svg/col.svg);
-    }
+  //   .colab {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/col.svg);
+  //   }
 
-    .color {
-      @extend %icon;
-      background-image: url(/assets/images/svg/bg.svg);
-    }
+  //   .color {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/bg.svg);
+  //   }
 
-    .image {
-      @extend %icon;
-      background-image: url(/assets/images/svg/image.svg);
-    }
+  //   .image {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/image.svg);
+  //   }
 
-    .archive {
-      @extend %icon;
-      background-image: url(/assets/images/svg/archive2.svg);
-    }
+  //   .archive {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/archive2.svg);
+  //   }
 
-    .unarchive {
-      @extend %icon;
-      background-image: url(/assets/images/svg/unarchive.svg);
-    }
+  //   .unarchive {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/unarchive.svg);
+  //   }
 
-    .more {
-      @extend %icon;
-      background-image: url(/assets/images/svg/more.svg);
-    }
+  //   .more {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/more.svg);
+  //   }
 
-    .undo {
-      @extend %icon;
-      background-image: url(/assets/images/svg/undo.svg);
-    }
+  //   .undo {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/undo.svg);
+  //   }
 
-    .delete {
-      @extend %icon;
-      background-image: url(/assets/images/svg/delete.svg);
-    }
+  //   .delete {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/delete.svg);
+  //   }
 
-    .restore {
-      @extend %icon;
-      background-image: url(/assets/images/svg/restore.svg);
-    }
+  //   .restore {
+  //     @extend %icon;
+  //     background-image: url(/assets/images/svg/restore.svg);
+  //   }
 
-    .undo.r {
-      @extend %icon;
-      transform: scaleX(-1);
-    }
+  //   .undo.r {
+  //     @extend %icon;
+  //     transform: scaleX(-1);
+  //   }
 
-    .disabled {
-      cursor: not-allowed !important;
-      opacity: 0.25 !important;
-    }
+  //   .disabled {
+  //     cursor: not-allowed !important;
+  //     opacity: 0.25 !important;
+  //   }
 
 
-  }
+  // }
 }
 
 

@@ -8,7 +8,7 @@ type InputLengthI = { title?: number, body?: number, cb?: number }
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef, public Shared: SharedService) { }

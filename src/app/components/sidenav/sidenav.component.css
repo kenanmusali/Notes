@@ -1,9 +1,11 @@
 .SideBar {
     padding: 0.6rem;
     height: 100vh;
+    z-index: 1;
 }
 
 .SbGroup {
+    
     position: relative;
     overflow: hidden;
     display: flex;
@@ -133,10 +135,13 @@
 
 /* SearchSection */
 .SearchSection {
-    padding: 0.5rem 0.6rem;
+    height: 2.25rem;
+    padding-inline: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
+ 
 }
 
 .SearchSection .SearchInput::placeholder {
@@ -145,11 +150,14 @@
     font-weight: 500;
     font-family: "Inter", sans-serif;
     color: var(--grayText);
+    
 }
 
 .SearchSection .SearchInput {
     border: none;
+    font-size: 12px;
     outline: none;
+    padding-bottom: 1px;
 }
 
 /* Ends */
@@ -164,6 +172,7 @@
 }
 
 .LabelSection {
+    position: relative;
     padding: 0.5rem calc(0.5rem - 4px) 0.5rem 0.5rem;
     display: flex;
     flex-direction: column;
@@ -174,7 +183,15 @@
     width: 100%;
 }
 
-.ScrollLabel  {
+.FadeBottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    height: 1rem;
+}
+
+.ScrollLabel {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -191,6 +208,11 @@
 .LabelSection .MenuHoverYellow {
     flex-shrink: 0;
 }
+
+.LabelSection .MenuHoverBottom {
+    flex-shrink: 0;
+}
+
 
 .MenuHoverBottom.active {
     background-color: var(--lightGrayHover);
@@ -210,12 +232,4 @@
     filter: grayscale(100%) brightness(0);
 
 }
-
-/* Scroll */
-
-
-
 /* Ends */
-
-
-/* --------------------------------------------------- */

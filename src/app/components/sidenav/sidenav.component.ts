@@ -38,8 +38,7 @@ export class NavComponent implements OnInit {
   addLabel(el: HTMLInputElement) {
     if (!el) return;
   
-    // Remove spaces and other non-alphanumeric characters from the label name
-    const labelName = el.value.replace(/\s+/g, '_') // Removes spaces and converts to lowercase
+    const labelName = el.value.replace(/\s+/g, '_')
     
     this.Shared.label.db.add({ name: labelName })
       .then(() => { 
@@ -83,4 +82,3 @@ export class NavComponent implements OnInit {
 
 
 }
-

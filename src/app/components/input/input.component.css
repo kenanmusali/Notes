@@ -1,0 +1,274 @@
+.main-container {
+  width: 100%;
+  position: relative;
+  max-width: 35rem;
+  padding-inline: 1.5rem;
+  padding-bottom: 1px;
+  height: 3.3rem;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.divNoteAdd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.IconsItem {
+  margin-top: 0.8rem;
+}
+
+.AddNoteSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 45.5vh;
+  width: 100%;
+}
+
+.divNoteAdd p {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--grayText);
+}
+
+.divNoteAdd img:hover {
+  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 1000px;
+}
+
+.itemHover:hover {
+  border: 1px solid var(--itemHover);
+  outline: 1px solid transparent;
+}
+
+.itemHover:hover img {
+  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+}
+
+.item1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0rem 0.7rem 0rem 0.5rem;
+  height: 35px;
+  border-radius: 1000px;
+  gap: 0.3rem;
+
+}
+
+.item1 p {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.pin-icon {
+  background-image: url(/src/assets/images/Icon/Pin.svg) !important;
+  z-index: 1;
+}
+
+.pinned {
+  background-image: url(/src/assets/images/Icon/Pinned.svg) !important;
+}
+
+
+.note-main {
+  position: absolute;
+  
+  top: -0.1rem;
+  /* Keep it at the top */
+  left: 50%;
+  /* Move the left edge to the center */
+  width: 35rem;
+  z-index: 1;
+  transform: translateX(-50%);
+  /* Offset by half the width to center it */
+}
+
+/* .NoteSection {
+  max-height: 9rem;
+} */
+
+.note-main .note-container {
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: cover;
+}
+
+.note-main .note-container .note-title {
+  padding: 10px 15px;
+  letter-spacing: 0.00625em;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note-main .note-container .note-title.ph {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  color: var(--grayText);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.note-main .note-container .note-title:focus-visible {
+  outline: 0;
+}
+
+.note-main .note-container .note-body {
+  letter-spacing: 0.01428571em;
+  font-family: "Google Sans";
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  min-height: 46px;
+  padding: 13px 16px 12px 16px;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.note-main .note-container .note-body.ph {
+  color: var(--grayText);
+  font-size: 16px;
+  font-weight: 500;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+}
+
+.note-main .note-container .note-body:focus-visible {
+  outline: 0;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.TextSection {
+  display: flex;
+  background-color: red;
+}
+
+
+
+.NoteSection{
+  position: relative;
+}
+
+.Add {
+  position: absolute;
+  right: 1.5rem;
+  top: 0.95rem;
+  rotate: 45deg;
+}
+
+/*  */
+
+
+
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.25 !important;
+}
+
+.placeholder .input {
+  padding: 21px 6px 11px 16px;
+  font-family: "Google Sans Light 2";
+  height: 46px;
+  width: 100%;
+  background-color: #202124;
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+}
+
+.placeholder .input:focus-visible {
+  outline-width: 0;
+}
+
+.placeholder .input::placeholder {
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans";
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: rgba(255, 255, 255, 0.702);
+}
+
+.placeholder .check,
+.placeholder .paint,
+.placeholder .picture {
+  height: 46px;
+  position: absolute;
+  top: 1px;
+  width: 46px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.54;
+}
+
+.placeholder .check:hover,
+.placeholder .paint:hover,
+.placeholder .picture:hover {
+  opacity: 0.87;
+}
+
+.placeholder .check.pop::before,
+.placeholder .paint.pop::before,
+.placeholder .picture.pop::before {
+  top: 45px;
+}
+
+.placeholder .check {
+  background-image: url(/assets/images/svg/check.svg);
+  right: 121px;
+}
+
+.placeholder .paint {
+  background-image: url(/assets/images/svg/paint.svg);
+  right: 67px;
+}
+
+.placeholder .picture {
+  background-image: url(/assets/images/svg/picture.svg);
+  right: 13px;
+}
+
+.close-btn {
+  margin-right: 15px;
+  color: #dadce0;
+  letter-spacing: 0.01785714em;
+  font-family: "Google Sans";
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 36px;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: rgba(154, 160, 166, 0.039);
+}
+
+/* --------------------------------------------------------------- */
