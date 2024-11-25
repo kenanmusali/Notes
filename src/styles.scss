@@ -2,91 +2,109 @@
 
 
 :root {
-    --bgColor: #EAEAEA;
-    --black: #000000;
-    --white: #ffffff;
-    --mainYellow: #FDD046;
-    --lightGrayHover: #F5F5F5;
-    --grayText: #5F5F5F;
-    --lightGrayStroke: #E3E3E3;
-    --lightStroke: #F4F3F3;
-    --lightGrayVersion: #AEAEAE;
-    --hrLine: #E7E7E7;
-    --highlight: #FFE79D;
-    --scroll: #D9D9D9;
-    --scrollHover: #BDBDBD;
+  --bgColor: #EAEAEA;
+  --black: #000000;
+  --white: #ffffff;
+  --mainYellow: #FDD046;
+  --lightGrayHover: #F5F5F5;
+  --grayText: #5F5F5F;
+  --lightGrayStroke: #E3E3E3;
+  --lightStroke: #F4F3F3;
+  --lightGrayVersion: #AEAEAE;
+  --hrLine: #E7E7E7;
+  --highlight: #FFE79D;
+  --scroll: #D9D9D9;
+  --scrollHover: #BDBDBD;
 }
 
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-    
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+
 }
 
 body,
 html {
-    height: 100%;
-    background-color: var(--bgColor);
+  height: 100%;
+  background-color: var(--bgColor);
 }
 
 
 
 ::selection {
-    background-color: var(--highlight);
+  background-color: var(--highlight);
 }
 
 .noSelect {
-    user-select: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
+  user-select: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
 }
 
 .sectionStyle {
-    background-color: var(--white);
-    border: 1px solid var(--lightGrayStroke);
-    border-radius: 12px;
-    outline: 1px solid var(--lightStroke);
+  background-color: var(--white);
+  border: 1px solid var(--lightGrayStroke);
+  border-radius: 12px;
+  outline: 1px solid var(--lightStroke);
 }
 
 .HoverYellowStyle {
-    background-color: var(--mainYellow);
+  background-color: var(--mainYellow);
 }
 
 
 .hr {
-    width: 100%;
-    height: 1px;
-    background-color: var(--hrLine);
+  width: 100%;
+  height: 1px;
+  background-color: var(--hrLine);
 }
 
 /* width */
 ::-webkit-scrollbar {
   width: 2px;
-  transition: all ;
+  transition: all;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: none; 
-  border-radius: 1000px;  
+  background: none;
+  border-radius: 1000px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--scroll); 
+  background: var(--scroll);
   border-radius: 1000px;
 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollHover); 
+  background: var(--scrollHover);
   border-radius: 1000px;
 }
+
+
+.AltText {
+  position: absolute;
+  background-color: var(--white);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0.2rem 0.7rem 0.3rem 0.7rem;
+  border-radius: 5px;
+  color: var(--grayText);
+  top: calc(35px + 0.5rem);
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0s 2s;
+  transform: translateX(-50%);
+}
+
+
 
 
 // -------------------------------------------------------

@@ -11,7 +11,7 @@
             <div class="sectionStyle NoteSection">
                 <div #noteContainer class="note-container">
                     <div [hidden]="noteTitle.innerHTML.length" class="note-title ph">Title</div>
-                    
+
                     <img class="Add" src="./assets/images/Icon/Add.svg">
                     <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})"
                         (paste)="pasteEvent($event)" class="note-title" contenteditable="true" spellcheck="true">
@@ -19,7 +19,7 @@
                     <!--? note OR checkboxes -->
                     <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
                     </ng-container>
-                    
+
                     <!--? labels -->
                     <div class="labels-container">
                         <ng-container *ngFor="let label of labels">
@@ -36,45 +36,75 @@
             <!--? icons -->
             <div class="icons-container IconsItem" *ngIf="!isTrashed;else trashed">
                 <div class="icons">
-                    <div class="item itemHover sectionStyle" #notePin data-pinned="false"
-                        [class.pinned]="notePin.dataset['pinned'] === 'true'"
-                        (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
-                        [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note' : 'Unpin note'">
-                        <img src="./assets/images/Icon/Pin.svg" draggable="false"
-                            [ngStyle]="{'display': notePin.dataset['pinned'] === 'true' ? 'none' : 'inline-block'}" />
-                        <img src="./assets/images/Icon/Pinned.svg" draggable="false"
-                            [ngStyle]="{'display': notePin.dataset['pinned'] === 'false' ? 'none' : 'inline-block'}" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover sectionStyle" #notePin data-pinned="false"
+                            [class.pinned]="notePin.dataset['pinned'] === 'true'"
+                            (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
+                            [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note' : 'Unpin note'">
+                            <img src="./assets/images/Icon/Pin.svg" draggable="false"
+                                [ngStyle]="{'display': notePin.dataset['pinned'] === 'true' ? 'none' : 'inline-block'}" />
+                            <img src="./assets/images/Icon/Pinned.svg" draggable="false"
+                                [ngStyle]="{'display': notePin.dataset['pinned'] === 'false' ? 'none' : 'inline-block'}" />
+                        </div>
+                        <p class="AltText">Pin</p>
+                        <p class="AltText">Unpin</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle">
-                        <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" 
+                             (click)="this.Shared.closeTooltip(moreMenuTt); openTooltip(moreMenuTtBtn, labelMenuTt)">
+                            <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Label</p>
+                    </span>
+                    
 
-                    <div class="item itemHover sectionStyle" (click)="isArchived = true;saveNote()" data-pop="Archive">
-                        <img src="./assets/images/Icon/Archive.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" (click)="isArchived = true;saveNote()"
+                            data-pop="Archive">
+                            <img src="./assets/images/Icon/Archive.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Archive</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle">
-                        <img src="./assets/images/Icon/Image.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle">
+                            <img src="./assets/images/Icon/Image.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Image</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle" data-pop="New list" (click)="isCbox.next(true)">
-                        <img src="./assets/images/Icon/Task.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" data-pop="New list"
+                            (click)="isCbox.next(true)">
+                            <img src="./assets/images/Icon/Task.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">List</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle" #colorMenuTtBtn data-pop="Background Options"
-                        (click)="openTooltip(colorMenuTtBtn,colorMenuTt)">
-                        <img src="./assets/images/Icon/Style.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" #colorMenuTtBtn data-pop="Background Options"
+                            (click)="openTooltip(colorMenuTtBtn,colorMenuTt)">
+                            <img src="./assets/images/Icon/Style.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Style</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle" data-pop="New list" (click)="isCbox.next(true)">
-                        <img src="./assets/images/Icon/Undo.svg" draggable="false" />
-                    </div>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" data-pop="New list"
+                            (click)="isCbox.next(true)">
+                            <img src="./assets/images/Icon/Undo.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Undo</p>
+                    </span>
 
-                    <div class="item itemHover sectionStyle" data-pop="New list" (click)="isCbox.next(true)">
-                        <img src="./assets/images/Icon/Rendo.svg" draggable="false" />
-                    </div>
-
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect sectionStyle" data-pop="New list"
+                            (click)="isCbox.next(true)">
+                            <img src="./assets/images/Icon/Rendo.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Rendo</p>
+                    </span>
 
 
 
@@ -252,7 +282,6 @@
         (click)="this.Shared.closeTooltip(moreMenuTt);openTooltip(moreMenuTtBtn!.nativeElement,labelMenuTt)">
         Add label
     </div>
-    <!-- <div [hidden]="moreMenuEls.drawing.disabled">{{moreMenuEls.drawing.value}}</div> -->
     <div [hidden]="moreMenuEls.copy.disabled" (click)="moreMenu(moreMenuTt).clone()">
         Make a copy
     </div>
@@ -292,3 +321,29 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    // document.querySelectorAll('.ItemHoverAlt').forEach(item => {
+    //     item.addEventListener('mouseover', function () {
+    //         const altText = item.querySelector('.AltText');
+    //         altText.style.display = 'block';
+    //         altText.style.opacity = '1';
+
+    //         setTimeout(() => {
+    //             altText.style.display = 'none';
+    //             altText.style.opacity = '0';
+    //         }, 2000);
+    //     });
+    // });
+
+
+
+
+
+
+
+
+
+</script>
