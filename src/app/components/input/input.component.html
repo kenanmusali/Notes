@@ -47,7 +47,7 @@
                                 [ngStyle]="{'display': notePin.dataset['pinned'] === 'false' ? 'none' : 'inline-block'}" />
                         </div>
                         <p class="AltText">Pin</p>
-                        <p class="AltText">Unpin</p>
+                        <!-- <p class="AltText">Unpin</p> -->
                     </span>
 
                     <span class="ItemHoverAlt">
@@ -112,7 +112,7 @@
                     <!-- <div class="check H pop" data-pop="New list" (click)="isCbox.next(true)"></div> -->
 
 
-                    <div #moreMenuTtBtn class="more H pop" data-pop="More"
+                    <div #moreMenuTtBtn class="more H pop displayNone" data-pop="More"
                         (click)="openTooltip(moreMenuTtBtn,moreMenuTt)">
                         sd
                     </div>

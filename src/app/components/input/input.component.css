@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 0;
 }
 
 .divNoteAdd {
@@ -45,6 +46,8 @@
 .ItemHoverAlt {
   position: relative;
 }
+
+
 
 .ItemHoverAlt:hover .AltText {
   display: block;
@@ -193,6 +196,8 @@
   top: 0.95rem;
   rotate: 45deg;
 }
+
+
 
 /*  */
 

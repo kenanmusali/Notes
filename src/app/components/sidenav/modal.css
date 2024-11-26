@@ -1,52 +1,104 @@
-
 .modal-container {
-	position: fixed;
 	display: none;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(10, 10, 10, 40);
-	overflow: hidden;
 }
+
+
+
 .modal-container .modal {
 	position: absolute;
 	transform: translate(-50%, -50%);
-	left: 50%;
-	top: 40%;
+	right: -21.4rem;
+	top: 15rem;
 	transition: all 0.4s;
-	max-width: 300px;
+	max-width: 14.9rem;
 	width: 100%;
 }
-.label-modal-main {
-	background-color: #313235;
-	border-radius: 1px;
-	box-shadow: 0 1px 3px 0 #000, 0 4px 8px 3px #000;
-}
+
 .label-modal-main input {
 	flex: 1 1 auto;
-	font-size: 14px;
+	font-size: 11px;
 	font-weight: 500;
-	margin: 0 15px;
 	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid transparent;
 	box-shadow: none;
-	color: #e8eaed;
-	font-family: "Roboto", arial, sans-serif;
+	color: var(--black);
 	height: 25px;
 	outline: none;
 	padding: 0;
 }
-.label-modal-main input:focus {
-	border-bottom: 1px solid #5f6368;
-}
+
+
 .label-modal-main input::placeholder {
-	color: #e8eaed;
-	opacity: 0.5;
+	color: var(--grayText);
+	font-size: 11px;
+
 }
-.label-modal-main .cancel-icon, .label-modal-main .header .input-container .plus-icon, .label-modal-main .header .input-container .check-icon, .label-modal-main .header .labels-container .label-icon, .label-modal-main .header .labels-container .pen-icon, .label-modal-main .header .labels-container .trash-icon {
+
+/* .label-modal-main{
+	background-color: blue;
+} */
+
+/* .MenuDiv .input{
+	height: 1.6rem;
+} */
+
+
+.Hovered {
+	background-color: var(--lightGrayHover);
+}
+
+.Hovered img {
+	margin-left: 0.5rem;
+}
+
+.HoveredRed {
+	background-color: var(--lightRed);
+}
+
+.MenuSection2 .HoveredRed p {
+	font-size: 11px !important;
+	color: var(--white) !important;
+	font-weight: 400 !important;
+	flex-shrink: 0 !important;
+}
+
+.HoveredRed img {
+	margin-left: 0.5rem;
+}
+
+.ScrollLabelList {
+	max-height: fit-content;
+	height: 10.5rem;
+	overflow: hidden;
+	overflow-y: scroll;
+	flex-shrink: 0;
+	margin-right: 0.3rem;
+}
+
+
+.InputList:focus {
+	flex-shrink: 0;
+}
+
+.InputList:focus::placeholder {
+	font-size: 11px;
+	color: var(--grayText);
+	font-weight: 500;
+}
+
+.InputList::placeholder {
+	font-size: 11px;
+	color: var(--grayText) !important;
+	font-weight: 500;
+}
+
+.label-modal-main .cancel-icon,
+.label-modal-main .header .input-container .plus-icon,
+.label-modal-main .header .input-container .check-icon,
+.label-modal-main .header .labels-container .label-icon,
+.label-modal-main .header .labels-container .pen-icon,
+.label-modal-main .header .labels-container .trash-icon {
 	background-size: 18px 18px;
 	height: 24px;
 	opacity: 0.54;
@@ -54,14 +106,24 @@
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.label-modal-main .cancel-icon {
-	background-image: url(/assets/images/svg/cancel.svg) !important;
+
+
+
+.divModalHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 2.5rem;
+	padding-inline: 0.9rem;
 }
-.label-modal-main .header {
-	padding: 15px;
+
+.header .HeadText {
+	margin-left: 0.9rem;
 }
+
 .label-modal-main .header .error {
-	color: #f6aea9;
+	color: #33ff00;
 	cursor: default;
 	font-size: smaller;
 	font-style: italic;
@@ -69,55 +131,55 @@
 	font-family: "Roboto", arial, sans-serif;
 	font-size: 12.5px;
 }
+
 .label-modal-main .header p {
-	color: #e8eaed;
-	letter-spacing: 0.00625em;
-	font-family: "Google Sans", Roboto, Arial, sans-serif;
-	font-size: 1rem;
+	color: var(--grayText);
+	font-size: 14px;
 	font-weight: 500;
-	line-height: 1.5rem;
-	height: 25px;
-	margin: 0;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 }
-.label-modal-main .header .input-container, .label-modal-main .header .labels-container {
+
+.label-modal-main .header .input-container,
+.label-modal-main .header .labels-container {
 	display: flex;
 	align-items: center;
 	height: 45px;
 }
-.label-modal-main .header .input-container .plus-icon, .label-modal-main .header .labels-container .plus-icon {
-	background-image: url(/assets/images/svg/plus.svg);
-}
-.label-modal-main .header .input-container .check-icon, .label-modal-main .header .labels-container .check-icon {
-	background-image: url(/assets/images/svg/check3.svg);
-}
+
 .label-modal-main .header .labels-container .label-icon {
 	background-image: url(/assets/images/svg/label-filled.svg);
 }
+
 .label-modal-main .header .labels-container .pen-icon {
 	background-image: url(/assets/images/svg/pen-filled.svg);
 }
+
 .label-modal-main .header .labels-container .trash-icon {
 	background-image: url(/assets/images/svg/trash-filled.svg);
 }
-.label-modal-main .header .labels-container input:focus + .pen-icon {
+
+.label-modal-main .header .labels-container input:focus+.pen-icon {
 	background-image: url(/assets/images/svg/check3.svg);
 }
+
 .label-modal-main .header .labels-container .label-icon:hover {
 	background-image: url(/assets/images/svg/trash-filled.svg);
 }
+
 .label-modal-main .footer {
 	border-top: 1px solid #5f6368;
 	padding: 15px 10px;
 	text-align: right;
 }
+
 .label-modal-main .footer div {
 	box-sizing: border-box;
-	color: #dadce0;
+	color: #00a89a;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	letter-spacing: 0.01785714em;
-	font-family: "Google Sans", Roboto, Arial, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 500;
 	line-height: 1.25rem;
@@ -126,11 +188,13 @@
 	border-radius: 4px;
 	display: inline-block;
 }
+
 .label-modal-main .footer div:hover {
 	background-color: rgba(154, 160, 166, 0.039);
 	cursor: pointer;
 }
+
 .disabled {
 	cursor: not-allowed !important;
 	opacity: 0.25;
-}  
+}
