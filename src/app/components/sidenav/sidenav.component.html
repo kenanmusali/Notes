@@ -33,10 +33,10 @@
                     <img src="./assets/images/Icon/AddNotes.svg">
                 </div>
 
-                <div class="MenuHoverYellow MenuDiv" (click)="openModal()">
+                <div [class.active]="isLabelsActive" class="MenuHoverBottom MenuDiv" (click)="openModal()">
                     <p>Add labels</p>
                     <img src="./assets/images/Icon/AddLabels.svg">
-                </div>
+                  </div>
 
                 <div [class.active]="router.url === '/archive'" class="MenuHoverYellow MenuDiv" routerLink="/archive">
                     <p>Archive</p>
@@ -50,6 +50,7 @@
                 </div>
 
             </div>
+            
             <div class="hr"></div>
             <div class="LabelSection">
                 <p class="HeadText">Labels</p>
@@ -114,22 +115,22 @@
                             placeholder="Create new label" maxlength="50" (input)="''">
                         <!-- <img #plusIcon (click)="labelInput.value=''" src="./assets/images/Icon/False.svg"
                             draggable="false" /> -->
-                        <img [ngStyle]="{ 'display': labelInput.value ? 'none' : 'block' }"
+                        <img class="noSelect" [ngStyle]="{ 'display': labelInput.value ? 'none' : 'block' }"
                             src="./assets/images/Icon/Plus.svg" draggable="false" />
 
-                        <img #plusIcon (click)="labelInput.value=''"
+                        <img class="noSelect" #plusIcon (click)="labelInput.value=''"
                             [ngStyle]="{ 'display': labelInput.value ? 'block' : 'none' }"
                             src="./assets/images/Icon/False.svg" draggable="false" />
 
 
 
-                        <img [style.display]="labelInput.value.length ? 'block' : 'none'" (click)="addLabel(labelInput)"
+                        <img class="noSelect" [style.display]="labelInput.value.length ? 'block' : 'none'" (click)="addLabel(labelInput)"
                             src="./assets/images/Icon/True.svg" draggable="false" />
                     </div>
                 </div>
 
                 <div class="hr"></div>
-                <p class="HeadText ">Labels</p>
+                <p class="HeadText ">Label List</p>
 
                 <div #labelError class="MenuSection2" hidden>
                     <div class="MenuDiv HoveredRed">
@@ -149,25 +150,12 @@
                                 (blur)="editLabel(label.id!).update(labelInput.value);labelIcon.classList.toggle('trash-icon')"
                                 [value]="label.name" type="text" placeholder="Enter label name" maxlength="50">
 
-                            <img #labelIcon (click)="editLabel(label.id!).delete()" src="./assets/images/Icon/Trash.svg"
+                            <img class="IconHoverBlack noSelect" #labelIcon (click)="editLabel(label.id!).delete()" src="./assets/images/Icon/Trash.svg"
                                 draggable="false" />
 
                         </div>
                     </div>
                 </div>
-                <!-- <div class="labels-container" *ngFor="let label of Shared.label.list">
-
-                    <div #labelIcon class="label-icon H" (click)="editLabel(label.id!).delete()"></div>
-
-                    <input (focus)="labelIcon.classList.toggle('trash-icon')" #labelInput
-                        (keydown.enter)="labelInput.blur()"
-                        (blur)="editLabel(label.id!).update(labelInput.value);labelIcon.classList.toggle('trash-icon')"
-                        [value]="label.name" type="text" placeholder="Enter label name" maxlength="50">
-                    <div class="pen-icon H" (click)="editLabel(label.id!).update(labelInput.value)"></div>
-
-                </div> -->
-
-
             </div>
 
         </div>

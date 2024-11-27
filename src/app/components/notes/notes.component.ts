@@ -9,7 +9,7 @@ import { ActivationEnd, NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss'],
+  styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
   constructor(public Shared: SharedService, private router: Router) { }

@@ -8,10 +8,11 @@
 	position: absolute;
 	transform: translate(-50%, -50%);
 	right: -21.4rem;
-	top: 15rem;
+	top: 13.45rem;
 	transition: all 0.4s;
 	max-width: 14.9rem;
 	width: 100%;
+	z-index: 5;
 }
 
 .label-modal-main input {
@@ -22,10 +23,14 @@
 	border: none;
 	border-bottom: 1px solid transparent;
 	box-shadow: none;
-	color: var(--black);
-	height: 25px;
+	color: var(--grayText);
 	outline: none;
 	padding: 0;
+}
+
+.label-modal-main input:focus {
+
+	color: var(--black);
 }
 
 
@@ -52,6 +57,11 @@
 	margin-left: 0.5rem;
 }
 
+.Hovered img:hover {
+	filter: grayscale(100%) brightness(0);
+}
+
+
 .HoveredRed {
 	background-color: var(--lightRed);
 }
@@ -69,7 +79,7 @@
 
 .ScrollLabelList {
 	max-height: fit-content;
-	height: 10.5rem;
+	height: 6.25rem;
 	overflow: hidden;
 	overflow-y: scroll;
 	flex-shrink: 0;
@@ -93,44 +103,13 @@
 	font-weight: 500;
 }
 
-.label-modal-main .cancel-icon,
-.label-modal-main .header .input-container .plus-icon,
-.label-modal-main .header .input-container .check-icon,
-.label-modal-main .header .labels-container .label-icon,
-.label-modal-main .header .labels-container .pen-icon,
-.label-modal-main .header .labels-container .trash-icon {
-	background-size: 18px 18px;
-	height: 24px;
-	opacity: 0.54;
-	width: 24px;
-	background-repeat: no-repeat;
-	background-position: center;
-}
 
 
-
-.divModalHeader {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	height: 2.5rem;
-	padding-inline: 0.9rem;
-}
 
 .header .HeadText {
 	margin-left: 0.9rem;
 }
 
-.label-modal-main .header .error {
-	color: #33ff00;
-	cursor: default;
-	font-size: smaller;
-	font-style: italic;
-	padding: 10px;
-	font-family: "Roboto", arial, sans-serif;
-	font-size: 12.5px;
-}
 
 .label-modal-main .header p {
 	color: var(--grayText);
@@ -140,59 +119,8 @@
 	margin-bottom: 0.5rem;
 }
 
-.label-modal-main .header .input-container,
-.label-modal-main .header .labels-container {
-	display: flex;
-	align-items: center;
-	height: 45px;
-}
 
-.label-modal-main .header .labels-container .label-icon {
-	background-image: url(/assets/images/svg/label-filled.svg);
-}
 
-.label-modal-main .header .labels-container .pen-icon {
-	background-image: url(/assets/images/svg/pen-filled.svg);
-}
-
-.label-modal-main .header .labels-container .trash-icon {
-	background-image: url(/assets/images/svg/trash-filled.svg);
-}
-
-.label-modal-main .header .labels-container input:focus+.pen-icon {
-	background-image: url(/assets/images/svg/check3.svg);
-}
-
-.label-modal-main .header .labels-container .label-icon:hover {
-	background-image: url(/assets/images/svg/trash-filled.svg);
-}
-
-.label-modal-main .footer {
-	border-top: 1px solid #5f6368;
-	padding: 15px 10px;
-	text-align: right;
-}
-
-.label-modal-main .footer div {
-	box-sizing: border-box;
-	color: #00a89a;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	letter-spacing: 0.01785714em;
-	font-size: 0.875rem;
-	font-weight: 500;
-	line-height: 1.25rem;
-	height: 36px;
-	padding: 8px 24px;
-	border-radius: 4px;
-	display: inline-block;
-}
-
-.label-modal-main .footer div:hover {
-	background-color: rgba(154, 160, 166, 0.039);
-	cursor: pointer;
-}
 
 .disabled {
 	cursor: not-allowed !important;

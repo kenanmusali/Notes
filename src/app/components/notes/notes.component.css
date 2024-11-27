@@ -1,0 +1,182 @@
+.NoteSectionArea {
+  background-color: blue;
+  width: 100%;
+}
+
+.note-container .note-main {
+  /* background-color: blue; */
+  min-height: 60px;
+  color: var(--grayText);
+  width: 100%;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: cover;
+}
+
+.note-container .title {
+  margin: 12px 16px 0 16px;
+
+  font-size: 1rem;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--black);
+
+}
+
+.note-container .body {
+  margin: 4px 16px 12px 16px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--grayText);
+
+}
+
+/*  */
+
+.main-container {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+.main-container .pb-80 {
+  padding-bottom: 80px;
+}
+
+.main-container [_title] {
+  color: #9aa0a6;
+  letter-spacing: 0.07272727em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  margin: 8px auto;
+  transition: all 0.7s;
+}
+
+.note-container {
+  width: var(--note-width);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.note-container .note-badge {
+  position: absolute;
+  left: 91%;
+  top: -13px;
+  transform: translate(-50%, 0);
+  font-family: 'Google Sans Light 1';
+  font-size: 11px;
+  background-color: #fbbc04;
+  color: black;
+  padding: 3px 6px;
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px 0px #000;
+}
+
+.note-container:hover {
+  z-index: 99;
+}
+
+.note-container:hover .icons-container,
+.note-container:hover .check-icon {
+  opacity: 1;
+}
+
+.note-container:hover .pin-icon {
+  opacity: 0.54;
+}
+
+
+.note-container .icons-container,
+.note-container .check-icon,
+.note-container .pin-icon {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.note-container .title,
+.note-container .body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+.note-container .check-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-7px, -7px);
+  background-image: url(/assets/images/svg/check2.svg);
+}
+
+.note-container .check-icon:hover {
+  cursor: pointer;
+}
+
+.note-container.hide {
+  opacity: 0;
+}
+
+.no-notes {
+  margin-top: 20vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-notes .image {
+  background-size: 120px 120px;
+  height: 120px;
+  width: 120px;
+  margin: 20px;
+  opacity: 0.1;
+  background-image: url(/assets/images/svg/no-notes.svg);
+}
+
+.no-notes .text {
+  color: #9aa0a6;
+  font-family: "Google Sans Light 1";
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.75rem;
+}
+
+.modal-container {
+  position: fixed;
+  display: none;
+  z-index: 101;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal-container .modal {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  transition: all 0.4s;
+  max-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 660px) {
+  .modal-container .modal {
+    padding: 0 17px;
+  }
+}

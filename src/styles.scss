@@ -9,13 +9,13 @@
   --lightGrayHover: #F5F5F5;
   --grayText: #5F5F5F;
   --lightGrayStroke: #E3E3E3;
-  --lightStroke: #F4F3F3;
+  --lightStroke: transparent;
   --lightGrayVersion: #AEAEAE;
   --hrLine: #E7E7E7;
   --highlight: #FFE79D;
   --scroll: #D9D9D9;
   --scrollHover: #BDBDBD;
-  --lightRed: #faadad;
+  --lightRed: #ff9b9b;
 }
 
 
@@ -151,6 +151,10 @@ html {
 
 }
 
+
+.IconHoverBlack:hover {
+  filter: grayscale(100%) brightness(0);
+}
 
 /* ===== Scrollbar CSS ===== */
 
