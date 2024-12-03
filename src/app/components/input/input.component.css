@@ -1,53 +1,170 @@
+
+
+
 .main-container {
+  margin: auto;
+  max-width: 35rem;
   width: 100%;
   position: relative;
-  max-width: 35rem;
+}
+
+.placeholder .input {
   padding-inline: 1.5rem;
-  padding-bottom: 1px;
   height: 3.3rem;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 0;
-}
-
-.divNoteAdd {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-}
-
-.IconsItem {
-  margin-top: 0.8rem;
-}
-
-.AddNoteSection {
+  background-color: var(--white);
+  border: 1px solid var(--lightGrayStroke);
+  border-radius: 12px;
+  outline: 1px solid var(--lightStroke);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 45.5vh;
-  width: 100%;
-
+  padding-bottom:0.1rem ;
 }
 
-.divNoteAdd p {
+
+.placeholder .input {
   font-size: 16px;
   font-weight: 500;
   color: var(--grayText);
 }
 
-.divNoteAdd img:hover {
+.placeholder .check,
+.placeholder .paint {
+  height: 46px;
+  position: absolute;
+  top: 1px;
+  width: 46px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.54;
+}
+
+.placeholder .AddIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.placeholder .check:hover,
+.placeholder .paint:hover,
+.placeholder .picture:hover {
+  opacity: 0.87;
+}
+
+.placeholder .AddIcon:hover {
   filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
 }
+
+.placeholder .check.pop::before,
+.placeholder .paint.pop::before,
+.placeholder .picture.pop::before {
+  top: 45px;
+}
+
+.placeholder .check {
+  background-image: url(/assets/images/svg/check.svg);
+  right: 121px;
+}
+
+.placeholder .paint {
+  background-image: url(/assets/images/svg/paint.svg);
+  right: 67px;
+}
+
+.placeholder .AddIcon {
+  right: 0px;
+  margin-right: 1.5rem;
+}
+
+.note-main {
+  /* background-color: var(--white); */
+  background-color: var(--white);
+  border: 1px solid var(--lightGrayStroke);
+  border-radius: 12px;
+  outline: 1px solid var(--lightStroke);
+}
+
+.note-main .note-container {
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: cover;
+  background-color: var(--lightGrayHover);
+  border-radius: 6px;
+  margin: 0.5rem;
+}
+
+.note-main .note-container .note-title {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note-main .note-container .note-title.ph {
+color: var(--grayText);
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  padding-left: 11px;
+}
+
+.note-main .note-container .note-title:focus-visible {
+  outline: 0;
+}
+
+.note-main .note-container .note-body {
+
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  min-height: 46px;
+  padding: 13px 16px 12px 16px;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.note-main .note-container .note-body.ph {
+  color: var(--grayText);
+  font-weight: 500;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+}
+
+.note-main .note-container .note-body:focus-visible {
+  outline: 0;
+}
+
+.close-btn {
+  margin-right: 15px;
+  color: #0a5cff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 36px;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: rgba(154, 160, 166, 0.039);
+}
+
+.icons-container {
+  margin-bottom: 0.6rem;
+
+}
+
+/*  */
 
 .ItemHoverAlt {
   position: relative;
 }
-
-
 
 .ItemHoverAlt:hover .AltText {
   display: block;
@@ -73,142 +190,8 @@
 
 
 
-.itemHover:hover {
-  border: 1px solid var(--itemHover);
-  outline: 1px solid transparent;
-}
 
 .itemHover:hover img {
   filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
 }
 
-.item1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  padding: 0rem 0.7rem 0rem 0.5rem;
-  height: 35px;
-  border-radius: 1000px;
-  gap: 0.3rem;
-
-}
-
-.item1 p {
-  font-size: 14px;
-  color: var(--white);
-}
-
-.pin-icon {
-  background-image: url(/src/assets/images/Icon/Pin.svg) !important;
-  z-index: 1;
-}
-
-.pinned {
-  background-image: url(/src/assets/images/Icon/Pinned.svg) !important;
-}
-
-
-.note-main {
-  position: absolute;
-  top: -0.1rem;
-  left: 50%;
-  width: 100%;
-  z-index: 1;
-  transform: translateX(-50%);
-}
-
-/* .NoteSection {
-  max-height: 9rem;
-} */
-
-
-
-.note-main .note-container .note-title {
-  padding: 1rem 1.5rem 0.5rem 1.5rem;
-  letter-spacing: 0.00625em;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.note-main .note-container .note-title.ph {
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-  color: var(--grayText);
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.note-main .note-container .note-title:focus-visible {
-  outline: 0;
-}
-
-.note-main .note-container .note-body {
-  letter-spacing: 0.01428571em;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25rem;
-  min-height: 46px;
-  padding: 1rem 1.5rem;
-  max-height: 70vh;
-  overflow: auto;
-}
-
-.note-main .note-container .note-body.ph {
-  color: var(--grayText);
-  font-size: 16px;
-  font-weight: 500;
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-}
-
-.note-main .note-container .note-body:focus-visible {
-  outline: 0;
-}
-
-.icons {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.TextSection {
-  display: flex;
-  background-color: red;
-}
-
-
-
-.NoteSection {
-  position: relative;
-  min-height: 10rem;
-}
-
-.Add {
-  position: absolute;
-  right: 1.5rem;
-  top: 0.95rem;
-  rotate: 45deg;
-}
-
-
-
-/*  */
-
-
-
-
-
-
-
-
-
-
-
-/* --------------------------------------------------------------- */

@@ -1,8 +1,9 @@
 [data-tooltip="true"] {
     display: none;
-    background-color: #202124;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 60%), 0 2px 6px 2px rgb(0 0 0 / 30%);
-    border-radius: 4px;
+    background-color: var(--white);
+    border: 1px solid var(--lightGrayStroke);
+    border-radius: 12px;
+    outline: 1px solid var(--lightStroke);
     z-index: 999;
 
     &[data-is-tooltip-open="true"] {
@@ -14,15 +15,13 @@
 
         div {
             border: 1px solid transparent;
-            letter-spacing: 0.01428571em;
-            font-family: Roboto;
+           
             font-size: 0.8rem;
             font-weight: 400;
-            line-height: 1.25rem;
             padding: 5px 10px 5px 17px;
 
             &:hover {
-                background-color: rgba(255, 255, 255, 0.16);
+                background-color: rgb(255, 0, 0);
                 cursor: pointer;
             }
         }
@@ -67,10 +66,9 @@
             display: flex;
 
             div {
-                width: 40px;
-                height: 40px;
+                width: 32px;
+                height: 32px;
                 margin: 2px;
-                border: 2px solid transparent;
                 border-radius: 50%;
                 text-align: center;
                 background-repeat: no-repeat;
