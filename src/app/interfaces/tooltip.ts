@@ -10,15 +10,19 @@ export enum bgColors {
     J_purple = '#D3BFDB',
     K_pink = '#F6E2DD',
     L_brown = '#E9E3D4',
-    M_gray = '#F5F5F5',
 }
 export enum bgImages {
     i0 = '',
-    i1 = '/assets/images/backgrounds/redLight.svg',
-    i2 = '/assets/images/backgrounds/image-2.svg',
-    i3 = '/assets/images/backgrounds/image-3.svg',
-    i4 = '/assets/images/backgrounds/image-4.svg',
-    i5 = '/assets/images/backgrounds/image-5.svg',
+    i1 = '/assets/images/backgrounds/Light/redLight.svg',
+    i2 = '/assets/images/backgrounds/Light/orangeLight.svg',
+    i3 = '/assets/images/backgrounds/Light/yellowLight.svg',
+    i4 = '/assets/images/backgrounds/Light/greenLight.svg',
+    i5 = '/assets/images/backgrounds/Light/tealLight.svg',
+    i6 = '/assets/images/backgrounds/Light/aquaLight.svg',
+    i7 = '/assets/images/backgrounds/Light/blueLight.svg',
+    i8 = '/assets/images/backgrounds/Light/purpleLight.svg',
+    i9 = '/assets/images/backgrounds/Light/pinkLight.svg',
+    i95 = '/assets/images/backgrounds/Light/brownLight.svg',
 }
 
 

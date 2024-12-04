@@ -8,7 +8,9 @@
     </div>
     <!--? new note -->
     <div #noteMain class="note-main" hidden>
+        
         <div #noteContainer class="note-container">
+        
             <div [hidden]="noteTitle.innerHTML.length" class="note-title ph"> Title</div>
             <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})" (paste)="pasteEvent($event)"
                 class="note-title" contenteditable="true" spellcheck="true">
@@ -62,6 +64,13 @@
                   
                   <span class="ItemHoverAlt">
                     <div class="item itemHover noSelect" #notePin>
+                      <img src="./assets/images/Icon/Reminder.svg" draggable="false" />
+                    </div>
+                    <p class="AltText">Reminder</p>
+                  </span>
+
+                  <span class="ItemHoverAlt">
+                    <div class="item itemHover noSelect" #notePin>
                       <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
                     </div>
                     <p class="AltText">Label</p>
@@ -97,6 +106,12 @@
                     </div>
                     <p class="AltText">Style</p>
                 </span>
+                <span class="ItemHoverAlt">
+                    <div class="item itemHover noSelect ">
+                        <img src="./assets/images/Icon/Draw.svg" draggable="false" />
+                    </div>
+                    <p class="AltText">Draw</p>
+                </span>
 
                 <span class="ItemHoverAlt">
                     <div class="item itemHover noSelect " >
@@ -115,7 +130,7 @@
 
             </div>
 
-            <div class="close-btn" (click)="saveNote()"> Close </div>
+       
 
 
 
@@ -135,10 +150,13 @@
 <!--* templates -->
 <!--* note template -->
 <ng-template #noteTemplate>
+
     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
         class="note-body" contenteditable="true" spellcheck="true">
+        
     </div>
+    <!-- <div class="AddImage"></div> -->
 </ng-template>
 <!--* cboxes template -->
 <ng-template #checkboxesTemplate>
