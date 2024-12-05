@@ -6,6 +6,7 @@
   max-width: 35rem;
   width: 100%;
   position: relative;
+
 }
 
 .placeholder .input {
@@ -63,19 +64,11 @@
   top: 45px;
 }
 
-.placeholder .check {
-  background-image: url(/assets/images/svg/check.svg);
-  right: 121px;
-}
-
-.placeholder .paint {
-  background-image: url(/assets/images/svg/paint.svg);
-  right: 67px;
-}
 
 .placeholder .AddIcon {
   right: 0px;
   margin-right: 1.5rem;
+  margin-top: 2px;
 }
 
 .note-main {
@@ -90,7 +83,7 @@
   background-position-x: right;
   background-position-y: bottom;
   background-size: cover;
-  background-color: var(--lightGrayHover);
+  background-color: rgba(236, 236, 236, 0.5);
   border-radius: 6px;
   margin: 0.5rem;
 padding: 0.5rem;
@@ -120,7 +113,7 @@ color: var(--grayText);
 
 .note-main .note-container .note-body {
 
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.25rem;
   min-height: 46px;
@@ -183,6 +176,14 @@ color: var(--grayText);
 
 .itemHover:hover img {
   filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+
+.itemHover img {
+  mix-blend-mode: difference;  
+  opacity: 0.5;
 }
 
 .AddImage{

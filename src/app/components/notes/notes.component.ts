@@ -35,33 +35,72 @@ export class NotesComponent implements OnInit {
   trackBy(item: any) { return item.id }
 
   buildMasonry() {
-    let gutter = 10
-    let totalNoteWidth = this.noteWidth + gutter
-    let containerWidth = this.mainContainer.nativeElement.clientWidth
-    let numberOfColumns = 0
-    let masonryWidth = '0px'
-    // --
+    let gutter = 8; // Space between the notes
+    let containerWidth = this.mainContainer.nativeElement.clientWidth; // Get the container's width
+    let numberOfColumns = 0;
+    let masonryWidth = '0px';
+  
+    // -- Adjust for grid view, where noteWidth starts at 240px and dynamically adjusts
     if (this.Shared.noteViewType.value === 'grid') {
-      this.noteWidth = 240
-      numberOfColumns = Math.floor(containerWidth / totalNoteWidth)
+      // Initial noteWidth starts at 240px
+      const initialNoteWidth = 240;
+  
+      // Calculate the number of columns based on container width and note width, but allow for a minimum of 1 column
+      numberOfColumns = Math.max(1, Math.floor(containerWidth / (initialNoteWidth + gutter)));
+  
+      // Calculate the maximum possible noteWidth, depending on the number of columns
+      const maxNoteWidth = (containerWidth - (numberOfColumns - 1) * gutter) / numberOfColumns;
+  
+      // Set noteWidth to the maximum possible value, but don't go below 240px
+      this.noteWidth = Math.max(initialNoteWidth, maxNoteWidth);
+  
+    } else {
+      // For list view, keep noteWidth as it was originally
+      if (containerWidth >= 600) {
+        this.noteWidth = 600;
+      } else {
+        this.noteWidth = containerWidth - 10;
+      }
+      numberOfColumns = 1; // Only 1 column for list view
     }
-    else {
-      if (this.mainContainer.nativeElement.clientWidth >= 600) this.noteWidth = 600
-      else this.noteWidth = this.mainContainer.nativeElement.clientWidth - 10
-      numberOfColumns = 1
+  
+    // Set the custom CSS variable for note width
+    document.documentElement.style.setProperty('--note-width', `${this.noteWidth}px`);
+  
+    // Define sizes for the masonry layout based on columns and gutter
+    const sizes = [{ columns: numberOfColumns, gutter: gutter }];
+  
+    // Apply masonry layout to each note element
+    this.noteEl.toArray().forEach(el => {
+      brikcs(el.nativeElement);
+      if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width;
+    });
+  
+    // Function to apply masonry layout
+    function brikcs(node: HTMLDivElement) {
+      const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false });
+      instance.pack();
     }
-    document.documentElement.style.setProperty('--note-width', this.noteWidth + "px")
-    // --
-    const sizes = [{ columns: numberOfColumns, gutter: gutter }]
-    this.noteEl.toArray().forEach(el => { brikcs(el.nativeElement); if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width })
-    function brikcs(node: HTMLDivElement) { const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false }); instance.pack() }
-    window.onresize = () => { if (this.Shared.noteViewType.value === 'list') this.Shared.noteViewType.next('grid') }
-    //? we align the titles to the masonry width
+  
+    // Adjust the title max-width based on masonry width
     this.title.forEach(el => {
-      if (this.Shared.noteViewType.value === 'list') el.nativeElement.style.maxWidth = masonryWidth
-      else el.nativeElement.style.maxWidth = ''
-    })
+      if (this.Shared.noteViewType.value === 'list') {
+        el.nativeElement.style.maxWidth = masonryWidth; // Set max-width for list view
+      } else {
+        el.nativeElement.style.maxWidth = ''; // Remove max-width for grid view
+      }
+    });
+  
+    // Resize handler: Listen for window resize event and call buildMasonry
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
+  
+  // Add a function to handle resizing and call buildMasonry on resize
+  handleResize() {
+    // Recalculate the masonry layout on resize
+    this.buildMasonry();
+  }
+  
 
   //? modal  -----------------------------------------------------------
 

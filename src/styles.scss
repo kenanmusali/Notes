@@ -6,6 +6,7 @@
   --black: #000000;
   --white: #ffffff;
   --mainYellow: #FDD046;
+  --bgAnimation: #FFE38B;
   --lightGrayHover: #F5F5F5;
   --grayText: #5F5F5F;
   --lightGrayStroke: #E3E3E3;
@@ -24,6 +25,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
 
 }
 
@@ -49,8 +51,8 @@ html {
 .sectionStyle {
   background-color: var(--white);
   border: 1px solid var(--lightGrayStroke);
-  border-radius: 12px;
   outline: 1px solid var(--lightStroke);
+  border-radius: 12px;
 }
 
 .HoverYellowStyle {
@@ -160,8 +162,10 @@ html {
 
 
 
-//? fonts
-@import "./assets/fonts/fonts.scss";
+// .EmptyBar {
+//   // display: flex;
+//   display: none;
+// }
 
 //? snackbar AKA toast
 @import "~node-snackbar/dist/snackbar.css";

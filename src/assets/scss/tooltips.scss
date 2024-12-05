@@ -58,8 +58,9 @@
                 }
 
                 &.nocolor {
-
-                    background-image: url('../images/Icon/noColor.svg');
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     margin-left: 0.3rem;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -92,8 +93,9 @@
                 }
 
                 &.noimage {
-                    background-image: url('../images/Icon/noImage.svg');
-
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     background-repeat: no-repeat;
                     background-position: center;
                     margin-left: 0.3rem;
