@@ -34,9 +34,21 @@ overflow: hidden;
     justify-content: center;
     min-height: 45vh;
     height: fit-content;
-    z-index: 998;
-    background: linear-gradient(to bottom, var(--bgColor) 90%, rgba(234, 234, 234, 0) 100%);
+    z-index: 12;
+    
 
+}
+
+.divScrollBg {
+    background: linear-gradient(to bottom, var(--bgColor) 90%, rgba(234, 234, 234, 0) 100%);
+    filter: blur(20px);
+    height: 44vh;
+    width:  10rem;
+    position: absolute;
+    z-index: 11;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 8rem;
 }
 
 .BarBottom {
@@ -52,7 +64,7 @@ overflow: hidden;
 .BarTop {
     position: fixed;
     top: 0;
-    z-index: 997;
+    z-index: 10;
     background: linear-gradient(to bottom, var(--bgColor) 0%, rgba(234, 234, 234, 0) 100%);
 display: flex;
 justify-content: center;
@@ -81,52 +93,76 @@ align-items: center;
 // margin-left: 0;
 // }
 
-
-// .container {
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 900px;
-//     height: 900px;
-//     background-color: lightgray; 
-//     overflow: hidden;
-// }
-
-// .ball {
-//     position: absolute;
-//     width: 50px; 
-//     height: 50px; 
-//     background-color: yellow;
-//     border-radius: 50%;
-//     filter: blur(1px);
-//     animation: symphony 5s ease-in-out infinite;
-// }
-
-// .ball1 {
-//     animation-delay: 1.5s;
-// }
-
-// .ball2 {
-//     animation-delay: 2.5s; 
-// }
-
-// @keyframes symphony {
-//     0% {
-//         transform: translateX(0) translateY(0);
-//     }
-//     25% {
-//         transform: translateX(100px) translateY(50px);
-//     }
-//     50% {
-//         transform: translateX(0) translateY(100px);
-//     }
-//     75% {
-//         transform: translateX(-100px) translateY(50px);
-//     }
-//     100% {
-//         transform: translateX(0) translateY(0);
-//     }
-// }
-
-
+    /* Container takes the bottom half of the screen */
+    .container {
+       
+   
+     position: relative;
+     z-index: 8;
+      }
+  
+      /* Ball styling and animations */
+      .ball {
+        position: fixed;
+        width: 31vw;
+        height: 31vw;
+      opacity: 0.3;
+        background-color: var(--bgAnimation);
+        border-radius: 50%;
+        margin-top: 15vw;
+        margin-left: 70vw;
+        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+      }
+  
+      .ball1 {
+        position: fixed;
+        width: 31vw;
+        height: 31vw;
+      opacity: 0.5;
+        background-color: var(--bgAnimation);
+        border-radius: 50%;
+        margin-top: -20vw;
+        margin-left: 10vw;
+        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+      }
+  
+  
+      .ball2 {
+        position: fixed;
+        width: 31vw;
+        height: 31vw;
+      opacity: 0.5;
+        background-color: var(--bgAnimation);
+        border-radius: 50%;
+        margin-top: 35vw;
+        margin-left: 25vw;
+        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+      }
+  
+  
+      /* Slow and smooth movement along a curved path */
+      @keyframes moveBall {
+        0% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(60px, 80px); /* Move right and down */
+        }
+        66% {
+          transform: translate(100px, -50px); /* Move further right and slightly up */
+        }
+        100% {
+          transform: translate(0, 0); /* Return to original position */
+        }
+      }
+  
+      /* Keep the blur effect constant */
+      @keyframes ballBlur {
+        0% {
+          filter: blur(80px);
+     
+        }
+        100% {
+          filter: blur(70px);;
+        }
+      }

@@ -30,6 +30,7 @@
         <app-input [noteToEdit]="clickedNoteData" [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
         </app-input>
     </div>
+    
 </div>
 
 <!--*  note template -->
@@ -191,6 +192,7 @@
         <ng-container *ngFor="let color of bgColors | keyvalue">
             <div [attr.data-bg-color]="color.key" [style.background-color]="color.value"
                 (click)="colorMenu.bgColor(color.value)" [class.nocolor]="color.value === ''">
+                <img *ngIf="color.value === ''" src="assets/images/Icon/noColor.svg">
             </div>
         </ng-container>
     </div>
@@ -198,6 +200,7 @@
         <ng-container *ngFor="let image of bgImages | keyvalue">
             <div [attr.data-bg-image]="image.key" [style.background-image]="image.value | ph"
                 (click)="colorMenu.bgImage(image.value)" [class.noimage]="image.value === ''">
+                <img *ngIf="image.value === ''" src="assets/images/Icon/noImage.svg">
             </div>
         </ng-container>
     </div>
