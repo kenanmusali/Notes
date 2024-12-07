@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { LabelI } from 'src/app/interfaces/labels';
 type InputLengthI = { title?: number, body?: number, cb?: number }
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -14,22 +15,18 @@ export class InputComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef, public Shared: SharedService) { }
 
   @ViewChild("main") main!: ElementRef<HTMLDivElement>
-  //? Placeholder  ----------------------------------------------------
   @ViewChild("notePlaceholder") notePlaceholder!: ElementRef<HTMLDivElement>
-  //? note  -----------------------------------------------------
   @ViewChild("noteMain") noteMain!: ElementRef<HTMLDivElement>
   @ViewChild("noteContainer") noteContainer!: ElementRef<HTMLDivElement>
   @ViewChild("noteTitle") noteTitle!: ElementRef<HTMLDivElement>
   @ViewChild("noteBody") noteBody?: ElementRef<HTMLDivElement>
   @ViewChild("notePin") notePin!: ElementRef<HTMLDivElement>
-  //? checkbox  -----------------------------------------------------
   @ViewChild("cboxInput") cboxInput!: ElementRef<HTMLDivElement>
   @ViewChild("cboxPh") cboxPh?: ElementRef<HTMLDivElement>
-  @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement> // needed in the html
-  //? -----------------------------------------------------
+  @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement>
   @Input() isEditing = false
   @Input() noteToEdit: NoteI = {} as NoteI
-  //? -----------------------------------------------------
+
   checkBoxes: CheckboxI[] = []
   labels: LabelI[] = []
   isArchived = false
@@ -37,22 +34,397 @@ export class InputComponent implements OnInit {
   isCboxCompletedListCollapsed = false
   isCbox = new BehaviorSubject<boolean>(false)
   inputLength = new BehaviorSubject<InputLengthI>({ title: 0, body: 0, cb: 0 })
-  //
   bgColors = bgColors
   bgImages = bgImages
   moreMenuEls = {
-    delete: {
-      disabled: true,
-    },
-    copy: {
-      disabled: true,
-    },
-    checkbox: {
-      value: 'Show checkboxes'
-    },
+    delete: { disabled: true },
+    copy: { disabled: true },
+    checkbox: { value: 'Show checkboxes' },
   }
-  //? placeholder  --------------------------------------------------
 
+  @ViewChild('noteTemplate') noteTemplate!: ElementRef<HTMLDivElement>
+
+  @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
+
+  imageElementToChange?: HTMLImageElement;
+
+  // addImage(event: any, imgElement?: HTMLImageElement) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       if (this.imageElementToChange) {
+  //         this.imageElementToChange.src = e.target.result;
+  //         this.imageElementToChange = undefined;
+  //       } else {
+   
+  //         const imgDiv = document.createElement('div');
+  //         imgDiv.style.display = 'flex';
+  //         imgDiv.style.flexDirection = 'row'; 
+  //         imgDiv.style.alignItems = 'center'; 
+  //         imgDiv.style.gap = '1rem';
+  
+
+  //         const img = document.createElement('img');
+  //         img.src = e.target.result;
+  //         img.style.maxWidth = '20rem';
+  //         img.style.height = 'auto';
+  //         img.style.borderRadius = '12px';
+  //         img.style.border = '1px solid var(--lightGrayStroke)';
+  //         img.style.padding = '0.3rem';
+  
+  //         imgDiv.appendChild(img);
+  
+        
+  //         const iconsContainer = document.createElement('div');
+  //         iconsContainer.style.display = 'flex';
+  //         iconsContainer.style.flexDirection = 'column'; 
+  //         iconsContainer.style.alignItems = 'center';
+  //         iconsContainer.style.gap = '0.5rem';
+  
+  //         const delIcon = document.createElement('span');
+  //         delIcon.classList.add('img-delete');
+  //         delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
+  //         delIcon.style.cursor = 'pointer';
+  //         delIcon.style.backgroundColor = 'var(--white)';
+  //         delIcon.style.border = '1px solid var(--lightGrayStroke)';
+  //         delIcon.style.outline = '1px solid var(--lightStroke)';
+  //         delIcon.style.borderRadius = '100px';
+  //         delIcon.style.width = '35px';
+  //         delIcon.style.height = '35px';
+  //         delIcon.style.display = 'flex';  
+  //         delIcon.style.justifyContent = 'center';  
+  //         delIcon.style.alignItems = 'center';
+  //         delIcon.onclick = () => {
+  //           imgDiv.remove();
+  //           this.imageElementToChange = undefined;
+  //         };
+
+  //         const changeIcon = document.createElement('span');
+  //         changeIcon.classList.add('img-change');
+  //         changeIcon.innerHTML = '<img src="../../../assets/images/Icon/Replace.svg" alt="Replace Icon">';
+  //         changeIcon.style.cursor = 'pointer';
+  //         changeIcon.style.backgroundColor = 'var(--white)';
+  //         changeIcon.style.border = '1px solid var(--lightGrayStroke)';
+  //         changeIcon.style.outline = '1px solid var(--lightStroke)';
+  //         changeIcon.style.borderRadius = '100px';
+  //         changeIcon.style.width = '35px';
+  //         changeIcon.style.height = '35px';
+  //         changeIcon.style.display = 'flex';  
+  //         changeIcon.style.justifyContent = 'center';  
+  //         changeIcon.style.alignItems = 'center';
+  
+  //         changeIcon.onclick = () => {
+  //           this.imageElementToChange = img;
+  //           this.imageInput.nativeElement.click();
+  //         };
+  
+  //         const downloadIcon = document.createElement('span');
+  //         downloadIcon.classList.add('img-download');
+  //         downloadIcon.innerHTML = '<img src="../../../assets/images/Icon/Download.svg" alt="Download Icon">';
+  //         downloadIcon.style.cursor = 'pointer';
+  //         downloadIcon.style.backgroundColor = 'var(--white)';
+  //         downloadIcon.style.border = '1px solid var(--lightGrayStroke)';
+  //         downloadIcon.style.outline = '1px solid var(--lightStroke)';
+  //         downloadIcon.style.borderRadius = '100px';
+  //         downloadIcon.style.width = '35px';
+  //         downloadIcon.style.height = '35px';
+  //         downloadIcon.style.display = 'flex';  
+  //         downloadIcon.style.justifyContent = 'center';  
+  //         downloadIcon.style.alignItems = 'center';
+  //         downloadIcon.onclick = () => {
+  //           const link = document.createElement('a');
+  //           link.href = img.src;
+  //           const fileType = file.type.split('/')[1]; 
+  //           link.download = `downloaded-image.${fileType}`;
+  //           link.style.display = 'none';
+  //           document.body.appendChild(link);
+  //           link.click();
+  //           document.body.removeChild(link);
+  //         };
+  
+  //         // Print icon
+  //         const printIcon = document.createElement('span');
+  //         printIcon.classList.add('img-print');
+  //         printIcon.innerHTML = '<img src="../../../assets/images/Icon/Print.svg" alt="Print Icon">';
+  //         printIcon.style.cursor = 'pointer';
+  //         printIcon.style.backgroundColor = 'var(--white)';
+  //         printIcon.style.border = '1px solid var(--lightGrayStroke)';
+  //         printIcon.style.outline = '1px solid var(--lightStroke)';
+  //         printIcon.style.borderRadius = '100px';
+  //         printIcon.style.width = '35px';
+  //         printIcon.style.height = '35px';
+  //         printIcon.style.display = 'flex';  
+  //         printIcon.style.justifyContent = 'center';  
+  //         printIcon.style.alignItems = 'center';
+          
+  //         printIcon.onclick = () => {
+  //           const newWindow = window.open('');
+  //           if (newWindow) {
+  //             newWindow.document.write('<img src="' + img.src + '" />');
+  //             newWindow.print();
+  //             newWindow.document.close();
+  //           } else {
+  //             console.error("Failed to open new window");
+  //           }
+  //         };
+  
+  //         // Append icons to icons container
+  //         iconsContainer.appendChild(delIcon);
+  //         iconsContainer.appendChild(changeIcon);
+  //         iconsContainer.appendChild(downloadIcon);
+  //         iconsContainer.appendChild(printIcon);
+  
+  //         // Append icons container to imgDiv
+  //         imgDiv.appendChild(iconsContainer);
+  
+  //         // Append the complete imgDiv to the parent container
+  //         if (this.noteBody && this.noteBody.nativeElement) {
+  //           this.noteBody.nativeElement.appendChild(imgDiv);
+  //         }
+  
+          
+  //         const textDiv = document.createElement('div');
+  //         textDiv.style.marginTop = '1rem'; 
+  
+  //         const textElement = document.createElement('div');
+  //         textElement.textContent = 'Take a note...'; 
+  
+  //         textDiv.appendChild(textElement);
+  
+         
+  //         if (this.noteBody && this.noteBody.nativeElement) {
+  //           this.noteBody.nativeElement.appendChild(textDiv);
+  //         }
+  //       }
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+
+    
+  // }
+
+  addImage(event: any, imgElement?: HTMLImageElement) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (this.imageElementToChange) {
+          this.imageElementToChange.src = e.target.result;
+          this.imageElementToChange = undefined;
+        } else {
+          const imgDiv = document.createElement('div');
+          imgDiv.style.display = 'flex';
+          imgDiv.style.flexDirection = 'row';
+          imgDiv.style.alignItems = 'center';
+          imgDiv.style.gap = '1rem';
+  
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '20rem';
+          img.style.height = 'auto';
+          img.style.borderRadius = '12px';
+          img.style.border = '1px solid var(--lightGrayStroke)';
+          img.style.padding = '0.3rem';
+  
+          imgDiv.appendChild(img);
+  
+          const createIconsContainer = (imgElement: HTMLImageElement, imgDiv: HTMLElement) => {
+            const iconsContainer = document.createElement('div');
+            iconsContainer.style.display = 'flex';
+            iconsContainer.style.flexDirection = 'column';
+            iconsContainer.style.alignItems = 'center';
+            iconsContainer.style.gap = '0.5rem';
+  
+            const delIcon = document.createElement('span');
+            delIcon.classList.add('img-delete');
+            delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
+            delIcon.style.cursor = 'pointer';
+            delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
+          delIcon.style.cursor = 'pointer';
+          delIcon.style.backgroundColor = 'var(--white)';
+          delIcon.style.border = '1px solid var(--lightGrayStroke)';
+          delIcon.style.outline = '1px solid var(--lightStroke)';
+          delIcon.style.borderRadius = '100px';
+          delIcon.style.width = '35px';
+          delIcon.style.height = '35px';
+          delIcon.style.display = 'flex';  
+          delIcon.style.justifyContent = 'center';  
+          delIcon.style.alignItems = 'center';
+            delIcon.onclick = () => {
+              imgDiv.remove();
+              this.imageElementToChange = undefined;
+            };
+  
+            const changeIcon = document.createElement('span');
+            changeIcon.classList.add('img-change');
+            changeIcon.innerHTML = '<img src="../../../assets/images/Icon/Replace.svg" alt="Replace Icon">';
+            changeIcon.style.cursor = 'pointer';
+            changeIcon.style.backgroundColor = 'var(--white)';
+            changeIcon.style.border = '1px solid var(--lightGrayStroke)';
+            changeIcon.style.outline = '1px solid var(--lightStroke)';
+            changeIcon.style.borderRadius = '100px';
+            changeIcon.style.width = '35px';
+            changeIcon.style.height = '35px';
+            changeIcon.style.display = 'flex';  
+            changeIcon.style.justifyContent = 'center';  
+            changeIcon.style.alignItems = 'center';
+            changeIcon.onclick = () => {
+              this.imageElementToChange = imgElement;
+              this.imageInput.nativeElement.click();
+            };
+  
+            const downloadIcon = document.createElement('span');
+            downloadIcon.classList.add('img-download');
+            downloadIcon.innerHTML = '<img src="../../../assets/images/Icon/Download.svg" alt="Download Icon">';
+            downloadIcon.style.cursor = 'pointer';
+            downloadIcon.style.backgroundColor = 'var(--white)';
+            downloadIcon.style.border = '1px solid var(--lightGrayStroke)';
+            downloadIcon.style.outline = '1px solid var(--lightStroke)';
+            downloadIcon.style.borderRadius = '100px';
+            downloadIcon.style.width = '35px';
+            downloadIcon.style.height = '35px';
+            downloadIcon.style.display = 'flex';  
+            downloadIcon.style.justifyContent = 'center';  
+            downloadIcon.style.alignItems = 'center';
+            downloadIcon.onclick = () => {
+              const link = document.createElement('a');
+              link.href = imgElement.src;
+              const fileType = file.type.split('/')[1];
+              link.download = `downloaded-image.${fileType}`;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            };
+  
+            const printIcon = document.createElement('span');
+            printIcon.classList.add('img-print');
+            printIcon.innerHTML = '<img src="../../../assets/images/Icon/Print.svg" alt="Print Icon">';
+            printIcon.style.cursor = 'pointer';
+            printIcon.style.backgroundColor = 'var(--white)';
+            printIcon.style.border = '1px solid var(--lightGrayStroke)';
+            printIcon.style.outline = '1px solid var(--lightStroke)';
+            printIcon.style.borderRadius = '100px';
+            printIcon.style.width = '35px';
+            printIcon.style.height = '35px';
+            printIcon.style.display = 'flex';  
+            printIcon.style.justifyContent = 'center';  
+            printIcon.style.alignItems = 'center';
+
+            printIcon.onclick = () => {
+              const printContainer = document.createElement('div');
+              printContainer.style.display = 'none';
+            
+              // Create a new image element for the print container each time the print icon is clicked
+              const printImage = document.createElement('img');
+              printImage.src = img.src;  // Always use the current image's src
+              printImage.style.maxWidth = '100%';  // Adjust styling as needed
+              printImage.style.height = 'auto';
+            
+              // Append the image to the print container
+              printContainer.appendChild(printImage);
+            
+              // Append the container to the body (optional, for debugging)
+              document.body.appendChild(printContainer);
+            
+              // Open a print window with only the image content
+              const printWindow = window.open('', '', 'height=600,width=800');
+            
+              // Check if the print window opened successfully
+              if (printWindow) {
+                printWindow.document.write('<html><head><title>Print Image</title></head><body>');
+                printWindow.document.write(printContainer.innerHTML);  // Write only the image container
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();  // Close the document for printing
+                printWindow.print();  // Trigger print dialog
+            
+                // Optionally remove the temporary print container after printing
+                printWindow.onafterprint = () => {
+                  document.body.removeChild(printContainer);
+                };
+              } else {
+                console.error('Failed to open print window');
+              }
+            };
+            
+            
+
+            
+  
+            const duplicateIcon = document.createElement('span');
+            duplicateIcon.classList.add('img-duplicate');
+            duplicateIcon.innerHTML = '<img src="../../../assets/images/Icon/Duplicate.svg" alt="Duplicate Icon">';
+            duplicateIcon.style.cursor = 'pointer';
+            duplicateIcon.style.backgroundColor = 'var(--white)';
+            duplicateIcon.style.border = '1px solid var(--lightGrayStroke)';
+            duplicateIcon.style.outline = '1px solid var(--lightStroke)';
+            duplicateIcon.style.borderRadius = '100px';
+            duplicateIcon.style.width = '35px';
+            duplicateIcon.style.height = '35px';
+            duplicateIcon.style.display = 'flex';  
+            duplicateIcon.style.justifyContent = 'center';  
+            duplicateIcon.style.alignItems = 'center';
+            duplicateIcon.onclick = () => {
+              const duplicateImgDiv = document.createElement('div');
+              duplicateImgDiv.style.display = 'flex';
+              duplicateImgDiv.style.flexDirection = 'row';
+              duplicateImgDiv.style.alignItems = 'center';
+              duplicateImgDiv.style.gap = '1rem';
+  
+              const duplicateImg = imgElement.cloneNode(true) as HTMLImageElement;
+  
+              duplicateImgDiv.appendChild(duplicateImg);
+  
+              const newIconsContainer = createIconsContainer(duplicateImg, duplicateImgDiv);
+              duplicateImgDiv.appendChild(newIconsContainer);
+  
+              if (imgDiv.parentElement) {
+                imgDiv.parentElement.appendChild(duplicateImgDiv);
+  
+                // Create a new text note for the duplicated image
+                const textDiv = document.createElement('div');
+                textDiv.style.marginTop = '1rem';
+  
+                const textElement = document.createElement('div');
+                textElement.textContent = 'Take a note...'; // Add duplicate text
+                textDiv.appendChild(textElement);
+  
+                imgDiv.parentElement.appendChild(textDiv);
+              }
+            };
+  
+            iconsContainer.appendChild(delIcon);
+            iconsContainer.appendChild(changeIcon);
+            iconsContainer.appendChild(downloadIcon);
+            iconsContainer.appendChild(printIcon);
+            iconsContainer.appendChild(duplicateIcon);
+  
+            return iconsContainer;
+          };
+  
+          const iconsContainer = createIconsContainer(img, imgDiv);
+          imgDiv.appendChild(iconsContainer);
+  
+          if (this.noteBody && this.noteBody.nativeElement) {
+            this.noteBody.nativeElement.appendChild(imgDiv);
+  
+            // Add "Take a note..." text for the first image
+            const textDiv = document.createElement('div');
+            textDiv.style.marginTop = '1rem';
+  
+            const textElement = document.createElement('div');
+            textElement.textContent = 'Take a note...';
+            textDiv.appendChild(textElement);
+  
+            this.noteBody.nativeElement.appendChild(textDiv);
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  
   toggleNoteVisibility(condition: boolean) {
     if (condition) {
       this.notePlaceholder.nativeElement.hidden = true; this.noteMain.nativeElement.hidden = false
@@ -70,14 +442,6 @@ export class InputComponent implements OnInit {
       document.addEventListener('mousedown', this.mouseDownEvent)
     }
     this.labels = JSON.parse(JSON.stringify(this.Shared.label.list))
-    /*
-    the correct way is to use `mousedown` because : 
-    https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/
-    click & mouseup, wont get the job done.
-    when u try to select a text, and you loose the click btn outside `notesContainer`,
-    `closeNote()` will be called
-    https://prnt.sc/Wu_19wKRAYig
-    */
   }
 
   mouseDownEvent = (event: Event) => {

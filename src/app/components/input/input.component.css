@@ -135,8 +135,6 @@ color: var(--grayText);
 }
 
 
-
-
 .icons-container {
   margin-bottom: 0.6rem;
 
@@ -193,3 +191,5 @@ color: var(--grayText);
 margin-bottom: 0.6rem;
 border-radius: 5px;
 }
+
+/* ------------------------------------------------------------------------------------- */

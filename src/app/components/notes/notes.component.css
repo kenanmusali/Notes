@@ -42,7 +42,7 @@ z-index: 999;
   box-shadow: 2px 3px 6px 0px #000;
 }
 .note-container:hover {
-  z-index: 20;
+  z-index: 10;
 }
 .note-container:hover .icons-container, .note-container:hover .check-icon {
   opacity: 1;
@@ -178,15 +178,3 @@ color: black;
 
 
 /*  */
-
-.note-container .body {
-  min-height: 30px;
-  line-clamp: 11;
-  -webkit-line-clamp: 11;
-}
-
-.note-container .title {
-
-  line-clamp: 2;
-  -webkit-line-clamp: 2;
-}

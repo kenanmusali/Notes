@@ -84,14 +84,15 @@
                     </div>
                     <p class="AltText">Archive</p>
                 </span>
-
+                
                 <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect ">
-                        <img src="./assets/images/Icon/Image.svg" draggable="false" />
+                    <div class="item itemHover noSelect">
+                      <img src="./assets/images/Icon/Image.svg" draggable="false" (click)="imageInput.click()" />
+                      <input type="file" #imageInput (change)="addImage($event)" style="display:none" accept="image/*" />
                     </div>
                     <p class="AltText">Image</p>
-                </span>
-
+                  </span>
+                  
                 <span class="ItemHoverAlt">
                     <div class="item itemHover noSelect " data-pop="New list" (click)="isCbox.next(true)">
                         <img src="./assets/images/Icon/Task.svg" draggable="false" />
@@ -150,14 +151,15 @@
 <!--* templates -->
 <!--* note template -->
 <ng-template #noteTemplate>
-
     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
         class="note-body" contenteditable="true" spellcheck="true">
-        
     </div>
-    <!-- <div class="AddImage"></div> -->
-</ng-template>
+  </ng-template>
+  
+  
+
+  
 <!--* cboxes template -->
 <ng-template #checkboxesTemplate>
     <!--? isDone: false -->
