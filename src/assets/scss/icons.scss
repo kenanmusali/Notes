@@ -44,46 +44,7 @@
 
     }
 
-    .alarm {
-      @extend %icon;
-      background-image: url(/assets/images/svg/alarm.svg);
-    }
-
-    .colab {
-      @extend %icon;
-      background-image: url(/assets/images/svg/col.svg);
-    }
-
-    .color {
-      @extend %icon;
-      background-image: url(/assets/images/svg/bg.svg);
-    }
-
-    .image {
-      @extend %icon;
-      background-image: url(/assets/images/svg/image.svg);
-    }
-
-    .archive {
-      @extend %icon;
-      background-image: url(/assets/images/svg/archive2.svg);
-    }
-
-    .unarchive {
-      @extend %icon;
-      background-image: url(/assets/images/svg/unarchive.svg);
-    }
-
-    .more {
-      @extend %icon;
-      background-image: url(/assets/images/svg/more.svg);
-    }
-
-    .undo {
-      @extend %icon;
-      background-image: url(/assets/images/svg/undo.svg);
-    }
-
+    
     .delete {
       @extend %icon;
       background-image: url(/assets/images/svg/delete.svg);
@@ -94,14 +55,34 @@
       background-image: url(/assets/images/svg/restore.svg);
     }
 
-    .undo.r {
-      @extend %icon;
-      transform: scaleX(-1);
+
+  }
+
+  .icons1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+margin-bottom: -0.2rem;
+    padding-inline: 0rem;
+    width: 100%;
+
+    %icon {
+
+      background-position: center;
+      background-repeat: no-repeat;
+
     }
 
-    .disabled {
-      cursor: not-allowed !important;
-      opacity: 0.25 !important;
+    
+    .delete {
+      @extend %icon;
+      background-image: url(/assets/images/svg/delete.svg);
+    }
+
+    .restore {
+      @extend %icon;
+      background-image: url(/assets/images/svg/restore.svg);
     }
 
 

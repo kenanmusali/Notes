@@ -42,7 +42,7 @@ z-index: 999;
   box-shadow: 2px 3px 6px 0px #000;
 }
 .note-container:hover {
-  z-index: 10;
+  z-index: 999;
 }
 .note-container:hover .icons-container, .note-container:hover .check-icon {
   opacity: 1;

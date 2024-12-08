@@ -86,7 +86,7 @@
   background-color: rgba(236, 236, 236, 0.5);
   border-radius: 6px;
   margin: 0.5rem;
-padding: 0.5rem;
+padding: 0.5rem 0.5rem 0rem 0.5rem;
 
 }
 
@@ -146,6 +146,41 @@ color: var(--grayText);
   position: relative;
 }
 
+.FormatText {
+  position: absolute;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+  left: 50%; /* Move the element's left edge to 50% of the parent's width */
+  transform: translateX(-50%);
+}
+
+.FormatText1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+  height: 1.6rem;
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.FormatText1:hover {
+  background-color: var(--lightGrayHover);
+}
+
+.FormatText1 p {
+  font-size: 11px;
+  margin-right: 3rem;
+}
+
 .ItemHoverAlt:hover .AltText {
   display: block;
   opacity: 1;
@@ -172,6 +207,8 @@ color: var(--grayText);
 
 
 
+
+
 .itemHover:hover img {
   filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
   mix-blend-mode: normal;
@@ -193,3 +230,16 @@ border-radius: 5px;
 }
 
 /* ------------------------------------------------------------------------------------- */
+
+
+/* Style for the image when FormatText is visible */
+.itemHover img.active { 
+  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+/* Style for FormatText when it is visible */
+.FormatText {
+  display: flex; /* Only shown when isFormatTextVisible is true */
+}

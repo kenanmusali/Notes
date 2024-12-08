@@ -1,9 +1,10 @@
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input, HostListener, Renderer2 } from '@angular/core';
 import { NoteI, CheckboxI } from '../../interfaces/notes';
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
 import { bgImages, bgColors } from 'src/app/interfaces/tooltip';
 import { SharedService } from 'src/app/services/shared.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { LabelI } from 'src/app/interfaces/labels';
+
 type InputLengthI = { title?: number, body?: number, cb?: number }
 
 @Component({
@@ -12,197 +13,101 @@ type InputLengthI = { title?: number, body?: number, cb?: number }
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  constructor(private cd: ChangeDetectorRef, public Shared: SharedService) { }
+  // Declare formatVisibility to track the visibility state of format sections
+  formatVisibility: { classic: boolean; format: boolean } = {
+    classic: false,
+    format: false
+  };
 
-  @ViewChild("main") main!: ElementRef<HTMLDivElement>
-  @ViewChild("notePlaceholder") notePlaceholder!: ElementRef<HTMLDivElement>
-  @ViewChild("noteMain") noteMain!: ElementRef<HTMLDivElement>
-  @ViewChild("noteContainer") noteContainer!: ElementRef<HTMLDivElement>
-  @ViewChild("noteTitle") noteTitle!: ElementRef<HTMLDivElement>
-  @ViewChild("noteBody") noteBody?: ElementRef<HTMLDivElement>
-  @ViewChild("notePin") notePin!: ElementRef<HTMLDivElement>
-  @ViewChild("cboxInput") cboxInput!: ElementRef<HTMLDivElement>
-  @ViewChild("cboxPh") cboxPh?: ElementRef<HTMLDivElement>
-  @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement>
-  @Input() isEditing = false
-  @Input() noteToEdit: NoteI = {} as NoteI
+  // Properties for note data, checkboxes, and labels
+  @Input() isEditing = false;
+  @Input() noteToEdit: NoteI = {} as NoteI;
 
-  checkBoxes: CheckboxI[] = []
-  labels: LabelI[] = []
-  isArchived = false
-  isTrashed = false
-  isCboxCompletedListCollapsed = false
-  isCbox = new BehaviorSubject<boolean>(false)
-  inputLength = new BehaviorSubject<InputLengthI>({ title: 0, body: 0, cb: 0 })
-  bgColors = bgColors
-  bgImages = bgImages
+  checkBoxes: CheckboxI[] = [];
+  labels: LabelI[] = [];
+
+  // State for different flags like archived, trashed, etc.
+  isArchived = false;
+  isTrashed = false;
+  isCboxCompletedListCollapsed = false;
+
+  // Subjects to track visibility of checkboxes and input length
+  isCbox = new BehaviorSubject<boolean>(false);
+  inputLength = new BehaviorSubject<InputLengthI>({ title: 0, body: 0, cb: 0 });
+
+  // Background colors and images (for tooltips)
+  bgColors = bgColors;
+  bgImages = bgImages;
+
+  // More menu items
   moreMenuEls = {
     delete: { disabled: true },
     copy: { disabled: true },
     checkbox: { value: 'Show checkboxes' },
-  }
+  };
 
-  @ViewChild('noteTemplate') noteTemplate!: ElementRef<HTMLDivElement>
-
+  // ViewChild references for various elements in the template
+  @ViewChild("main") main!: ElementRef<HTMLDivElement>;
+  @ViewChild("notePlaceholder") notePlaceholder!: ElementRef<HTMLDivElement>;
+  @ViewChild("noteMain") noteMain!: ElementRef<HTMLDivElement>;
+  @ViewChild("noteContainer") noteContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild("noteTitle") noteTitle!: ElementRef<HTMLDivElement>;
+  @ViewChild("noteBody") noteBody?: ElementRef<HTMLDivElement>;
+  @ViewChild("notePin") notePin!: ElementRef<HTMLDivElement>;
+  @ViewChild("cboxInput") cboxInput!: ElementRef<HTMLDivElement>;
+  @ViewChild("cboxPh") cboxPh?: ElementRef<HTMLDivElement>;
+  @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement>;
+  @ViewChild('noteTemplate') noteTemplate!: ElementRef<HTMLDivElement>;
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
 
   imageElementToChange?: HTMLImageElement;
 
-  // addImage(event: any, imgElement?: HTMLImageElement) {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       if (this.imageElementToChange) {
-  //         this.imageElementToChange.src = e.target.result;
-  //         this.imageElementToChange = undefined;
-  //       } else {
-   
-  //         const imgDiv = document.createElement('div');
-  //         imgDiv.style.display = 'flex';
-  //         imgDiv.style.flexDirection = 'row'; 
-  //         imgDiv.style.alignItems = 'center'; 
-  //         imgDiv.style.gap = '1rem';
-  
+  constructor(private cd: ChangeDetectorRef, public Shared: SharedService, private renderer: Renderer2, private el: ElementRef) { }
 
-  //         const img = document.createElement('img');
-  //         img.src = e.target.result;
-  //         img.style.maxWidth = '20rem';
-  //         img.style.height = 'auto';
-  //         img.style.borderRadius = '12px';
-  //         img.style.border = '1px solid var(--lightGrayStroke)';
-  //         img.style.padding = '0.3rem';
-  
-  //         imgDiv.appendChild(img);
-  
-        
-  //         const iconsContainer = document.createElement('div');
-  //         iconsContainer.style.display = 'flex';
-  //         iconsContainer.style.flexDirection = 'column'; 
-  //         iconsContainer.style.alignItems = 'center';
-  //         iconsContainer.style.gap = '0.5rem';
-  
-  //         const delIcon = document.createElement('span');
-  //         delIcon.classList.add('img-delete');
-  //         delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
-  //         delIcon.style.cursor = 'pointer';
-  //         delIcon.style.backgroundColor = 'var(--white)';
-  //         delIcon.style.border = '1px solid var(--lightGrayStroke)';
-  //         delIcon.style.outline = '1px solid var(--lightStroke)';
-  //         delIcon.style.borderRadius = '100px';
-  //         delIcon.style.width = '35px';
-  //         delIcon.style.height = '35px';
-  //         delIcon.style.display = 'flex';  
-  //         delIcon.style.justifyContent = 'center';  
-  //         delIcon.style.alignItems = 'center';
-  //         delIcon.onclick = () => {
-  //           imgDiv.remove();
-  //           this.imageElementToChange = undefined;
-  //         };
+  // Toggle visibility for either "classic" or "format", ensuring only one can be open at a time
+  toggleFormatText(event: MouseEvent, type: 'classic' | 'format'): void {
+    // If the section being clicked is already visible, close it; otherwise, open it and close the other
+    if (this.formatVisibility[type]) {
+      this.formatVisibility[type] = false;
+    } else {
+      // Close both sections and then open the clicked one
+      this.formatVisibility.classic = false;
+      this.formatVisibility.format = false;
+      this.formatVisibility[type] = true;
+    }
 
-  //         const changeIcon = document.createElement('span');
-  //         changeIcon.classList.add('img-change');
-  //         changeIcon.innerHTML = '<img src="../../../assets/images/Icon/Replace.svg" alt="Replace Icon">';
-  //         changeIcon.style.cursor = 'pointer';
-  //         changeIcon.style.backgroundColor = 'var(--white)';
-  //         changeIcon.style.border = '1px solid var(--lightGrayStroke)';
-  //         changeIcon.style.outline = '1px solid var(--lightStroke)';
-  //         changeIcon.style.borderRadius = '100px';
-  //         changeIcon.style.width = '35px';
-  //         changeIcon.style.height = '35px';
-  //         changeIcon.style.display = 'flex';  
-  //         changeIcon.style.justifyContent = 'center';  
-  //         changeIcon.style.alignItems = 'center';
-  
-  //         changeIcon.onclick = () => {
-  //           this.imageElementToChange = img;
-  //           this.imageInput.nativeElement.click();
-  //         };
-  
-  //         const downloadIcon = document.createElement('span');
-  //         downloadIcon.classList.add('img-download');
-  //         downloadIcon.innerHTML = '<img src="../../../assets/images/Icon/Download.svg" alt="Download Icon">';
-  //         downloadIcon.style.cursor = 'pointer';
-  //         downloadIcon.style.backgroundColor = 'var(--white)';
-  //         downloadIcon.style.border = '1px solid var(--lightGrayStroke)';
-  //         downloadIcon.style.outline = '1px solid var(--lightStroke)';
-  //         downloadIcon.style.borderRadius = '100px';
-  //         downloadIcon.style.width = '35px';
-  //         downloadIcon.style.height = '35px';
-  //         downloadIcon.style.display = 'flex';  
-  //         downloadIcon.style.justifyContent = 'center';  
-  //         downloadIcon.style.alignItems = 'center';
-  //         downloadIcon.onclick = () => {
-  //           const link = document.createElement('a');
-  //           link.href = img.src;
-  //           const fileType = file.type.split('/')[1]; 
-  //           link.download = `downloaded-image.${fileType}`;
-  //           link.style.display = 'none';
-  //           document.body.appendChild(link);
-  //           link.click();
-  //           document.body.removeChild(link);
-  //         };
-  
-  //         // Print icon
-  //         const printIcon = document.createElement('span');
-  //         printIcon.classList.add('img-print');
-  //         printIcon.innerHTML = '<img src="../../../assets/images/Icon/Print.svg" alt="Print Icon">';
-  //         printIcon.style.cursor = 'pointer';
-  //         printIcon.style.backgroundColor = 'var(--white)';
-  //         printIcon.style.border = '1px solid var(--lightGrayStroke)';
-  //         printIcon.style.outline = '1px solid var(--lightStroke)';
-  //         printIcon.style.borderRadius = '100px';
-  //         printIcon.style.width = '35px';
-  //         printIcon.style.height = '35px';
-  //         printIcon.style.display = 'flex';  
-  //         printIcon.style.justifyContent = 'center';  
-  //         printIcon.style.alignItems = 'center';
-          
-  //         printIcon.onclick = () => {
-  //           const newWindow = window.open('');
-  //           if (newWindow) {
-  //             newWindow.document.write('<img src="' + img.src + '" />');
-  //             newWindow.print();
-  //             newWindow.document.close();
-  //           } else {
-  //             console.error("Failed to open new window");
-  //           }
-  //         };
-  
-  //         // Append icons to icons container
-  //         iconsContainer.appendChild(delIcon);
-  //         iconsContainer.appendChild(changeIcon);
-  //         iconsContainer.appendChild(downloadIcon);
-  //         iconsContainer.appendChild(printIcon);
-  
-  //         // Append icons container to imgDiv
-  //         imgDiv.appendChild(iconsContainer);
-  
-  //         // Append the complete imgDiv to the parent container
-  //         if (this.noteBody && this.noteBody.nativeElement) {
-  //           this.noteBody.nativeElement.appendChild(imgDiv);
-  //         }
-  
-          
-  //         const textDiv = document.createElement('div');
-  //         textDiv.style.marginTop = '1rem'; 
-  
-  //         const textElement = document.createElement('div');
-  //         textElement.textContent = 'Take a note...'; 
-  
-  //         textDiv.appendChild(textElement);
-  
-         
-  //         if (this.noteBody && this.noteBody.nativeElement) {
-  //           this.noteBody.nativeElement.appendChild(textDiv);
-  //         }
-  //       }
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
+    event.stopPropagation();  // Prevent click propagation to the document
+  }
 
+  // Close FormatText div when clicking outside of it
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    // Check if the click was inside any of the FormatText divs
+    const clickedInside = this.el.nativeElement.querySelector('.FormatText')?.contains(event.target);
+
+    // If click is outside the divs and any div is visible, close it
+    if (!clickedInside) {
+      this.formatVisibility.classic = false;
+      this.formatVisibility.format = false;
+    }
+  }
+
+ 
+// toggleFormatText(event: MouseEvent): void {
+//     this.isFormatTextVisible = !this.isFormatTextVisible;
+//     event.stopPropagation();  
+//   }
+//   @HostListener('document:click', ['$event'])
+//   onClickOutside(event: MouseEvent): void {
+//     const clickedInside = this.el.nativeElement.querySelector('.FormatText')?.contains(event.target);
     
-  // }
+//     if (!clickedInside && this.isFormatTextVisible) {
+//       this.isFormatTextVisible = false;
+//     }
+//   }
+
+  // ---------------------
+
 
   addImage(event: any, imgElement?: HTMLImageElement) {
     const file = event.target.files[0];
@@ -330,15 +235,15 @@ export class InputComponent implements OnInit {
               // Open a print window with only the image content
               const printWindow = window.open('', '', 'height=600,width=800');
             
-              // Check if the print window opened successfully
+           
               if (printWindow) {
                 printWindow.document.write('<html><head><title>Print Image</title></head><body>');
-                printWindow.document.write(printContainer.innerHTML);  // Write only the image container
+                printWindow.document.write(printContainer.innerHTML); 
                 printWindow.document.write('</body></html>');
-                printWindow.document.close();  // Close the document for printing
-                printWindow.print();  // Trigger print dialog
+                printWindow.document.close();  
+                printWindow.print();  
             
-                // Optionally remove the temporary print container after printing
+          
                 printWindow.onafterprint = () => {
                   document.body.removeChild(printContainer);
                 };
