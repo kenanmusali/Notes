@@ -14,9 +14,16 @@ type InputLengthI = { title?: number, body?: number, cb?: number }
 })
 export class InputComponent implements OnInit {
   // Declare formatVisibility to track the visibility state of format sections
-  formatVisibility: { classic: boolean; format: boolean } = {
-    classic: false,
-    format: false
+  formatVisibility: { format: boolean; align: boolean; font: boolean; textSpacingY: boolean; textSpacingX: boolean; textCase: boolean; textSize: boolean; textList: boolean; textShortcut: boolean;} = {
+    format: false,
+    align: false,
+    font: false,
+    textSpacingY: false,
+    textSpacingX: false,
+    textCase: false,
+    textSize: false,
+    textList: false,
+    textShortcut: false,
   };
 
   // Properties for note data, checkboxes, and labels
@@ -46,7 +53,6 @@ export class InputComponent implements OnInit {
     checkbox: { value: 'Show checkboxes' },
   };
 
-  // ViewChild references for various elements in the template
   @ViewChild("main") main!: ElementRef<HTMLDivElement>;
   @ViewChild("notePlaceholder") notePlaceholder!: ElementRef<HTMLDivElement>;
   @ViewChild("noteMain") noteMain!: ElementRef<HTMLDivElement>;
@@ -64,50 +70,40 @@ export class InputComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef, public Shared: SharedService, private renderer: Renderer2, private el: ElementRef) { }
 
-  // Toggle visibility for either "classic" or "format", ensuring only one can be open at a time
-  toggleFormatText(event: MouseEvent, type: 'classic' | 'format'): void {
-    // If the section being clicked is already visible, close it; otherwise, open it and close the other
+  toggleFormatText(event: MouseEvent, type: 'format' | 'align' | 'font' | 'textSpacingY' | 'textSpacingX' | 'textCase' | 'textSize' | 'textList' | 'textShortcut'): void {
     if (this.formatVisibility[type]) {
       this.formatVisibility[type] = false;
     } else {
-      // Close both sections and then open the clicked one
-      this.formatVisibility.classic = false;
       this.formatVisibility.format = false;
+      this.formatVisibility.align = false;
+      this.formatVisibility.font = false;
+      this.formatVisibility.textSpacingY = false;
+      this.formatVisibility.textSpacingX = false;
+      this.formatVisibility.textCase = false;
+      this.formatVisibility.textSize = false;
+      this.formatVisibility.textList = false;
+      this.formatVisibility.textShortcut = false;
       this.formatVisibility[type] = true;
     }
-
-    event.stopPropagation();  // Prevent click propagation to the document
+    event.stopPropagation(); 
   }
 
-  // Close FormatText div when clicking outside of it
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
-    // Check if the click was inside any of the FormatText divs
     const clickedInside = this.el.nativeElement.querySelector('.FormatText')?.contains(event.target);
 
-    // If click is outside the divs and any div is visible, close it
     if (!clickedInside) {
-      this.formatVisibility.classic = false;
       this.formatVisibility.format = false;
+      this.formatVisibility.align = false;
+      this.formatVisibility.font = false;
+      this.formatVisibility.textSpacingY = false;
+      this.formatVisibility.textSpacingX = false;
+      this.formatVisibility.textCase = false;
+      this.formatVisibility.textSize = false;
+      this.formatVisibility.textList = false;
+      this.formatVisibility.textShortcut = false;
     }
   }
-
- 
-// toggleFormatText(event: MouseEvent): void {
-//     this.isFormatTextVisible = !this.isFormatTextVisible;
-//     event.stopPropagation();  
-//   }
-//   @HostListener('document:click', ['$event'])
-//   onClickOutside(event: MouseEvent): void {
-//     const clickedInside = this.el.nativeElement.querySelector('.FormatText')?.contains(event.target);
-    
-//     if (!clickedInside && this.isFormatTextVisible) {
-//       this.isFormatTextVisible = false;
-//     }
-//   }
-
-  // ---------------------
-
 
   addImage(event: any, imgElement?: HTMLImageElement) {
     const file = event.target.files[0];

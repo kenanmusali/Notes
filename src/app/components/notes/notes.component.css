@@ -178,3 +178,15 @@ color: black;
 
 
 /*  */
+
+.note-container .body {
+  min-height: 30px;
+  line-clamp: 11;
+  -webkit-line-clamp: 11;
+}
+
+.note-container .title {
+
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}

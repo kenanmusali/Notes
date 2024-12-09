@@ -83,7 +83,7 @@
   background-position-x: right;
   background-position-y: bottom;
   background-size: cover;
-  background-color: rgba(236, 236, 236, 0.5);
+  background-color: var(--bgColorArea);
   border-radius: 6px;
   margin: 0.5rem;
 padding: 0.5rem 0.5rem 0rem 0.5rem;
@@ -118,7 +118,7 @@ color: var(--grayText);
   line-height: 1.25rem;
   min-height: 46px;
   padding: 13px 0.5rem 12px  0.5rem;
-  max-height: 70vh;
+  max-height: 65vh;
   overflow: auto;
 }
 
@@ -179,6 +179,7 @@ color: var(--grayText);
 .FormatText1 p {
   font-size: 11px;
   margin-right: 3rem;
+  color: var(--grayText);
 }
 
 .ItemHoverAlt:hover .AltText {
@@ -192,6 +193,13 @@ color: var(--grayText);
 .AltText {
   display: none;
   margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+.AltText1 {
+  display: none;
+  margin-top: -4.5rem !important;
+  white-space: nowrap;
 }
 
 
@@ -242,4 +250,6 @@ border-radius: 5px;
 /* Style for FormatText when it is visible */
 .FormatText {
   display: flex; /* Only shown when isFormatTextVisible is true */
+  transition: all 0.4s;
 }
+

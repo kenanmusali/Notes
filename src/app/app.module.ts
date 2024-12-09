@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { NavComponent } from './components/sidenav/sidenav.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { InputComponent } from './components/input/input.component';
 import { ph } from './pipes/ph.pipe';
@@ -17,7 +16,6 @@ import { NotesToolsPipe } from './pipes/notes-tools.pipe';
     AppComponent,
     MainComponent,
     NavComponent,
-    NavbarComponent,
     NotesComponent,
     InputComponent,
     ph,

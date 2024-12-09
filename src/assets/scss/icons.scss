@@ -59,6 +59,7 @@
   }
 
   .icons1 {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -89,6 +90,17 @@ margin-bottom: -0.2rem;
   }
 }
 
+.divFade {
+  background-color: red;
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  top: -0.25rem;
+  background-color: var(--lightGrayHover);
+  z-index: 0;
+  
+  
+}
 
 
 
