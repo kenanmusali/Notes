@@ -28,7 +28,7 @@ z-index: 999;
 }
 
 
-.note-container .note-badge {
+/* .note-container .note-badge {
   position: absolute;
   left: 91%;
   top: -13px;
@@ -36,11 +36,12 @@ z-index: 999;
 
   font-size: 11px;
   background-color: #fb0404;
-  color: black;
+  color: rgb(255, 0, 0);
   padding: 3px 6px;
   border-radius: 8px;
   box-shadow: 2px 3px 6px 0px #000;
-}
+} */
+
 .note-container:hover {
   z-index: 999;
 }
@@ -74,7 +75,7 @@ z-index: 999;
   background-size: cover;
 }
 .note-container .title {
-color: black;
+color: var(--black);
   margin: 1rem 1.3rem 1rem 1.3rem;
   font-size: 16px;
   font-weight: 500;
@@ -87,6 +88,7 @@ color: black;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5rem;
+  color: var(--black);
 }
 .note-container .body.min {
   line-height: 1.25rem;
@@ -165,9 +167,10 @@ color: black;
 
 
 .itemHover:hover img {
-  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
-  mix-blend-mode: normal;
-  opacity: 1;
+ filter: var();
+ mix-blend-mode: normal;
+ opacity: 1;
+ filter: var(--black-filter);
 }
 
 
@@ -183,6 +186,7 @@ color: black;
   min-height: 30px;
   line-clamp: 11;
   -webkit-line-clamp: 11;
+  color: var(--grayText);
 }
 
 .note-container .title {
@@ -190,3 +194,4 @@ color: black;
   line-clamp: 2;
   -webkit-line-clamp: 2;
 }
+

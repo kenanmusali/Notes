@@ -55,7 +55,7 @@
 }
 
 .placeholder .AddIcon:hover {
-  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  filter: var(--black-filter);
 }
 
 .placeholder .check.pop::before,
@@ -97,6 +97,7 @@ padding: 0.5rem 0.5rem 0rem 0.5rem;
   line-height: 1.5rem;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: var(--black);
 }
 
 .note-main .note-container .note-title.ph {
@@ -112,7 +113,7 @@ color: var(--grayText);
 }
 
 .note-main .note-container .note-body {
-
+  color: var(--black);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25rem;
@@ -144,6 +145,7 @@ color: var(--grayText);
 
 .ItemHoverAlt {
   position: relative;
+
 }
 
 .FormatText {
@@ -218,15 +220,16 @@ color: var(--grayText);
 
 
 .itemHover:hover img {
-  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  filter: var(--black-filter);
   mix-blend-mode: normal;
   opacity: 1;
 }
 
 
 .itemHover img {
-  mix-blend-mode: difference;  
-  opacity: 0.5;
+ mix-blend-mode: difference;
+ filter: var(--gray-filter);
+ -webkit-filter: var(--gray-filter);
 }
 
 .AddImage{
@@ -242,7 +245,7 @@ border-radius: 5px;
 
 /* Style for the image when FormatText is visible */
 .itemHover img.active { 
-  filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  filter: var(--black-filter);
   mix-blend-mode: normal;
   opacity: 1;
 }

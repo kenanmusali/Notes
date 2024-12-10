@@ -18,6 +18,32 @@
   --scroll: #D9D9D9;
   --scrollHover: #BDBDBD;
   --lightRed: #ff9b9b;
+
+  --black-filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
+  --white-filter:  brightness(0) invert(1);
+  --gray-filter:  brightness(60%) contrast(150%);
+  
+  // -----------------------------------------------------------
+
+  // --bgColor: #181818;
+  // --bgColorArea: rgb(24, 24, 24, 0.5);
+  // --black: #ffffff;
+  // --white: #222222;
+  // --mainYellow: #af8a1c;
+  // --bgAnimation: #503c00;
+  // --lightGrayHover: #1d1d1d;
+  // --grayText: #AEAEAE;
+  // --lightGrayStroke: #333333;
+  // --lightStroke: transparent;
+  // --lightGrayVersion: #AEAEAE;
+  // --hrLine: #313131;
+  // --highlight: #FFE79D;
+  // --scroll: #434343;
+  // --scrollHover: #7D7D7D;
+  // --lightRed: #ff9b9b;
+
+  // --black-filter:  brightness(0) invert(1);
+  // --white-filter:  brightness(0) invert(1);
 }
 
 
@@ -182,3 +208,32 @@ html {
 
 //? tooltips
 @import "./assets/scss/tooltips.scss";
+
+
+/* Customize the snackbar styles */
+.snackbar-container {
+  background-color: var(--white) !important;
+  border: 1px solid var(--lightGrayStroke) !important;
+  outline: 1px solid var(--lightStroke) !important;
+  border-radius: 12px !important;   
+  height: 2.8rem !important;  
+}
+
+.snackbar-container p{
+  color: var(--grayText) !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+}
+
+.snackbar-container .action{
+color: var(--mainYellow) !important;
+font-weight: 500 !important;
+font-size: 12px !important;
+}
+
+.snackbar-pos.bottom-left {
+  right: -0.8rem;
+  left: auto;
+  bottom: -0.8rem;
+  transform: translateX(0);
+}

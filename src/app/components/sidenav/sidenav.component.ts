@@ -11,35 +11,145 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   @ViewChild("modalContainer") modalContainer!: ElementRef<HTMLInputElement>;
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>;
+  @ViewChild("settingsModal") settingsModal!: ElementRef<HTMLInputElement>;
   @ViewChild("labelInput") labelInput!: ElementRef<HTMLInputElement>;
   @ViewChild("labelError") labelError!: ElementRef<HTMLInputElement>;
 
-  // Add a flag to track the active state of "Add labels"
+  // Flags to track the active state of "Add labels" and "Settings"
   isLabelsActive: boolean = false;
+  isSettingsActive: boolean = false;
+
+  // New property to handle dark mode state
+  isDarkMode: boolean = false;
 
   constructor(public Shared: SharedService, public router: Router) { }
 
-  // ? modal ----------------------------------------------------------
-  openModal() {
-    this.modalContainer.nativeElement.style.display = 'block';
-    document.addEventListener('mousedown', this.mouseDownEvent);
+  // Theme switching logic
+  ngOnInit(): void {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.isDarkMode = true;
+      this.setDarkMode();
+    } else {
+      this.setLightMode();
+    }
 
-    // Mark "Add labels" as active when the modal is opened
-    this.isLabelsActive = true;
+    // Handle sidebar initialization if needed
+    this.Shared.closeSideBar.subscribe(x => { if (x) this.collapseSideBar(); });
+    if (window.innerWidth <= 600) {
+      this.collapseSideBar();
+    }
   }
 
-  hideModal() {
-    this.modalContainer.nativeElement.style.display = 'none';
-    document.removeEventListener('mousedown', this.mouseDownEvent);
+  toggleTheme(event: any) {
+    if (event.target.checked) {
+      this.isDarkMode = true;
+      this.setDarkMode();
+    } else {
+      this.isDarkMode = false;
+      this.setLightMode();
+    }
+  }
 
-    // Reset active state when the modal is closed
-    this.isLabelsActive = false;
+  setLightMode() {
+    this.setCSSVariables({
+      '--bgColor': '#EAEAEA',
+      '--bgColorArea': 'rgba(236, 236, 236, 0.5)',
+      '--black': '#000000',
+      '--white': '#ffffff',
+      '--mainYellow': '#FDD046',
+      '--bgAnimation': '#FFE38B',
+      '--lightGrayHover': '#F5F5F5',
+      '--grayText': '#5F5F5F',
+      '--lightGrayStroke': '#E3E3E3',
+      '--lightStroke': 'transparent',
+      '--lightGrayVersion': '#AEAEAE',
+      '--hrLine': '#E7E7E7',
+      '--highlight': '#FFE79D',
+      '--scroll': '#D9D9D9',
+      '--scrollHover': '#BDBDBD',
+      '--lightRed': '#ff9b9b',
+      '--black-filter': 'invert(1) grayscale(100%) brightness(0) contrast(100%)',
+      '--white-filter': 'brightness(0) invert(1)',
+      '--gray-filter':  'brightness(60%) contrast(150%)'
+    });
+    localStorage.setItem('theme', 'light');
+  }
+
+  setDarkMode() {
+    this.setCSSVariables({
+      '--bgColor': '#181818',
+      '--bgColorArea': 'rgb(24, 24, 24, 0.5)',
+      '--black': '#ffffff',
+      '--white': '#222222',
+      '--mainYellow': '#af8a1c',
+      '--bgAnimation': '#503c00',
+      '--lightGrayHover': '#1d1d1d',
+      '--grayText': '#AEAEAE',
+      '--lightGrayStroke': '#333333',
+      '--lightStroke': 'transparent',
+      '--lightGrayVersion': '#AEAEAE',
+      '--hrLine': '#313131',
+      '--highlight': '#FFE79D',
+      '--scroll': '#434343',
+      '--scrollHover': '#7D7D7D',
+      '--lightRed': '#ff9b9b',
+      '--black-filter': 'brightness(0) invert(1)',
+      '--white-filter': 'brightness(0) invert(1)',
+      '--gray-filter':  'brightness(110%) contrast(100%)'
+    });
+    localStorage.setItem('theme', 'dark');
+  }
+
+  setCSSVariables(variables: { [key: string]: string }) {
+    for (const key in variables) {
+      if (variables.hasOwnProperty(key)) {
+        document.documentElement.style.setProperty(key, variables[key]);
+      }
+    }
+  }
+
+  // ? modal ----------------------------------------------------------
+  openModal(isSettings: boolean = false) {
+    if (isSettings) {
+      // Open settings modal
+      this.settingsModal.nativeElement.style.display = 'block';
+      this.isSettingsActive = true;
+    } else {
+      // Open label modal
+      this.modalContainer.nativeElement.style.display = 'block';
+      this.isLabelsActive = true;
+    }
+    document.addEventListener('mousedown', this.mouseDownEvent);
+  }
+
+  hideModal(isSettings: boolean = false) {
+    if (isSettings) {
+      // Hide settings modal
+      this.settingsModal.nativeElement.style.display = 'none';
+      this.isSettingsActive = false;
+    } else {
+      // Hide label modal
+      this.modalContainer.nativeElement.style.display = 'none';
+      this.isLabelsActive = false;
+    }
+    document.removeEventListener('mousedown', this.mouseDownEvent);
   }
 
   mouseDownEvent = (event: Event) => {
     let modalEl = this.modal.nativeElement;
-    if (!(modalEl as any).contains(event.target)) {
+    let settingsModalEl = this.settingsModal.nativeElement;
+
+    // Handle click outside label modal
+    if (this.isLabelsActive && !modalEl.contains(event.target as Node) && !settingsModalEl.contains(event.target as Node)) {
+      // Clicked outside label modal, so close label modal
       this.hideModal();
+    }
+
+    // Handle click outside settings modal
+    if (this.isSettingsActive && !settingsModalEl.contains(event.target as Node)) {
+      // Clicked outside settings modal, so close settings modal
+      this.hideModal(true);
     }
   }
 
@@ -78,12 +188,5 @@ export class NavComponent implements OnInit {
 
   collapseSideBar() {
     document.querySelector('[sideBar]')?.classList.toggle('close');
-  }
-
-  ngOnInit(): void {
-    this.Shared.closeSideBar.subscribe(x => { if (x) this.collapseSideBar(); });
-    if (window.innerWidth <= 600) {
-      this.collapseSideBar();
-    }
   }
 }

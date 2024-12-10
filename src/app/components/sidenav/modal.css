@@ -6,9 +6,8 @@
 
 .modal-container .modal {
 	position: absolute;
-	transform: translate(-50%, -50%);
-	right: -21.4rem;
-	top: 13.45rem;
+	right: -14rem;
+	top: 11rem;
 	transition: all 0.4s;
 	max-width: 14.9rem;
 	width: 100%;
@@ -126,3 +125,85 @@
 	cursor: not-allowed !important;
 	opacity: 0.25;
 }
+
+
+/*  */
+
+
+.modal1 {
+	position: absolute;
+
+	right: -14rem;
+	bottom: 0.75rem;
+	transition: all 0.4s;
+	max-width: 14.9rem;
+	width: 100%;
+	z-index: 5;
+    height: fit-content;
+
+}
+
+.settings-modal-main {
+padding: 0.5rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 0.5rem;
+
+}
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 1.8rem;
+	height: 1rem;
+  }
+  
+  .switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--lightGrayStroke); /* Background color when off */
+	transition: 0.4s; /* Smooth transition for background color */
+	padding: 2px;
+	border-radius: 100px; /* Rounded corners for slider */
+  }
+  
+  .slider:before {
+	position: absolute;
+	top: 50%;
+	left: 2px; /* Start the thumb from the left */
+	transform: translateY(-50%);
+	content: "";
+	width: 0.7rem;
+	height: 0.7rem;
+	background-color: var(--white); /* Thumb color */
+	border-radius: 50%; /* Circular thumb */
+	transition: 0.4s; /* Smooth transition for thumb movement */
+  }
+  
+  input:checked + .slider {
+	background-color: var(--mainYellow); /* Change background when checked */
+  }
+  
+  input:checked + .slider:before {
+	left: calc(100% - 0.7rem - 2px); /* Move the thumb to the right */
+	transition: 0.4s;
+  }
+  
+  .slider.round {
+	border-radius: 100px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+  
