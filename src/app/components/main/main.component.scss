@@ -95,8 +95,9 @@ align-items: center;
 
     /* Container takes the bottom half of the screen */
     .container {
-       
-   
+      
+        opacity: var(--container-opacity, 1);
+     
      position: relative;
      z-index: 8;
       }

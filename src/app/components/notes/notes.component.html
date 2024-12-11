@@ -30,7 +30,6 @@
         <app-input [noteToEdit]="clickedNoteData" [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
         </app-input>
     </div>
-    
 </div>
 
 <!--*  note template -->
@@ -83,11 +82,11 @@
                         </ng-template>
 
                     </div>
-                    <div class="labels-container min">
+                    <div class="labels-container min noSelect">
                         <ng-container *ngFor="let label of note.labels">
                             <div class="label-container" *ngIf="label.added">
                                 <div class="label"><span>{{label.name}}</span>
-                                    <div class="cancel-icon pop" data-pop="Remove Label"
+                                    <div class="cancel-icon"
                                         (click)="removeLabel(note,label)"></div>
                                 </div>
                             </div>

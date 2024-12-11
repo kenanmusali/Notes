@@ -65,6 +65,8 @@ export class InputComponent implements OnInit {
   @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement>;
   @ViewChild('noteTemplate') noteTemplate!: ElementRef<HTMLDivElement>;
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('labelMenuTt', { static: false }) labelMenuTt!: ElementRef;
+
 
   imageElementToChange?: HTMLImageElement;
 
@@ -334,6 +336,33 @@ export class InputComponent implements OnInit {
     }
   }
 
+
+  toggleLabelMenu(event: MouseEvent) {
+    // Prevent event propagation to allow outside click detection to work
+    event.stopPropagation();
+    const element = this.labelMenuTt.nativeElement;
+    const isTooltipOpen = element.getAttribute('data-is-tooltip-open') === 'true';
+    element.setAttribute('data-is-tooltip-open', (!isTooltipOpen).toString());
+  }
+  
+  closeLabelMenu() {
+    const element = this.labelMenuTt.nativeElement;
+    element.setAttribute('data-is-tooltip-open', 'false');
+  }
+  
+  
+  handleClickOutside(event: MouseEvent) {
+    const element = this.labelMenuTt.nativeElement;
+    
+    // Check if the click is outside the tooltip (and not on the tooltip)
+    if (element && !element.contains(event.target as Node)) {
+      // Close the tooltip if outside click detected
+      this.closeLabelMenu();
+    }
+  }
+  
+  
+  
   notePhClick() {
     this.toggleNoteVisibility(true)
     if (this.isCbox.value) this.cboxPh?.nativeElement.focus()
@@ -367,6 +396,7 @@ export class InputComponent implements OnInit {
 
   //? note  -----------------------------------------------------
 
+
   async saveNote() {
     this.cboxInput?.nativeElement.blur()
     let noteObj: NoteI = {
@@ -397,6 +427,7 @@ export class InputComponent implements OnInit {
       }
     }
   }
+
 
   reset() {
     this.noteTitle.nativeElement.innerHTML = ''
@@ -546,17 +577,11 @@ export class InputComponent implements OnInit {
       this.noteContainer.nativeElement.style.backgroundImage = `url(${data})`
     }
   }
-
-  //?  -----------------------------------------------------------
-  // cuz we don't have the spread operator in the template, we need to do this : 
+ 
   updateInputLength(type: InputLengthI) {
     if (type.title != undefined) this.inputLength.next({ ...this.inputLength.value, title: type.title })
     if (type.body != undefined) this.inputLength.next({ ...this.inputLength.value, body: type.body })
   }
-
-
-  //? -----------------------------------------------------------
-
   saveNoteSubscription?: Subscription
   ngAfterViewInit() {
     if (this.isEditing) { this.saveNoteSubscription = this.Shared.saveNote.subscribe(x => { if (x) this.saveNote() }) }
@@ -580,8 +605,17 @@ export class InputComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  // ngOnInit(): void { }
 
-  ngOnDestroy() { this.saveNoteSubscription?.unsubscribe() }
+  // ngOnDestroy() { this.saveNoteSubscription?.unsubscribe() }
+
+  ngOnInit() {
+    document.addEventListener('click', this.handleClickOutside.bind(this));
+  }
+  
+  ngOnDestroy() {
+    this.saveNoteSubscription?.unsubscribe() 
+    document.removeEventListener('click', this.handleClickOutside.bind(this));
+  }
 
 }

@@ -9,7 +9,7 @@
 	right: -14rem;
 	top: 11rem;
 	transition: all 0.4s;
-	max-width: 14.9rem;
+	max-width: 15rem;
 	width: 100%;
 	z-index: 5;
 }
@@ -78,10 +78,10 @@
 
 .ScrollLabelList {
 	max-height: fit-content;
-	height: 6.25rem;
 	overflow: hidden;
 	overflow-y: scroll;
 	flex-shrink: 0;
+	height: 8.4rem;
 	margin-right: 0.3rem;
 }
 

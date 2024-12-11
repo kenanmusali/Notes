@@ -17,6 +17,7 @@
             <!--? note OR checkboxes -->
             <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
             </ng-container>
+
             <!--? labels -->
             <div class="labels-container">
                 <ng-container *ngFor="let label of labels">
@@ -26,10 +27,11 @@
                         </div>
                     </div>
                 </ng-container>
-            </div>
+            </div> 
+            
         </div>
         <!--? icons -->
-        <div class="icons-container" *ngIf="!isTrashed;else trashed">
+        <div class="icons-container icons-container1" *ngIf="!isTrashed;else trashed">
             <div class="icons">
 
 
@@ -65,11 +67,12 @@
                 </span>
 
                 <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect" #notePin>
+                    <div class="item itemHover noSelect" (click)="toggleLabelMenu($event)">
                         <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
                     </div>
                     <p class="AltText">Label</p>
                 </span>
+                
 
 
                 <span class="ItemHoverAlt">
@@ -152,9 +155,9 @@
     </div>
 
 
-    <div class="icons-container">
+    <div class="icons-container icons-container2">
         <div class="icons1">
-            <div class="divFade"></div>
+           
             <span class="ItemHoverAlt">
                 <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'format')" #notePin>
                     <img src="./assets/images/Icon/TextFormat.svg" draggable="false"
@@ -373,7 +376,7 @@
             </span>
             
             <span class="ItemHoverAlt">
-                <div class="item itemHover noSelect"  #notePin>
+                <div class="item itemHover noSelect"  >
                     <img src="./assets/images/Icon/TextLink.svg" draggable="false"/>
                 </div>
                 <p class="AltText AltText1">Link</p>
@@ -508,15 +511,23 @@
 </div>
 <!--? label MENU -->
 <div #labelMenuTt data-tooltip="true" data-is-tooltip-open="false" class="labelMenu">
-    <div class="title">Label note</div>
-    <div class="search">
-        <input type="text" maxlength="50" placeholder="Enter label name">
-        <div class="search-icon"></div>
+    <div class="SearchSection">
+        <input class='SearchInput' type="text" id="" placeholder='Search' />
+        <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
     </div>
+    <div class="hr"></div>
+    <p class="HeadText">Select Label</p>
     <div class="label-list-container">
         <div class="label-list" *ngFor="let label of labels" (click)="label.added = !label.added">
-            <div [class.done]='label.added' class="check-icon"></div>
             <div class="label-name">{{label.name}}</div>
+           
+            <img 
+            [src]="label.added ? '../../../assets/images/Icon/CheckMark.svg' : '../../../assets/images/Icon/NoCheckMark.svg'" 
+            draggable="false" 
+            (click)="$event.stopPropagation(); label.added = !label.added">
+              
+              
+            
         </div>
     </div>
 </div>

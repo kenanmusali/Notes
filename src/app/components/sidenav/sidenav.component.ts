@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
   @ViewChild("settingsModal") settingsModal!: ElementRef<HTMLInputElement>;
   @ViewChild("labelInput") labelInput!: ElementRef<HTMLInputElement>;
   @ViewChild("labelError") labelError!: ElementRef<HTMLInputElement>;
+  @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
 
   // Flags to track the active state of "Add labels" and "Settings"
   isLabelsActive: boolean = false;
@@ -21,6 +22,7 @@ export class NavComponent implements OnInit {
 
   // New property to handle dark mode state
   isDarkMode: boolean = false;
+  isContainerVisible: boolean = true;  // New property to track container visibility
 
   constructor(public Shared: SharedService, public router: Router) { }
 
@@ -33,6 +35,11 @@ export class NavComponent implements OnInit {
     } else {
       this.setLightMode();
     }
+
+    // Load container visibility from local storage
+    const containerVisibility = localStorage.getItem('containerVisibility');
+    this.isContainerVisible = containerVisibility !== 'hidden';
+    this.updateContainerOpacity();
 
     // Handle sidebar initialization if needed
     this.Shared.closeSideBar.subscribe(x => { if (x) this.collapseSideBar(); });
@@ -49,6 +56,18 @@ export class NavComponent implements OnInit {
       this.isDarkMode = false;
       this.setLightMode();
     }
+  }
+
+  toggleContainerVisibility(event: any) {
+    this.isContainerVisible = event.target.checked;
+    localStorage.setItem('containerVisibility', this.isContainerVisible ? 'visible' : 'hidden');
+    this.updateContainerOpacity();
+  }
+
+  updateContainerOpacity() {
+    this.setCSSVariables({
+      '--container-opacity': this.isContainerVisible ? '1' : '0'
+    });
   }
 
   setLightMode() {

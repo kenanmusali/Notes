@@ -123,92 +123,119 @@
         }
     }
 
+
+
+
+
+
     &.labelMenu {
-        width: 225px;
-        padding-top: 11px;
-        background-color: #2d2e30;
+        position: absolute;
+        left: 50%;
+        top: 20rem;
+    transform: translateX(-50%);
+        background-color: blue;
+        background-color: var(--white);
+        border: 1px solid var(--lightGrayStroke);
+        outline: 1px solid var(--lightStroke);
+        border-radius: 12px;
+        z-index: 999;
+        right: 0;
+        transition: all 0.4s;
+        max-width: 15rem;
+        width: 100%;
+     
 
         .title {
             font-size: 14px;
             padding: 0 12px;
-            font-family: "Roboto", arial, sans-serif;
+
         }
 
-        .search {
-            display: flex;
-            padding: 8px 12px;
-            align-items: center;
-
-            .search-icon {
-                background-image: url(/assets/images/svg/search.svg);
-                background-size: 14px 18px;
-                height: 18px;
-                width: 18px;
-                opacity: .35;
-                background-repeat: no-repeat;
-            }
-
-            input {
-                padding: 2px 22px 2px 2px;
-                width: 100%;
-                background-color: transparent;
-                border: none;
-                border-bottom: 1px solid transparent;
-                box-shadow: none;
-                color: #e8eaed;
-                font-size: 13px;
-                font-family: "Roboto", arial, sans-serif;
-                height: 25px;
-                outline: none;
-            }
-
-            input:focus {
-                border-bottom: 1px solid #5f6368;
-            }
-
-            input::placeholder {
-                color: #e8eaed;
-                opacity: 0.5;
-            }
-        }
-
-        .label-list-container {
-            padding: 6px 0;
-
-            .label-list {
-                display: flex;
-                padding: 5px 10px 3px;
-
-                .check-icon {
-                    background: url(/assets/images/svg/box.svg) no-repeat center;
-                    background-size: 18px 18px !important;
-                    height: 18px;
-                    width: 18px;
-                    opacity: 0.54;
-                    outline: none;
-                }
-
-                .check-icon.done {
-                    background: url(/assets/images/svg/box-checked.svg) no-repeat center;
-                }
-
-                .label-name {
-                    margin-left: 7px;
-                    padding-top: 2px;
-                    vertical-align: top;
-                    word-wrap: break-word;
-                    font-size: 13px;
-                    font-family: "Roboto", arial, sans-serif;
-                    color: #e8eaed;
-                    font-weight: 500;
-                }
-            }
-
-            .label-list:hover {
-                background-color: rgba(154, 160, 166, 0.039);
-                cursor: pointer;
-            }
-        }
     }
 
+    .label-list-container {
+        // padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+
+             height: 8.4rem;
+  overflow-x: scroll;
+        
+        margin-right: calc(0.5rem - 2px);
+        max-height: fit-content;
+        overflow: hidden;
+        overflow-y: scroll;
+        flex-shrink: 0;
+        
+
+        .label-list {
+            display: flex;
+            height: 1.6rem;
+            padding-inline: 0.5rem;
+            margin-left: 0.5rem;
+            margin-bottom: 0.5rem;
+
+
+
+
+            .label-name {
+                font-size: 11px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 1.6rem;
+                color: var(--grayText);
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+            }
+        }
+
+        .label-list:hover {
+            background-color: var(--lightGrayHover);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.SearchSection {
+    height: 2.25rem;
+    padding-inline: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+
+}
+
+.SearchSection .SearchInput::placeholder {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    color: var(--grayText);
+    background: none;
+
+}
+
+.SearchSection .SearchInput {
+    border: none;
+    font-size: 12px;
+    outline: none;
+    padding-bottom: 1px;
+    background: none;
+}
+
+.HeadText {
+    font-size: 12px !important;
+    color: var(--grayText);
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }

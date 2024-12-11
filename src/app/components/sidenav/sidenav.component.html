@@ -36,7 +36,7 @@
                 <div [class.active]="isLabelsActive" class="MenuHoverBottom MenuDiv" (click)="openModal()">
                     <p>Add labels</p>
                     <img src="./assets/images/Icon/AddLabels.svg">
-                  </div>
+                </div>
 
                 <div [class.active]="router.url === '/archive'" class="MenuHoverYellow MenuDiv" routerLink="/archive">
                     <p>Archive</p>
@@ -50,7 +50,7 @@
                 </div>
 
             </div>
-            
+
             <div class="hr"></div>
             <div class="LabelSection">
                 <p class="HeadText">Labels</p>
@@ -58,7 +58,7 @@
                     <div [class.active]="router.url === '/label/'+label.name" class="MenuHoverBottom MenuDiv"
                         *ngFor="let label of Shared.label.list" [routerLink]="['/label', label.name]">
                         <p>{{label.name}} </p>
-                        <img src="./assets/images/Icon/Label.svg">
+                        <img src="./assets/images/Icon/Label.svg" draggable="false">
                     </div>
                 </span>
             </div>
@@ -87,7 +87,7 @@
                 <div [class.active]="isSettingsActive" class="MenuHoverBottom MenuDiv" (click)="openModal(true)">
                     <p>Settings</p>
                     <img src="./assets/images/Icon/Settings.svg">
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -101,14 +101,11 @@
     <div #modal class="modal">
         <div class="label-modal-main sectionStyle">
             <div class="header">
-                <!-- <div class="input-container">
-                    <div #plusIcon class="plus-icon H" (click)="labelInput.value=''"></div>
-                    <input #labelInput (blur)="plusIcon.classList.toggle('cancel-icon')"
-                        (focus)="plusIcon.classList.toggle('cancel-icon')" (keydown.enter)="addLabel(labelInput)"
-                        type="text" placeholder="Create new label" maxlength="50" (input)="''">
-                    <div [style.display]="labelInput.value.length ? 'block' : 'none'" class="check-icon H"
-                        (click)="addLabel(labelInput)"></div>
-                </div> -->
+                <div class="SearchSection">
+                    <input class='SearchInput' type="text" id="" placeholder='Search' />
+                    <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
+                </div>
+                <div class="hr"></div>
                 <div class="MenuSection">
                     <div class="MenuDiv Hovered MenuHoverBottom">
                         <input #labelInput (keydown.enter)="addLabel(labelInput)" type="text"
@@ -124,8 +121,8 @@
 
 
 
-                        <img class="noSelect" [style.display]="labelInput.value.length ? 'block' : 'none'" (click)="addLabel(labelInput)"
-                            src="./assets/images/Icon/True.svg" draggable="false" />
+                        <img class="noSelect" [style.display]="labelInput.value.length ? 'block' : 'none'"
+                            (click)="addLabel(labelInput)" src="./assets/images/Icon/True.svg" draggable="false" />
                     </div>
                 </div>
 
@@ -139,7 +136,7 @@
                 </div>
 
 
-          
+
 
                 <div class="ScrollLabelList">
                     <div class="MenuSection1" *ngFor="let label of Shared.label.list">
@@ -150,8 +147,8 @@
                                 (blur)="editLabel(label.id!).update(labelInput.value);labelIcon.classList.toggle('trash-icon')"
                                 [value]="label.name" type="text" placeholder="Enter label name" maxlength="50">
 
-                            <img class="IconHoverBlack noSelect" #labelIcon (click)="editLabel(label.id!).delete()" src="./assets/images/Icon/Trash.svg"
-                                draggable="false" />
+                            <img class="IconHoverBlack noSelect" #labelIcon (click)="editLabel(label.id!).delete()"
+                                src="./assets/images/Icon/Trash.svg" draggable="false" />
 
                         </div>
                     </div>
@@ -165,34 +162,51 @@
 
 <div #settingsModal class="modal-container">
     <div class="modal1">
-      <div class="settings-modal-main sectionStyle noSelect">
-        <div class="MenuDiv MenuHoverBottom">
-          <p>Dark Mode</p>
-          
-          <label class="switch">
-            <input type="checkbox" [checked]="isDarkMode" (change)="toggleTheme($event)">
-            <span class="slider round"></span>
-          </label>
-          
-          
-          
+        <div class="settings-modal-main sectionStyle noSelect">
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Dark Mode</p>
+                <label class="switch">
+                    <input type="checkbox" [checked]="isDarkMode" (change)="toggleTheme($event)">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Gradient</p>
+                <label class="switch">
+                    <input type="checkbox" (change)="toggleContainerVisibility($event)" [checked]="isContainerVisible">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>List view</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Web preview</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Language</p>
+                <img src="./assets/images/Icon/Language.svg" draggable="false" />
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Privacy policy</p>
+                <img src="./assets/images/Icon/Help.svg" draggable="false" />
+            </div>
+
         </div>
-        <div class="MenuDiv MenuHoverBottom">
-          <p>Settings</p>
-          <img src="./assets/images/Icon/Settings.svg" draggable="false" />
-        </div>
-        <div class="MenuDiv MenuHoverBottom">
-          <p>Settings</p>
-          <img src="./assets/images/Icon/Settings.svg" draggable="false" />
-        </div>
-        <div class="MenuDiv MenuHoverBottom">
-          <p>Settings</p>
-          <img src="./assets/images/Icon/Settings.svg" draggable="false" />
-        </div>
-        <div class="MenuDiv MenuHoverBottom">
-          <p>Settings</p>
-          <img src="./assets/images/Icon/Settings.svg" draggable="false" />
-        </div>
-      </div>
     </div>
-  </div>
+</div>
