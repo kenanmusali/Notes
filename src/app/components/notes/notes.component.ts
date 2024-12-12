@@ -1,4 +1,6 @@
 import { CheckboxI, NoteI } from './../../interfaces/notes';
+import { ChangeDetectorRef, HostListener, OnDestroy } from '@angular/core';
+
 import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 // @ts-ignore
 import Bricks from 'bricks.js'
@@ -12,13 +14,19 @@ import { ActivationEnd, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
-  constructor(public Shared: SharedService, private router: Router) { }
+
 
   @ViewChild("mainContainer") mainContainer!: ElementRef<HTMLInputElement>
   @ViewChild("modalContainer") modalContainer!: ElementRef<HTMLInputElement>
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>
   @ViewChildren('noteEl') noteEl!: QueryList<ElementRef<HTMLDivElement>>
   @ViewChildren('title') title!: QueryList<ElementRef<HTMLDivElement>>
+  selectedNotes: Set<HTMLElement> = new Set();
+  selectedCount: number = 0;
+  notes: HTMLElement[] = [];
+  selectedEditDiv!: HTMLElement;
+
+  constructor(public Shared: SharedService, private router: Router, private cdr: ChangeDetectorRef) { }
   //? -----------------------------------------------------
   currentPage = {
     archive: false,
@@ -272,4 +280,130 @@ export class NotesComponent implements OnInit {
       this.currentPageName = this.currentPage.label ? this.currentPage.label : this.currentPage.archive ? 'archived' : (this.currentPage.trash ? 'trashed' : 'home')
     })
   }
+
+  selectNoteMain(noteElement: HTMLElement): void {
+    if (this.selectedNotes.has(noteElement)) {
+      // Deselect the note
+      noteElement.classList.remove('selected');
+      this.selectedNotes.delete(noteElement);
+    } else {
+      // Select the note
+      noteElement.classList.add('selected');
+      this.selectedNotes.add(noteElement);
+    }
+  
+    // Update the selected count
+    this.selectedCount = this.selectedNotes.size;
+  
+    // Update the divEditNote class based on selection
+    const editDiv = document.querySelector('.divEditNote');
+    if (editDiv) {
+      if (this.selectedNotes.size > 0) {
+        editDiv.classList.add('selected');
+      } else {
+        editDiv.classList.remove('selected');
+      }
+    }
+  
+    this.cdr.detectChanges();
+  }
+  
+
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+  
+    // Check if the click is inside any note or the divEditNote
+    let clickedInsideNote = false;
+    this.selectedNotes.forEach(note => {
+      if (note.contains(target)) {
+        clickedInsideNote = true;
+      }
+    });
+  
+    // Check if the click is inside divEditNote
+    const editDiv = document.querySelector('.divEditNote');
+    if (editDiv && (editDiv.contains(target) || target === editDiv)) {
+      clickedInsideNote = true;
+    }
+  
+    // If clicked outside all notes and divEditNote, deselect all
+    if (!clickedInsideNote && !(target.closest('.note-container'))) {
+      this.deselectAllNotes();
+    }
+  }
+  
+
+deselectAllNotes(): void {
+    // Deselect all selected notes
+    this.selectedNotes.forEach(note => note.classList.remove('selected'));
+    this.selectedNotes.clear();
+
+    // Update the selected count
+    this.selectedCount = this.selectedNotes.size;
+
+    // Remove 'selected' class from divEditNote
+    const editDiv = document.querySelector('.divEditNote');
+    if (editDiv) {
+        editDiv.classList.remove('selected');
+    }
+
+    this.cdr.detectChanges();
+}
+
+selectAllNotes(): void {
+  const allNotes = document.querySelectorAll('.note-main'); // Use a proper selector to select all notes
+
+  allNotes.forEach(note => {
+      const htmlNote = note as HTMLElement; // Type assertion to HTMLElement
+
+      if (!this.selectedNotes.has(htmlNote)) {
+          htmlNote.classList.add('selected');
+          this.selectedNotes.add(htmlNote);
+      }
+  });
+
+  // Update the selected count
+  this.selectedCount = this.selectedNotes.size;
+
+  // Update the divEditNote class
+  const editDiv = document.querySelector('.divEditNote');
+  if (editDiv) {
+      editDiv.classList.add('selected');
+  }
+
+  this.cdr.detectChanges();
+}
+
+onNoteClick(event: MouseEvent, noteElement: HTMLElement): void {
+    // Stop the click from propagating to the document listener
+    event.stopPropagation();
+    
+    // Toggle the selection of the individual note
+    this.selectNoteMain(noteElement);
+}
+
+handleSelectAll(): void {
+    this.selectAllNotes();
+}
+
+handleDeselectAll(): void {
+    this.deselectAllNotes();
+}
+toggleButtons(): void {
+  const selectAllButton = document.getElementById('selectAllButton');
+  const deselectAllButton = document.getElementById('deselectAllButton');
+
+  if (selectAllButton && deselectAllButton) {
+      if (selectAllButton.style.display === 'inline') {
+          selectAllButton.style.display = 'none';
+          deselectAllButton.style.display = 'flex';
+      } else {
+          selectAllButton.style.display = 'inline';
+          deselectAllButton.style.display = 'none';
+      }
+  }
+}
+
 }

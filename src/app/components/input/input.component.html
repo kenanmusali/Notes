@@ -1,57 +1,58 @@
-<div #main [class.main-container]="!isEditing">
-    <!--? placeholder -->
-    <div #notePlaceholder (click)="notePhClick()" class="placeholder ">
-        <p class="input">Add note</p>
+<span class="divNoteSection">
+    <div #main [class.main-container]="!isEditing">
+        <!--? placeholder -->
+        <div #notePlaceholder (click)="notePhClick()" class="placeholder ">
+            <p class="input">Add note</p>
 
-        <div class="AddIcon " data-pop="New note with image"> <img src="./assets/images/Icon/Add.svg"></div>
-    </div>
-    <!--? new note -->
-    <div #noteMain class="note-main" hidden>
-
-        <div #noteContainer class="note-container">
-
-            <div [hidden]="noteTitle.innerHTML.length" class="note-title ph"> Title</div>
-            <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})" (paste)="pasteEvent($event)"
-                class="note-title" contenteditable="true" spellcheck="true">
-            </div>
-            <!--? note OR checkboxes -->
-            <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
-            </ng-container>
-
-            <!--? labels -->
-            <div class="labels-container">
-                <ng-container *ngFor="let label of labels">
-                    <div class="label-container" *ngIf="label.added">
-                        <div class="label"><span>{{label.name}}</span>
-                            <div class="cancel-icon" (click)="label.added = !label.added"></div>
-                        </div>
-                    </div>
-                </ng-container>
-            </div> 
-            
+            <div class="AddIcon " data-pop="New note with image"> <img src="./assets/images/Icon/Add.svg"></div>
         </div>
-        <!--? icons -->
-        <div class="icons-container icons-container1" *ngIf="!isTrashed;else trashed">
-            <div class="icons">
+        <!--? new note -->
+        <div #noteMain class="note-main" hidden>
+
+            <div #noteContainer class="note-container">
+
+                <div [hidden]="noteTitle.innerHTML.length" class="note-title ph"> Title</div>
+                <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})"
+                    (paste)="pasteEvent($event)" class="note-title" contenteditable="true" spellcheck="true">
+                </div>
+                <!--? note OR checkboxes -->
+                <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
+                </ng-container>
+
+                <!--? labels -->
+                <div class="labels-container">
+                    <ng-container *ngFor="let label of labels">
+                        <div class="label-container" *ngIf="label.added">
+                            <div class="label"><span>{{label.name}}</span>
+                                <div class="cancel-icon" (click)="label.added = !label.added"></div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+
+            </div>
+            <!--? icons -->
+            <div class="icons-container icons-container1" *ngIf="!isTrashed;else trashed">
+                <div class="icons">
 
 
 
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover" #notePin data-pinned="false"
-                        [class.pinned]="notePin.dataset['pinned'] === 'true'"
-                        (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
-                        [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note' : 'Unpin note'">
-                        <img src="./assets/images/Icon/Pin.svg" draggable="false"
-                            [ngStyle]="{'display': notePin.dataset['pinned'] === 'true' ? 'none' : 'inline-block'}" />
-                        <img src="./assets/images/Icon/Pinned.svg" draggable="false"
-                            [ngStyle]="{'display': notePin.dataset['pinned'] === 'false' ? 'none' : 'inline-block'}" />
-                    </div>
-                    <p class="AltText">Pin</p>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover" #notePin data-pinned="false"
+                            [class.pinned]="notePin.dataset['pinned'] === 'true'"
+                            (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
+                            [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note' : 'Unpin note'">
+                            <img src="./assets/images/Icon/Pin.svg" draggable="false"
+                                [ngStyle]="{'display': notePin.dataset['pinned'] === 'true' ? 'none' : 'inline-block'}" />
+                            <img src="./assets/images/Icon/Pinned.svg" draggable="false"
+                                [ngStyle]="{'display': notePin.dataset['pinned'] === 'false' ? 'none' : 'inline-block'}" />
+                        </div>
+                        <p class="AltText">Pin</p>
 
-                </span>
+                    </span>
 
 
-                <!-- <span class="ItemHoverAlt">
+                    <!-- <span class="ItemHoverAlt">
                     <div class="item itemHover noSelect" #notePin
                          (click)="onNotePinClick(moreMenuTtBtn, labelMenuTt)">
                       <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
@@ -59,92 +60,110 @@
                     <p class="AltText">Label</p>
                   </span> -->
 
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect" #notePin>
-                        <img src="./assets/images/Icon/Reminder.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Reminder</p>
-                </span>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect" #notePin>
+                            <img src="./assets/images/Icon/Reminder.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Reminder</p>
+                    </span>
 
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect" (click)="toggleLabelMenu($event)">
-                        <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Label</p>
-                </span>
-                
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect" (click)="toggleLabelMenu($event)">
+                            <img src="./assets/images/Icon/AddLabels.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Label</p>
 
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect " (click)="isArchived = true;saveNote()" data-pop="Archive">
-                        <img src="./assets/images/Icon/Archive.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Archive</p>
-                </span>
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect">
-                        <img src="./assets/images/Icon/Image.svg" draggable="false" (click)="imageInput.click()" />
-                        <input type="file" #imageInput (change)="addImage($event)" style="display:none"
-                            accept="image/*" />
-                    </div>
-                    <p class="AltText">Image</p>
-                </span>
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect " data-pop="New list" (click)="isCbox.next(true)">
-                        <img src="./assets/images/Icon/Task.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">List</p>
-                </span>
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect " #colorMenuTtBtn data-pop="Background Options"
-                        (click)="openTooltip(colorMenuTtBtn,colorMenuTt)">
-                        <img src="./assets/images/Icon/Style.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Style</p>
-                </span>
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect ">
-                        <img src="./assets/images/Icon/Draw.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Draw</p>
-                </span>
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect ">
-                        <img src="./assets/images/Icon/Undo.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Undo</p>
-                </span>
-
-                <span class="ItemHoverAlt">
-                    <div class="item itemHover noSelect ">
-                        <img src="./assets/images/Icon/Rendo.svg" draggable="false" />
-                    </div>
-                    <p class="AltText">Rendo</p>
-                </span>
-
-
-            </div>
+                    </span>
 
 
 
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect " (click)="isArchived = true;saveNote()" data-pop="Archive">
+                            <img src="./assets/images/Icon/Archive.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Archive</p>
+                    </span>
+
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect">
+                            <img src="./assets/images/Icon/Image.svg" draggable="false" (click)="imageInput.click()" />
+                            <input type="file" #imageInput (change)="addImage($event)" style="display:none"
+                                accept="image/*" />
+                        </div>
+                        <p class="AltText">Image</p>
+                    </span>
+
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect " data-pop="New list" (click)="isCbox.next(true)">
+                            <img src="./assets/images/Icon/Task.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">List</p>
+                    </span>
+
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect " #colorMenuTtBtn data-pop="Background Options"
+                            (click)="openTooltip(colorMenuTtBtn,colorMenuTt)">
+                            <img src="./assets/images/Icon/Style.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Style</p>
+                    </span>
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect ">
+                            <img src="./assets/images/Icon/Draw.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Draw</p>
+                    </span>
+
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect ">
+                            <img src="./assets/images/Icon/Undo.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Undo</p>
+                    </span>
+
+                    <span class="ItemHoverAlt">
+                        <div class="item itemHover noSelect ">
+                            <img src="./assets/images/Icon/Rendo.svg" draggable="false" />
+                        </div>
+                        <p class="AltText">Rendo</p>
+                    </span>
 
 
-        </div>
-        <!--? icons if trashed -->
-        <ng-template #trashed>
-            <div class="icons-container min">
-                <div class="icons">
-                    <div class="delete H"></div>
-                    <div class="restore H"></div>
                 </div>
             </div>
-        </ng-template>
+            <!--? icons if trashed -->
+            <ng-template #trashed>
+                <div class="icons-container min">
+                    <div class="icons">
+                        <div class="delete H"></div>
+                        <div class="restore H"></div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
-</div>
+
+    <!--? label MENU -->
+    <div #labelMenuTt data-tooltip="true" data-is-tooltip-open="false" class="labelMenu">
+        <div class="SearchSection">
+            <input class='SearchInput' type="text" id="" placeholder='Search' />
+            <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
+        </div>
+        <div class="hr"></div>
+        <p class="HeadText">Select Label</p>
+        <div class="label-list-container">
+            <div class="label-list" *ngFor="let label of labels" (click)="label.added = !label.added">
+                <div class="label-name">{{label.name}}</div>
+
+                <img [src]="label.added ? '../../../assets/images/Icon/CheckMark.svg' : '../../../assets/images/Icon/NoCheckMark.svg'"
+                    draggable="false" (click)="$event.stopPropagation(); label.added = !label.added">
+
+
+
+            </div>
+        </div>
+    </div>
+</span>
 
 <!--* templates -->
 <!--* note template -->
@@ -157,7 +176,7 @@
 
     <div class="icons-container icons-container2">
         <div class="icons1">
-           
+
             <span class="ItemHoverAlt">
                 <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'format')" #notePin>
                     <img src="./assets/images/Icon/TextFormat.svg" draggable="false"
@@ -235,7 +254,7 @@
                     <div class="MenuDiv FormatText1">
                         <p>Gothic</p>
                     </div>
-                    
+
                 </div>
             </span>
 
@@ -374,10 +393,10 @@
                     </div>
                 </div>
             </span>
-            
+
             <span class="ItemHoverAlt">
-                <div class="item itemHover noSelect"  >
-                    <img src="./assets/images/Icon/TextLink.svg" draggable="false"/>
+                <div class="item itemHover noSelect">
+                    <img src="./assets/images/Icon/TextLink.svg" draggable="false" />
                 </div>
                 <p class="AltText AltText1">Link</p>
             </span>
@@ -414,9 +433,10 @@
         </div>
     </div>
 
-    
-</ng-template>
 
+
+
+</ng-template>
 
 
 
@@ -508,26 +528,4 @@
 
 
 
-</div>
-<!--? label MENU -->
-<div #labelMenuTt data-tooltip="true" data-is-tooltip-open="false" class="labelMenu">
-    <div class="SearchSection">
-        <input class='SearchInput' type="text" id="" placeholder='Search' />
-        <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
-    </div>
-    <div class="hr"></div>
-    <p class="HeadText">Select Label</p>
-    <div class="label-list-container">
-        <div class="label-list" *ngFor="let label of labels" (click)="label.added = !label.added">
-            <div class="label-name">{{label.name}}</div>
-           
-            <img 
-            [src]="label.added ? '../../../assets/images/Icon/CheckMark.svg' : '../../../assets/images/Icon/NoCheckMark.svg'" 
-            draggable="false" 
-            (click)="$event.stopPropagation(); label.added = !label.added">
-              
-              
-            
-        </div>
-    </div>
 </div>

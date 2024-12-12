@@ -34,14 +34,21 @@
 
 <!--*  note template -->
 <ng-template #noteTemplate let-notes="notes">
+
     <div #noteEl [class.mx-auto]="Shared.noteViewType.value === 'list' ">
+        
         <ng-container *ngFor="let note of notes | notesTools:currentPageName ;trackBy: trackBy">
+
             <div #noteEL class="note-container">
                 <span class="note-badge" *ngIf="currentPage.label && (note.archived || note.trashed)"
-                    [innerText]="note.archived ? 'archive': (note.trashed ? 'trash' : '') "></span>
+                      [innerText]="note.archived ? 'archive' : (note.trashed ? 'trash' : '')"></span>
+              
                 <div class="note-main"
-                    [ngStyle]="{'background-color':note.bgColor,'border-color':note.bgColor,'background-image' : note.bgImage}">
+                     [ngStyle]="{'background-color': note.bgColor, 'border-color': note.bgColor, 'background-image': note.bgImage}"
+                     [ngClass]="{'selected': selectedNotes.has(noteEL)}">
+                    
                     <div (mouseup)="openModal(noteEL,note)">
+                      
                         <div class="title">
                             <span [innerHTML]="note.noteTitle"></span>
                         </div>
@@ -169,7 +176,7 @@
                         </div>
                     </ng-template>
                 </div>
-                <div class="check-icon"></div>
+                <img class="SelectIcon" src="../../../assets/images/Icon/Select.svg" (click)="selectNoteMain(noteEL)" draggable="false">
               
             </div>
         </ng-container>
@@ -205,15 +212,48 @@
 </div>
 <!--? label MENU -->
 <div #labelMenuTt data-tooltip="true" data-is-tooltip-open="false" class="labelMenu">
-    <div class="title">Label note</div>
-    <div class="search">
-        <input type="text" maxlength="50" placeholder="Enter label name">
-        <div class="search-icon"></div>
+    <div class="SearchSection">
+        <input class='SearchInput' type="text" id="" placeholder='Search' />
+        <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
     </div>
+    <div class="hr"></div>
+    <p class="HeadText">Select Label</p>
     <div class="label-list-container">
         <div class="label-list" *ngFor="let label of labels" (click)="labelMenu(label)">
-            <div [class.done]='label.added' class="check-icon"></div>
+          
             <div class="label-name">{{label.name}}</div>
+            
+            <img [src]="label.added ? '../../../assets/images/Icon/CheckMark.svg' : '../../../assets/images/Icon/NoCheckMark.svg'"
+            draggable="false" (click)="$event.stopPropagation(); label.added = !label.added">
         </div>
+    </div>
+</div>
+
+
+<div #divEditNote class="divEditNote noSelect" [ngClass]="{'selected': selectedNotes.size > 0}">
+    <p>{{ selectedCount }} Selected</p>
+    <div class="divSelectIcon">
+        <img 
+    id="selectAllButton" 
+    src="../../../assets/images/Icon/SelectAll.svg" 
+    draggable="false" 
+    (click)="handleSelectAll(); toggleButtons()" 
+    style="display: inline;">
+
+<img 
+    id="deselectAllButton" 
+    src="../../../assets/images/Icon/DeselectAll.svg" 
+    draggable="false" 
+    (click)="handleDeselectAll(); toggleButtons()" 
+    style="display: none;">
+<img src="../../../assets/images/Icon/Pin.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Reminder.svg" draggable="false">
+        <img src="../../../assets/images/Icon/AddLabels.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Archive.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Style.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Duplicate.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Download.svg" draggable="false">
+        <img src="../../../assets/images/Icon/Trash.svg" draggable="false">
+
     </div>
 </div>

@@ -130,21 +130,21 @@
 
     &.labelMenu {
         position: absolute;
-        left: 50%;
-        top: 20rem;
-    transform: translateX(-50%);
-        background-color: blue;
+   
+
         background-color: var(--white);
         border: 1px solid var(--lightGrayStroke);
         outline: 1px solid var(--lightStroke);
         border-radius: 12px;
         z-index: 999;
-        right: 0;
+      
         transition: all 0.4s;
         max-width: 15rem;
         width: 100%;
-     
-
+          left: 50%;
+    transform: translateX(-50%);
+    bottom: -12.4rem;
+margin-left: -8.5rem;
         .title {
             font-size: 14px;
             padding: 0 12px;

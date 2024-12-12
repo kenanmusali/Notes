@@ -152,7 +152,6 @@ color: var(--grayText);
 
 .ItemHoverAlt {
   position: relative;
-
 }
 
 .FormatText {
@@ -261,5 +260,11 @@ border-radius: 5px;
 .FormatText {
   display: flex; /* Only shown when isFormatTextVisible is true */
   transition: all 0.4s;
+}
+
+
+.divNoteSection {
+  position: relative;
+width: 100%;
 }
 
