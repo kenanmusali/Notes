@@ -14,7 +14,7 @@ type InputLengthI = { title?: number, body?: number, cb?: number }
 })
 export class InputComponent implements OnInit {
   // Declare formatVisibility to track the visibility state of format sections
-  formatVisibility: { format: boolean; align: boolean; font: boolean; textSpacingY: boolean; textSpacingX: boolean; textCase: boolean; textSize: boolean; textList: boolean; textShortcut: boolean;} = {
+  formatVisibility: { format: boolean; align: boolean; font: boolean; textSpacingY: boolean; textSpacingX: boolean; textCase: boolean; textSize: boolean; textList: boolean; textShortcut: boolean; emoji: boolean;} = {
     format: false,
     align: false,
     font: false,
@@ -24,6 +24,7 @@ export class InputComponent implements OnInit {
     textSize: false,
     textList: false,
     textShortcut: false,
+    emoji: false,
   };
 
   // Properties for note data, checkboxes, and labels
@@ -72,7 +73,7 @@ export class InputComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef, public Shared: SharedService, private renderer: Renderer2, private el: ElementRef) { }
 
-  toggleFormatText(event: MouseEvent, type: 'format' | 'align' | 'font' | 'textSpacingY' | 'textSpacingX' | 'textCase' | 'textSize' | 'textList' | 'textShortcut'): void {
+  toggleFormatText(event: MouseEvent, type: 'format' | 'align' | 'font' | 'textSpacingY' | 'textSpacingX' | 'textCase' | 'textSize' | 'textList' | 'textShortcut' | 'emoji'): void {
     if (this.formatVisibility[type]) {
       this.formatVisibility[type] = false;
     } else {
@@ -85,6 +86,7 @@ export class InputComponent implements OnInit {
       this.formatVisibility.textSize = false;
       this.formatVisibility.textList = false;
       this.formatVisibility.textShortcut = false;
+      this.formatVisibility.emoji = false;
       this.formatVisibility[type] = true;
     }
     event.stopPropagation(); 
@@ -103,6 +105,7 @@ export class InputComponent implements OnInit {
       this.formatVisibility.textCase = false;
       this.formatVisibility.textSize = false;
       this.formatVisibility.textList = false;
+      this.formatVisibility.emoji = false;
       this.formatVisibility.textShortcut = false;
     }
   }
@@ -349,19 +352,7 @@ export class InputComponent implements OnInit {
     const element = this.labelMenuTt.nativeElement;
     element.setAttribute('data-is-tooltip-open', 'false');
   }
-  
-  
-  handleClickOutside(event: MouseEvent) {
-    const element = this.labelMenuTt.nativeElement;
-    
-    // Check if the click is outside the tooltip (and not on the tooltip)
-    if (element && !element.contains(event.target as Node)) {
-      // Close the tooltip if outside click detected
-      this.closeLabelMenu();
-    }
-  }
-  
-  
+   
   
   notePhClick() {
     this.toggleNoteVisibility(true)
@@ -608,14 +599,37 @@ export class InputComponent implements OnInit {
   // ngOnInit(): void { }
 
   // ngOnDestroy() { this.saveNoteSubscription?.unsubscribe() }
+  activeCategory: string = '';  // Keeps track of the active category
+  selectedSkin: string = 'SkinDefault';  // Set default skin as 'SkinDefault'
 
   ngOnInit() {
     document.addEventListener('click', this.handleClickOutside.bind(this));
+    this.setActiveCategory('emotions');
+    // Always set the default skin when the component is initialized
+    this.selectedSkin = 'SkinDefault';
   }
-  
+
   ngOnDestroy() {
-    this.saveNoteSubscription?.unsubscribe() 
+    this.saveNoteSubscription?.unsubscribe();
     document.removeEventListener('click', this.handleClickOutside.bind(this));
+  }
+
+  setActiveCategory(category: string): void {
+    this.activeCategory = category;
+  }
+
+  setSkinCategory(skin: string): void {
+    this.selectedSkin = skin;  // Set the selected skin
+  }
+
+  handleClickOutside(event: MouseEvent) {
+    const element = this.labelMenuTt.nativeElement;
+
+    // Check if the click is outside the tooltip (and not on the tooltip)
+    if (element && !element.contains(event.target as Node)) {
+      // Close the tooltip if outside click detected
+      this.closeLabelMenu();
+    }
   }
 
 }

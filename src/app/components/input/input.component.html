@@ -61,7 +61,7 @@
                   </span> -->
 
                     <span class="ItemHoverAlt">
-                        <div class="item itemHover noSelect" #notePin>
+                        <div class="item itemHover noSelect">
                             <img src="./assets/images/Icon/Reminder.svg" draggable="false" />
                         </div>
                         <p class="AltText">Reminder</p>
@@ -220,6 +220,10 @@
                         <p>Math</p>
                         <img src="./assets/images/Icon/TextMath.svg">
                     </div>
+                    <div class="MenuDiv FormatText1">
+                        <p>Link</p>
+                        <img src="./assets/images/Icon/TextLink.svg">
+                    </div>
                 </div>
             </span>
 
@@ -351,7 +355,7 @@
             </span>
 
             <span class="ItemHoverAlt">
-                <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'textSize')" #notePin>
+                <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'textSize')">
                     <img src="./assets/images/Icon/TextSize.svg" draggable="false"
                         [ngClass]="{'active': formatVisibility.textSize}" />
                 </div>
@@ -377,12 +381,13 @@
             </span>
 
             <span class="ItemHoverAlt">
-                <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'textList')" #notePin>
+                <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'textList')">
                     <img src="./assets/images/Icon/TextList.svg" draggable="false"
                         [ngClass]="{'active': formatVisibility.textList}" />
                 </div>
                 <p class="AltText AltText1">List style</p>
                 <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.textList">
+
                     <div class="MenuDiv FormatText1">
                         <p>Bulleted list</p>
                         <img src="./assets/images/Icon/TextListDot.svg">
@@ -391,14 +396,336 @@
                         <p>Numbered list</p>
                         <img src="./assets/images/Icon/TextListNum.svg">
                     </div>
+
                 </div>
             </span>
 
             <span class="ItemHoverAlt">
-                <div class="item itemHover noSelect">
-                    <img src="./assets/images/Icon/TextLink.svg" draggable="false" />
+
+                <div class="item itemHover noSelect" (click)="toggleFormatText($event, 'emoji')">
+                    <img src="./assets/images/Icon/TextEmoji.svg" draggable="false"
+                        [ngClass]="{'active': formatVisibility.emoji}" />
                 </div>
-                <p class="AltText AltText1">Link</p>
+                <p class="AltText AltText1">Emoji</p>
+                <div class="FormatText FormatText2 sectionStyle noSelect" *ngIf="formatVisibility.emoji">
+
+
+
+                    <div class="SearchSection">
+                        <input class='SearchInput' type="text" id="" placeholder='Search' />
+                        <img class='IconHover' src="./assets/images/Icon/Search.svg" draggable="false" />
+                    </div>
+                    <div class="hr"></div>
+                    <!-- Emoji List - Only Item Hover Icons -->
+                    <div class="emojiList">
+                        <!-- Emotions and Animals -->
+                        <span class="itemHover" (click)="setActiveCategory('emotions')"
+                            [ngClass]="{'active-icon': activeCategory === 'emotions'}">
+                            <img class="IconHover" src="./assets/images/Icon/FaceEmoji.svg" draggable="false" />
+                        </span>
+
+                        <!-- People -->
+                        <span class="itemHover" (click)="setActiveCategory('people')"
+                            [ngClass]="{'active-icon': activeCategory === 'people'}">
+                            <img class="IconHover" src="./assets/images/Icon/PeopleEmoji.svg" draggable="false" />
+                        </span>
+
+                        <!-- Celebrations and Object -->
+                        <span class="itemHover" (click)="setActiveCategory('celebrations')"
+                            [ngClass]="{'active-icon': activeCategory === 'celebrations'}">
+                            <img class="IconHover" src="./assets/images/Icon/NatureEmoji.svg" draggable="false" />
+                        </span>
+
+                        <!-- Food and Plants -->
+                        <span class="itemHover" (click)="setActiveCategory('food')"
+                            [ngClass]="{'active-icon': activeCategory === 'food'}">
+                            <img class="IconHover" src="./assets/images/Icon/FoodEmoji.svg" draggable="false" />
+                        </span>
+
+                        <!-- Transportations and Places -->
+                        <span class="itemHover" (click)="setActiveCategory('transport')"
+                            [ngClass]="{'active-icon': activeCategory === 'transport'}">
+                            <img class="IconHover" src="./assets/images/Icon/ObjectEmoji.svg" draggable="false" />
+                        </span>
+
+                        <!-- Symbols -->
+                        <span class="itemHover" (click)="setActiveCategory('symbols')"
+                            [ngClass]="{'active-icon': activeCategory === 'symbols'}">
+                            <img class="IconHover" src="./assets/images/Icon/FlagEmoji.svg" draggable="false" />
+                        </span>
+                    </div>
+
+                    <!-- Emotions and Animals Section -->
+                    <div *ngIf="activeCategory === 'emotions'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'emotions'}">Emotions and
+                            Animals</p>
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup">
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                            </div>
+                            <div class="divFadeSec">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- People Section -->
+                    <div *ngIf="activeCategory === 'people'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'people'}">People</p>
+                        <div class="divSkinCl">
+                            <span class="SkinCL" (click)="setSkinCategory('SkinDefault')">
+                                <span class="Skin SkinDefault"></span>
+                            </span>
+                            <span class="SkinCL" (click)="setSkinCategory('SkinLight')">
+                                <span class="Skin SkinLight"></span>
+                            </span>
+                            <span class="SkinCL" (click)="setSkinCategory('SkinMediumLight')">
+                                <span class="Skin SkinMediumLight"></span>
+                            </span>
+                            <span class="SkinCL" (click)="setSkinCategory('SkinMedium')">
+                                <span class="Skin SkinMedium"></span>
+                            </span>
+                            <span class="SkinCL" (click)="setSkinCategory('SkinMediumDark')">
+                                <span class="Skin SkinMediumDark"></span>
+                            </span>
+                            <span class="SkinCL" (click)="setSkinCategory('SkinDark')">
+                                <span class="Skin SkinDark"></span>
+                            </span>
+                        </div>
+
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinDefault'">
+
+
+                                <!-- SkinDefault -->
+
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <span>👩</span>
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinLight'">
+
+
+                                <!-- SkinDefault -->
+
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <span>👩🏻</span>
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinMediumLight'">
+
+
+                                <!-- SkinDefault -->
+
+                                sdsd
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinMedium'">
+
+
+                                <!-- SkinDefault -->
+
+                                sdsd
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinMediumDark'">
+
+
+                                <!-- SkinDefault -->
+
+                                sdsd
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+
+                            <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinDark'">
+
+
+                                <!-- SkinDefault -->
+
+                                sdsd
+                                <div class="divFadeSec">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Celebrations and Object Section -->
+                    <div *ngIf="activeCategory === 'celebrations'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'celebrations'}">
+                            Celebrations and Objects</p>
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup">
+                                <span>Emojis related to celebrations and objects</span>
+                            </div>
+                            <div class="divFadeSec">
+                                <!-- Emoji Content for Celebrations and Objects -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food and Plants Section -->
+                    <div *ngIf="activeCategory === 'food'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'food'}">Food and Plants
+                        </p>
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup">
+                                <span>Emojis related to food and plants</span>
+                            </div>
+                            <div class="divFadeSec">
+                                <!-- Emoji Content for Food and Plants -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transportations and Places Section -->
+                    <div *ngIf="activeCategory === 'transport'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'transport'}">
+                            Transportations and Places</p>
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup">
+                                <span>Emojis related to transportation and places</span>
+                            </div>
+                            <div class="divFadeSec">
+                                <!-- Emoji Content for Transportations and Places -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Symbols Section -->
+                    <div *ngIf="activeCategory === 'symbols'">
+                        <p class="HeadText1" [ngClass]="{'active-category': activeCategory === 'symbols'}">Symbols</p>
+                        <div class="divEmojiArea">
+                            <div class="divEmojiGroup">
+                                <span>Emojis related to symbols</span>
+                            </div>
+                            <div class="divFadeSec">
+                                <!-- Emoji Content for Symbols -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
             </span>
 
             <span class="ItemHoverAlt">

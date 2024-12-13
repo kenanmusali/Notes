@@ -1,6 +1,3 @@
-
-
-
 .main-container {
   margin: auto;
   max-width: 35rem;
@@ -19,7 +16,7 @@
   outline: 1px solid var(--lightStroke);
   display: flex;
   align-items: center;
-  padding-bottom:0.1rem ;
+  padding-bottom: 0.1rem;
 }
 
 
@@ -86,7 +83,7 @@
   background-color: var(--bgColorArea);
   border-radius: 6px;
   margin: 0.5rem 0.5rem 0rem 0.5rem;
-padding: 0.5rem 0.5rem 0rem 0.5rem;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
 
 }
 
@@ -101,7 +98,7 @@ padding: 0.5rem 0.5rem 0rem 0.5rem;
 }
 
 .note-main .note-container .note-title.ph {
-color: var(--grayText);
+  color: var(--grayText);
   position: absolute;
   width: 100%;
   pointer-events: none;
@@ -118,7 +115,7 @@ color: var(--grayText);
   font-weight: 400;
   line-height: 1.25rem;
   min-height: 46px;
-  padding: 13px 0.5rem 12px  0.5rem;
+  padding: 13px 0.5rem 12px 0.5rem;
   max-height: 65vh;
   overflow: auto;
 }
@@ -142,6 +139,7 @@ color: var(--grayText);
 
 
 }
+
 .icons-container2 {
   padding-bottom: 0.6rem;
   padding-top: 0.15rem;
@@ -161,7 +159,20 @@ color: var(--grayText);
   flex-direction: column;
   gap: 0.5rem;
   z-index: 1000;
-  left: 50%; /* Move the element's left edge to 50% of the parent's width */
+  left: 50%;
+  /* Move the element's left edge to 50% of the parent's width */
+  transform: translateX(-50%);
+}
+
+.FormatText2 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem !important;
+  padding: 0 !important;
+  z-index: 1000;
+  left: 50%;
+  /* Move the element's left edge to 50% of the parent's width */
   transform: translateX(-50%);
 }
 
@@ -233,24 +244,24 @@ color: var(--grayText);
 
 
 .itemHover img {
- mix-blend-mode: difference;
- filter: var(--gray-filter);
- -webkit-filter: var(--gray-filter);
+  mix-blend-mode: difference;
+  filter: var(--gray-filter);
+  -webkit-filter: var(--gray-filter);
 }
 
-.AddImage{
+.AddImage {
   border: 1px solid var(--grayText);
   width: 30px;
   height: 30px;
-margin-bottom: 0.6rem;
-border-radius: 5px;
+  margin-bottom: 0.6rem;
+  border-radius: 5px;
 }
 
 /* ------------------------------------------------------------------------------------- */
 
 
 /* Style for the image when FormatText is visible */
-.itemHover img.active { 
+.itemHover img.active {
   filter: var(--black-filter);
   mix-blend-mode: normal;
   opacity: 1;
@@ -258,13 +269,165 @@ border-radius: 5px;
 
 /* Style for FormatText when it is visible */
 .FormatText {
-  display: flex; /* Only shown when isFormatTextVisible is true */
+  display: flex;
+  /* Only shown when isFormatTextVisible is true */
+  transition: all 0.4s;
+}
+
+.FormatText2 {
+  display: flex;
+  /* Only shown when isFormatTextVisible is true */
   transition: all 0.4s;
 }
 
 
 .divNoteSection {
   position: relative;
-width: 100%;
+  width: 100%;
 }
+
+.emojiList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 0.8rem;
+  margin: 0.8rem 0rem
+}
+
+.emojiList span {
+  display: flex;
+  align-items: center;
+}
+
+
+.HeadText1 {
+  font-size: 12px !important;
+  color: var(--grayText);
+  font-weight: 500;
+  padding-left: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.divEmojiArea {
+  display: flex;
+
+  justify-content: center;
+  height: 10rem;
+  overflow-y: scroll;
+  margin-bottom: 0.7rem;
+  margin-right: 0.4rem
+}
+
+.divFadeSec {
+  position: fixed;
+  background: linear-gradient(to top, var(--white) 0%, rgba(234, 234, 234, 0) 100%);
+
+  width: 95%;
+  height: 2rem;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.divEmojiGroup {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* 3 emojis per row */
+  padding: 0rem calc(0.1rem - 2px) 0rem 0.5rem;
+  gap: 0.6rem;
+  width: fit-content;
+}
+
+.divEmojiGroup {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* 3 emojis per row */
+  padding: 0rem calc(0.1rem - 2px) 0rem 0.5rem;
+  gap: 0.6rem;
+  width: fit-content;
+}
+
+.divEmojiGroup span {
+  display: inline-flex;
+  /* This will let the emoji be centered properly */
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+
+}
+
+.divEmojiGroup span:hover {
+  background-color: var(--bgColor);
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+div:not(.active-category) .divEmojiArea {
+  display: flex;
+}
+
+.active-icon img {
+  filter: var(--black-filter);
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+.SkinCL {
+  border: 1px solid var(--lightGrayStroke);
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  transition: all 0.2s;
+}
+
+.divSkinCl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.Skin {
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+}
+
+.SkinCL:hover {
+  transition: all 0.3s;
+  border: 1px solid var(--grayText);
+}
+
+.SkinDefault {
+background-color: #FFC83D;
+}
+
+.SkinLight {
+background-color: #F7D7C4;
+}
+
+.SkinMediumLight {
+  background-color: #D8B094;
+}
+
+.SkinMedium {
+  background-color: #BB9167;
+}
+
+.SkinMediumDark {
+  background-color: #8E562E;
+}
+
+.SkinDark {
+  background-color: #613D30;
+}
+
 
