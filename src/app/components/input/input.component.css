@@ -322,7 +322,7 @@
 .divFadeSec {
   position: fixed;
   background: linear-gradient(to top, var(--white) 0%, rgba(234, 234, 234, 0) 100%);
-
+  pointer-events: none;
   width: 95%;
   height: 2rem;
   bottom: 0.5rem;
