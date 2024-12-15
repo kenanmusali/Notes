@@ -376,14 +376,14 @@ div:not(.active-category) .divEmojiArea {
 }
 
 .SkinCL {
-  border: 1px solid var(--lightGrayStroke);
+outline: 1px solid var(--lightGrayStroke);
   width: 20px;
   height: 20px;
   border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.2rem;
+  border: 2px solid var(--white);
   transition: all 0.2s;
 }
 
@@ -431,3 +431,49 @@ background-color: #F7D7C4;
 }
 
 
+/* ------------------------------------------------------ */
+
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.code {
+  font-family: monospace;
+}
+
+.math {
+  font-family: serif;
+}
+
+.link {
+  color: yellow;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.wavy {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+
+.dotted {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
