@@ -633,3 +633,30 @@ export class InputComponent implements OnInit {
   }
 // ------------------------------------------------------------------------
 }
+
+
+
+// <ng-template #noteTemplate>
+//     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
+//     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
+//         class="note-body" contenteditable="true" spellcheck="true">
+//     </div>
+
+
+// when type in note 
+// inside this puntiction it will change style 
+
+// **Text** (Bold, font weight 700)
+// *Text* (Italic, Font style italic)
+// ~~Text~~ (Strikethrou, text-decoration: overline;)
+// ==Text== (Hightlight background color yellow)
+// `Text` (Code, font family monospace)
+// $text$ (Math, font family serif)
+// [[text]] (link a, color yellow, text underline, font weight 500)
+// _Text_ (underline,text-decoration: underline; )
+// ~Text~ (wavy, text-decoration-style: wavy;)
+// ..Text.. (dotted, text-decoration-style: dotted;)
+
+
+
+
