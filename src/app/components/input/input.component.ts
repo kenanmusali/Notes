@@ -14,7 +14,7 @@ type InputLengthI = { title?: number, body?: number, cb?: number }
 })
 export class InputComponent implements OnInit {
   // Declare formatVisibility to track the visibility state of format sections
-  formatVisibility: { format: boolean; align: boolean; font: boolean; textSpacingY: boolean; textSpacingX: boolean; textCase: boolean; textSize: boolean; textList: boolean; textShortcut: boolean; emoji: boolean;} = {
+  formatVisibility: { format: boolean; align: boolean; font: boolean; textSpacingY: boolean; textSpacingX: boolean; textCase: boolean; textSize: boolean; textList: boolean; textShortcut: boolean; emoji: boolean; } = {
     format: false,
     align: false,
     font: false,
@@ -89,7 +89,7 @@ export class InputComponent implements OnInit {
       this.formatVisibility.emoji = false;
       this.formatVisibility[type] = true;
     }
-    event.stopPropagation(); 
+    event.stopPropagation();
   }
 
   @HostListener('document:click', ['$event'])
@@ -124,7 +124,7 @@ export class InputComponent implements OnInit {
           imgDiv.style.flexDirection = 'row';
           imgDiv.style.alignItems = 'center';
           imgDiv.style.gap = '1rem';
-  
+
           const img = document.createElement('img');
           img.src = e.target.result;
           img.style.maxWidth = '20rem';
@@ -132,36 +132,36 @@ export class InputComponent implements OnInit {
           img.style.borderRadius = '12px';
           img.style.border = '1px solid var(--lightGrayStroke)';
           img.style.padding = '0.3rem';
-  
+
           imgDiv.appendChild(img);
-  
+
           const createIconsContainer = (imgElement: HTMLImageElement, imgDiv: HTMLElement) => {
             const iconsContainer = document.createElement('div');
             iconsContainer.style.display = 'flex';
             iconsContainer.style.flexDirection = 'column';
             iconsContainer.style.alignItems = 'center';
             iconsContainer.style.gap = '0.5rem';
-  
+
             const delIcon = document.createElement('span');
             delIcon.classList.add('img-delete');
             delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
             delIcon.style.cursor = 'pointer';
             delIcon.innerHTML = '<img src="../../../assets/images/Icon/Trash.svg" alt="Delete Icon">';
-          delIcon.style.cursor = 'pointer';
-          delIcon.style.backgroundColor = 'var(--white)';
-          delIcon.style.border = '1px solid var(--lightGrayStroke)';
-          delIcon.style.outline = '1px solid var(--lightStroke)';
-          delIcon.style.borderRadius = '100px';
-          delIcon.style.width = '35px';
-          delIcon.style.height = '35px';
-          delIcon.style.display = 'flex';  
-          delIcon.style.justifyContent = 'center';  
-          delIcon.style.alignItems = 'center';
+            delIcon.style.cursor = 'pointer';
+            delIcon.style.backgroundColor = 'var(--white)';
+            delIcon.style.border = '1px solid var(--lightGrayStroke)';
+            delIcon.style.outline = '1px solid var(--lightStroke)';
+            delIcon.style.borderRadius = '100px';
+            delIcon.style.width = '35px';
+            delIcon.style.height = '35px';
+            delIcon.style.display = 'flex';
+            delIcon.style.justifyContent = 'center';
+            delIcon.style.alignItems = 'center';
             delIcon.onclick = () => {
               imgDiv.remove();
               this.imageElementToChange = undefined;
             };
-  
+
             const changeIcon = document.createElement('span');
             changeIcon.classList.add('img-change');
             changeIcon.innerHTML = '<img src="../../../assets/images/Icon/Replace.svg" alt="Replace Icon">';
@@ -172,14 +172,14 @@ export class InputComponent implements OnInit {
             changeIcon.style.borderRadius = '100px';
             changeIcon.style.width = '35px';
             changeIcon.style.height = '35px';
-            changeIcon.style.display = 'flex';  
-            changeIcon.style.justifyContent = 'center';  
+            changeIcon.style.display = 'flex';
+            changeIcon.style.justifyContent = 'center';
             changeIcon.style.alignItems = 'center';
             changeIcon.onclick = () => {
               this.imageElementToChange = imgElement;
               this.imageInput.nativeElement.click();
             };
-  
+
             const downloadIcon = document.createElement('span');
             downloadIcon.classList.add('img-download');
             downloadIcon.innerHTML = '<img src="../../../assets/images/Icon/Download.svg" alt="Download Icon">';
@@ -190,8 +190,8 @@ export class InputComponent implements OnInit {
             downloadIcon.style.borderRadius = '100px';
             downloadIcon.style.width = '35px';
             downloadIcon.style.height = '35px';
-            downloadIcon.style.display = 'flex';  
-            downloadIcon.style.justifyContent = 'center';  
+            downloadIcon.style.display = 'flex';
+            downloadIcon.style.justifyContent = 'center';
             downloadIcon.style.alignItems = 'center';
             downloadIcon.onclick = () => {
               const link = document.createElement('a');
@@ -202,7 +202,7 @@ export class InputComponent implements OnInit {
               link.click();
               document.body.removeChild(link);
             };
-  
+
             const printIcon = document.createElement('span');
             printIcon.classList.add('img-print');
             printIcon.innerHTML = '<img src="../../../assets/images/Icon/Print.svg" alt="Print Icon">';
@@ -213,38 +213,38 @@ export class InputComponent implements OnInit {
             printIcon.style.borderRadius = '100px';
             printIcon.style.width = '35px';
             printIcon.style.height = '35px';
-            printIcon.style.display = 'flex';  
-            printIcon.style.justifyContent = 'center';  
+            printIcon.style.display = 'flex';
+            printIcon.style.justifyContent = 'center';
             printIcon.style.alignItems = 'center';
 
             printIcon.onclick = () => {
               const printContainer = document.createElement('div');
               printContainer.style.display = 'none';
-            
+
               // Create a new image element for the print container each time the print icon is clicked
               const printImage = document.createElement('img');
               printImage.src = img.src;  // Always use the current image's src
               printImage.style.maxWidth = '100%';  // Adjust styling as needed
               printImage.style.height = 'auto';
-            
+
               // Append the image to the print container
               printContainer.appendChild(printImage);
-            
+
               // Append the container to the body (optional, for debugging)
               document.body.appendChild(printContainer);
-            
+
               // Open a print window with only the image content
               const printWindow = window.open('', '', 'height=600,width=800');
-            
-           
+
+
               if (printWindow) {
                 printWindow.document.write('<html><head><title>Print Image</title></head><body>');
-                printWindow.document.write(printContainer.innerHTML); 
+                printWindow.document.write(printContainer.innerHTML);
                 printWindow.document.write('</body></html>');
-                printWindow.document.close();  
-                printWindow.print();  
-            
-          
+                printWindow.document.close();
+                printWindow.print();
+
+
                 printWindow.onafterprint = () => {
                   document.body.removeChild(printContainer);
                 };
@@ -252,11 +252,11 @@ export class InputComponent implements OnInit {
                 console.error('Failed to open print window');
               }
             };
-            
-            
 
-            
-  
+
+
+
+
             const duplicateIcon = document.createElement('span');
             duplicateIcon.classList.add('img-duplicate');
             duplicateIcon.innerHTML = '<img src="../../../assets/images/Icon/Duplicate.svg" alt="Duplicate Icon">';
@@ -267,8 +267,8 @@ export class InputComponent implements OnInit {
             duplicateIcon.style.borderRadius = '100px';
             duplicateIcon.style.width = '35px';
             duplicateIcon.style.height = '35px';
-            duplicateIcon.style.display = 'flex';  
-            duplicateIcon.style.justifyContent = 'center';  
+            duplicateIcon.style.display = 'flex';
+            duplicateIcon.style.justifyContent = 'center';
             duplicateIcon.style.alignItems = 'center';
             duplicateIcon.onclick = () => {
               const duplicateImgDiv = document.createElement('div');
@@ -276,52 +276,52 @@ export class InputComponent implements OnInit {
               duplicateImgDiv.style.flexDirection = 'row';
               duplicateImgDiv.style.alignItems = 'center';
               duplicateImgDiv.style.gap = '1rem';
-  
+
               const duplicateImg = imgElement.cloneNode(true) as HTMLImageElement;
-  
+
               duplicateImgDiv.appendChild(duplicateImg);
-  
+
               const newIconsContainer = createIconsContainer(duplicateImg, duplicateImgDiv);
               duplicateImgDiv.appendChild(newIconsContainer);
-  
+
               if (imgDiv.parentElement) {
                 imgDiv.parentElement.appendChild(duplicateImgDiv);
-  
+
                 // Create a new text note for the duplicated image
                 const textDiv = document.createElement('div');
                 textDiv.style.marginTop = '1rem';
-  
+
                 const textElement = document.createElement('div');
                 textElement.textContent = 'Take a note...'; // Add duplicate text
                 textDiv.appendChild(textElement);
-  
+
                 imgDiv.parentElement.appendChild(textDiv);
               }
             };
-  
+
             iconsContainer.appendChild(delIcon);
             iconsContainer.appendChild(changeIcon);
             iconsContainer.appendChild(downloadIcon);
             iconsContainer.appendChild(printIcon);
             iconsContainer.appendChild(duplicateIcon);
-  
+
             return iconsContainer;
           };
-  
+
           const iconsContainer = createIconsContainer(img, imgDiv);
           imgDiv.appendChild(iconsContainer);
-  
+
           if (this.noteBody && this.noteBody.nativeElement) {
             this.noteBody.nativeElement.appendChild(imgDiv);
-  
+
             // Add "Take a note..." text for the first image
             const textDiv = document.createElement('div');
             textDiv.style.marginTop = '1rem';
-  
+
             const textElement = document.createElement('div');
             textElement.textContent = 'Take a note...';
             textDiv.appendChild(textElement);
-  
+
             this.noteBody.nativeElement.appendChild(textDiv);
           }
         }
@@ -329,8 +329,8 @@ export class InputComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
-  
+
+
   toggleNoteVisibility(condition: boolean) {
     if (condition) {
       this.notePlaceholder.nativeElement.hidden = true; this.noteMain.nativeElement.hidden = false
@@ -347,13 +347,13 @@ export class InputComponent implements OnInit {
     const isTooltipOpen = element.getAttribute('data-is-tooltip-open') === 'true';
     element.setAttribute('data-is-tooltip-open', (!isTooltipOpen).toString());
   }
-  
+
   closeLabelMenu() {
     const element = this.labelMenuTt.nativeElement;
     element.setAttribute('data-is-tooltip-open', 'false');
   }
-   
-  
+
+
   notePhClick() {
     this.toggleNoteVisibility(true)
     if (this.isCbox.value) this.cboxPh?.nativeElement.focus()
@@ -437,18 +437,6 @@ export class InputComponent implements OnInit {
   }
 
 
-  pasteEvent(event: ClipboardEvent) {
-    // to remove text styling -> before : https://prnt.sc/a7M5g-kbofba, after : https://prnt.sc/D7KEV6rdlm_7
-    event.preventDefault()
-    let text = event.clipboardData?.getData('text/plain');
-    let target = event.target as HTMLDivElement
-    target.innerText += text
-    let sel = window.getSelection()
-    sel?.selectAllChildren(target)
-    sel?.collapseToEnd()
-    // document.execCommand('insertText', false, text)
-    // ! TODO, when u paste, yji fel <br> => so ywali maybanch
-  }
 
 
   //? checkboxes  --------------------------------------------------
@@ -568,11 +556,8 @@ export class InputComponent implements OnInit {
       this.noteContainer.nativeElement.style.backgroundImage = `url(${data})`
     }
   }
- 
-  updateInputLength(type: InputLengthI) {
-    if (type.title != undefined) this.inputLength.next({ ...this.inputLength.value, title: type.title })
-    if (type.body != undefined) this.inputLength.next({ ...this.inputLength.value, body: type.body })
-  }
+
+
   saveNoteSubscription?: Subscription
   ngAfterViewInit() {
     if (this.isEditing) { this.saveNoteSubscription = this.Shared.saveNote.subscribe(x => { if (x) this.saveNote() }) }
@@ -631,32 +616,421 @@ export class InputComponent implements OnInit {
       this.closeLabelMenu();
     }
   }
-// ------------------------------------------------------------------------
+  // ------------------------------------------------------------------------
+
+
+
+
+  // <ng-template #noteTemplate>
+  //     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
+  //     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
+  //         class="note-body" contenteditable="true" spellcheck="true">
+  //     </div>
+
+
+  // when type in note 
+  // inside this puntiction it will change style 
+
+  // **Text** (Bold, font weight 700)
+  // *Text* (Italic, Font style italic)
+  // ~~Text~~ (Strikethrou, text-decoration: overline;)
+  // ==Text== (Hightlight background color yellow)
+  // `Text` (Code, font family monospace)
+  // $text$ (Math, font family serif)
+  // [[text]] (link a, color yellow, text underline, font weight 500)
+  // _Text_ (underline,text-decoration: underline; )
+  // ~Text~ (wavy, text-decoration-style: wavy;)
+  // ..Text.. (dotted, text-decoration-style: dotted;)
+
+
+  pasteEvent(event: ClipboardEvent) {
+
+    event.preventDefault()
+    let text = event.clipboardData?.getData('text/plain');
+    let target = event.target as HTMLDivElement
+    target.innerText += text
+    let sel = window.getSelection()
+    sel?.selectAllChildren(target)
+    sel?.collapseToEnd()
+   
+  }
+
+  updateInputLength(type: InputLengthI) {
+    if (type.title != undefined) this.inputLength.next({ ...this.inputLength.value, title: type.title })
+    if (type.body != undefined) this.inputLength.next({ ...this.inputLength.value, body: type.body })
+  }
+
+  // onInput(event: Event): void {
+  //     const element = event.target as HTMLElement;
+  //     if (element && element.innerHTML) {
+  //         const selection = window.getSelection();
+  //         const range = selection?.getRangeAt(0);
+  //         const cursorPosition = range?.startOffset;
+
+  //         const text = this.applyTextStyles(element.innerHTML);
+
+
+  //         element.innerHTML = text;
+
+
+  //         if (selection && cursorPosition !== null && cursorPosition !== undefined) {
+  //             const newRange = document.createRange();
+  //             newRange.setStart(element.firstChild || element, cursorPosition);
+  //             newRange.collapse(true);
+  //             selection.removeAllRanges();
+  //             selection.addRange(newRange);
+  //         }
+  //     }
+  // }
+
+
+  // applyTextStyles(text: string): string {
+
+  //     text = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: 700;">$1</span>');
+
+
+  //     text = text.replace(/\*(.*?)\*/g, '<span style="font-style: italic;">$1</span>');
+
+
+  //     text = text.replace(/~~(.*?)~~/g, '<span style="text-decoration: line-through;">$1</span>');
+
+
+  //     text = text.replace(/==(.*?)==/g, '<span style="background-color: yellow;">$1</span>');
+
+  //     return text;
+  // }
+
+
+
+  // -----------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+
+    // activeFormats: Set<string> = new Set();
+  
+    // // Toggle formatting classes
+
+    // // Check if a format is active
+    // isActive(format: string): boolean {
+    //   return this.activeFormats.has(format);
+    // }
+  
+
+    
+    
+// Method to check if a specific format is active
+isActive(format: string): boolean {
+  const selection = window.getSelection();
+  if (!selection || !selection.rangeCount) return false;
+
+  const range = selection.getRangeAt(0);
+  const selectedText = range.commonAncestorContainer as HTMLElement;
+  
+  // Check if the selected text has the required style
+  switch (format) {
+    case 'erase':
+      return document.queryCommandState('erase');
+    case 'bold':
+      return document.queryCommandState('bold');
+    case 'italic':
+      return document.queryCommandState('italic');
+    case 'underline':
+      return document.queryCommandState('underline');
+    case 'wavy':
+      return document.queryCommandState('wavy');
+    case 'strikethrough':
+      return document.queryCommandState('strikeThrough');
+    case 'highlight':
+      return document.queryCommandState('highlight');
+    case 'code':
+      return selectedText.style.fontFamily === '"DM Mono", monospace';
+    case 'math':
+      return selectedText.style.fontFamily === '"DM Serif Text", serif';
+    default:
+      return false;
+  }
+}
+
+
+// applyFormat(format: string): void {
+//   const selection = window.getSelection();
+//   if (!selection || !selection.rangeCount) return;
+
+//   const range = selection.getRangeAt(0);
+//   const selectedText = range.commonAncestorContainer as HTMLElement;
+
+  
+
+//   switch (format) {
+//     case 'erase':
+//       if (!selection.isCollapsed) {
+//         try {
+//           // Process nodes individually in the selected range
+//           this.eraseStylesInRange(range);
+//         } catch (error) {
+//           console.error('Error applying erase:', error);
+//         }
+//       } else {
+//         // If no text is selected (just cursor), reset styles of the parent element
+//         const parentElement = range.startContainer.parentElement;
+//         if (parentElement) {
+//           parentElement.removeAttribute('style');
+//         }
+//       }
+//       break;
+
+//     case 'bold':
+//       document.execCommand('bold');
+//       break;
+
+//     case 'italic':
+//       document.execCommand('italic');
+//       break;
+
+//     case 'underline':
+//       document.execCommand('underline');
+//       break;
+
+//     case 'wavy':
+//       const wavySpan = document.createElement('span');
+//       wavySpan.style.textDecoration = 'underline';
+//       wavySpan.style.textDecorationStyle = 'wavy';
+//       range.surroundContents(wavySpan);
+//       break;
+
+//     case 'strikethrough':
+//       document.execCommand('strikeThrough');
+//       break;
+
+//     case 'highlight':
+//       const highlightColor = 'var(--mainYellow)';
+//       const textColor = 'var(--white)';
+//       const span = document.createElement('span');
+//       span.style.backgroundColor = highlightColor;
+//       span.style.color = textColor;
+//       span.style.borderRadius = '5px';
+//       span.style.paddingBottom = '0.2rem';
+//       span.style.paddingTop = '0.1rem';
+//       span.style.paddingInline = '0.3rem';
+//       span.style.fontFamily = 'Inter';
+//       range.surroundContents(span);
+
+//       range.collapse(false);
+//       const zwsp = document.createTextNode('\u200B');
+//       range.insertNode(zwsp);
+
+//       if (span.parentNode) {
+//         const newParagraph = document.createElement('p');
+//         newParagraph.style.color = 'black';
+//         newParagraph.style.backgroundColor = 'transparent';
+//         newParagraph.innerHTML = '&#8203;';
+//         span.parentNode.insertBefore(newParagraph, span.nextSibling);
+//       }
+
+//       selection.removeAllRanges();
+//       selection.addRange(range);
+//       break;
+
+//     case 'code':
+//       const codeSpan = document.createElement('span');
+//       codeSpan.style.fontFamily = 'Cascadia-Mono';
+//       range.surroundContents(codeSpan);
+//       break;
+
+//     case 'math':
+//       const mathSpan = document.createElement('span');
+//       mathSpan.style.fontFamily = '"DM Serif Text", serif';
+//       range.surroundContents(mathSpan);
+//       break;
+
+//     default:
+//       selectedText.removeAttribute('style');
+//       break;
+//   }
+// }
+
+// private eraseStylesInRange(range: Range): void {
+//   let currentNode = range.startContainer;
+//   let endNode = range.endContainer;
+
+//   // Function to recursively reset styles of text nodes in the range
+//   function resetStyles(node: Node) {
+//     if (node.nodeType === Node.TEXT_NODE) {
+//       // If it's a text node, reset styles
+//       const parentElement = node.parentElement;
+//       if (parentElement) {
+//         parentElement.removeAttribute('style');
+//       }
+//     } else if (node.nodeType === Node.ELEMENT_NODE) {
+//       // Recursively handle child nodes of element nodes
+//       Array.from(node.childNodes).forEach(resetStyles);
+//     }
+//   }
+
+//   // Start processing from the start and end nodes of the range
+//   resetStyles(currentNode);
+//   resetStyles(endNode);
+// }
+
+applyFormat(format: string): void {
+  const selection = window.getSelection();
+  if (!selection || !selection.rangeCount) return;
+
+  const range = selection.getRangeAt(0);
+  const selectedText = range.commonAncestorContainer as HTMLElement;
+
+  // Helper function to remove specific styles
+  const removeTextDecorations = () => {
+    const elements = range.cloneContents().querySelectorAll('span');
+    elements.forEach(span => {
+      if (span.style.textDecoration || span.style.textDecorationStyle) {
+        span.style.textDecoration = '';
+        span.style.textDecorationStyle = '';
+      }
+    });
+  };
+
+  switch (format) {
+    case 'erase':
+      if (!selection.isCollapsed) {
+        try {
+          // Process nodes individually in the selected range
+          this.eraseStylesInRange(range);
+        } catch (error) {
+          console.error('Error applying erase:', error);
+        }
+      } else {
+        // If no text is selected (just cursor), reset styles of the parent element
+        const parentElement = range.startContainer.parentElement;
+        if (parentElement) {
+          parentElement.removeAttribute('style');
+        }
+      }
+      break;
+
+    case 'bold':
+      document.execCommand('bold');
+      break;
+
+    case 'italic':
+      document.execCommand('italic');
+      break;
+
+    case 'underline':
+      removeTextDecorations(); // Remove other decorations before applying underline
+      const underlineSpan = document.createElement('span');
+      underlineSpan.style.textDecoration = 'underline';
+      range.surroundContents(underlineSpan);
+      break;
+
+    case 'wavy':
+      removeTextDecorations(); // Remove other decorations before applying wavy underline
+      const wavySpan = document.createElement('span');
+      wavySpan.style.textDecoration = 'underline';
+      wavySpan.style.textDecorationStyle = 'wavy';
+      range.surroundContents(wavySpan);
+      break;
+
+    case 'strikethrough':
+      removeTextDecorations(); // Remove other decorations before applying strikethrough
+      const strikeSpan = document.createElement('span');
+      strikeSpan.style.textDecoration = 'line-through';
+      range.surroundContents(strikeSpan);
+      break;
+
+    case 'highlight':
+      const highlightColor = 'var(--mainYellow)';
+      const textColor = 'var(--white)';
+      const span = document.createElement('span');
+      span.style.backgroundColor = highlightColor;
+      span.style.color = textColor;
+      span.style.borderRadius = '5px';
+      span.style.paddingBottom = '0.2rem';
+      span.style.paddingTop = '0.1rem';
+      span.style.paddingInline = '0.3rem';
+      span.style.fontFamily = 'Inter';
+      range.surroundContents(span);
+
+      range.collapse(false);
+      const zwsp = document.createTextNode('\u200B');
+      range.insertNode(zwsp);
+
+      if (span.parentNode) {
+        const newParagraph = document.createElement('p');
+        newParagraph.style.color = 'black';
+        newParagraph.style.backgroundColor = 'transparent';
+        newParagraph.innerHTML = '&#8203;';
+        span.parentNode.insertBefore(newParagraph, span.nextSibling);
+      }
+
+      selection.removeAllRanges();
+      selection.addRange(range);
+      break;
+
+    case 'code':
+      const codeSpan = document.createElement('span');
+      codeSpan.style.fontFamily = 'Cascadia-Mono';
+      range.surroundContents(codeSpan);
+      break;
+
+    case 'math':
+      const mathSpan = document.createElement('span');
+      mathSpan.style.fontFamily = '"DM Serif Text", serif';
+      range.surroundContents(mathSpan);
+      break;
+
+    default:
+      selectedText.removeAttribute('style');
+      break;
+  }
+}
+
+// Helper method to erase styles from selected range, processing only text nodes
+private eraseStylesInRange(range: Range): void {
+  let currentNode = range.startContainer;
+  let endNode = range.endContainer;
+
+  // Function to recursively reset styles of text nodes in the range
+  function resetStyles(node: Node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // If it's a text node, reset styles
+      const parentElement = node.parentElement;
+      if (parentElement) {
+        parentElement.removeAttribute('style');
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // Recursively handle child nodes of element nodes
+      Array.from(node.childNodes).forEach(resetStyles);
+    }
+  }
+
+  // Start processing from the start and end nodes of the range
+  resetStyles(currentNode);
+  resetStyles(endNode);
 }
 
 
 
-// <ng-template #noteTemplate>
-//     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
-//     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
-//         class="note-body" contenteditable="true" spellcheck="true">
-//     </div>
 
+}
 
-// when type in note 
-// inside this puntiction it will change style 
-
-// **Text** (Bold, font weight 700)
-// *Text* (Italic, Font style italic)
-// ~~Text~~ (Strikethrou, text-decoration: overline;)
-// ==Text== (Hightlight background color yellow)
-// `Text` (Code, font family monospace)
-// $text$ (Math, font family serif)
-// [[text]] (link a, color yellow, text underline, font weight 500)
-// _Text_ (underline,text-decoration: underline; )
-// ~Text~ (wavy, text-decoration-style: wavy;)
-// ..Text.. (dotted, text-decoration-style: dotted;)
-
-
-
-
+  // span.style.paddingInline ='0.3rem'
+  //     span.style.color = 'var(--white)'
+    
+    
+    // case 'code':
+        //   document.execCommand('insertHTML', false, <code>${node.innerHTML}</code>);
+        //   break;
+        
+        // case 'link':
+        //   const url = prompt('Enter the URL:');
+        //   if (url) {
+        //     document.execCommand('createLink', false, url);
+        //   }
+        //   break;

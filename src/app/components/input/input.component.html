@@ -158,12 +158,17 @@
 
 <!--* templates -->
 <!--* note template -->
+<!-- <ng-template #noteTemplate>
+    <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
+    <div #noteBody  (paste)="pasteEvent($event)"
+        class="note-body" contenteditable="true" spellcheck="true">
+    </div> -->
+
 <ng-template #noteTemplate>
     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
         class="note-body" contenteditable="true" spellcheck="true">
     </div>
-
 
     <div class="icons-container icons-container2">
         <div class="icons1">
@@ -175,6 +180,58 @@
                 </div>
                 <p class="AltText AltText1">Format</p>
                 <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.format">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('erase')" (click)="applyFormat('erase')">
+                        <p>Erase</p>
+                        <img src="./assets/images/Icon/TextErase.svg">
+                      </div>
+
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('bold')" (click)="applyFormat('bold')">
+                        <p>Bold</p>
+                        <img src="./assets/images/Icon/TextBold.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('italic')" (click)="applyFormat('italic')">
+                        <p>Italic</p>
+                        <img src="./assets/images/Icon/TextItalic.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('underline')" (click)="applyFormat('underline')">
+                        <p>Underline</p>
+                        <img src="./assets/images/Icon/TextUnderline.svg">
+                      </div>
+
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('wavy')" (click)="applyFormat('wavy')">
+                        <p>Wavy</p>
+                        <img src="./assets/images/Icon/TextWave.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('strikethrough')" (click)="applyFormat('strikethrough')">
+                        <p>Strikethrough</p>
+                        <img src="/assets/images/Icon/TextStrikethrough.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('highlight')" (click)="applyFormat('highlight')">
+                        <p>Highlight</p>
+                        <img src="./assets/images/Icon/TextFill.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('code')" (click)="applyFormat('code')">
+                        <p>Code</p>
+                        <img src="./assets/images/Icon/TextCode.svg">
+                      </div>
+                      
+                      <div class="MenuDiv FormatText1" [class.active]="isActive('math')" (click)="applyFormat('math')">
+                        <p>Math</p>
+                        <img src="./assets/images/Icon/TextMath.svg">
+                      </div>
+                      
+                    
+                    <div class="MenuDiv FormatText1">
+                        <p>Link</p>
+                        <img src="./assets/images/Icon/TextLink.svg">
+                    </div>
+                </div>
+                <!-- <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.format">
                     <div class="MenuDiv FormatText1">
                         <p>Default</p>
                         <img src="./assets/images/Icon/TextDefault.svg">
@@ -215,7 +272,7 @@
                         <p>Link</p>
                         <img src="./assets/images/Icon/TextLink.svg">
                     </div>
-                </div>
+                </div> -->
             </span>
 
             <span class="ItemHoverAlt">

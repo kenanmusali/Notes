@@ -434,46 +434,27 @@ background-color: #F7D7C4;
 /* ------------------------------------------------------ */
 
 
-.bold {
-  font-weight: 700;
+.FormatText1.active {
+  background-color: var(--lightGrayHover);
 }
 
-.italic {
-  font-style: italic;
+.FormatText1.active p {
+  color: var(--black);
 }
 
-.strikethrough {
-  text-decoration: line-through;
+.FormatText1.active img {
+  filter: var(--black-filter);
+  -webkit-filter: var(--black-filter);
 }
 
-.highlight {
-  background-color: yellow;
-}
 
-.code {
-  font-family: monospace;
-}
 
-.math {
-  font-family: serif;
-}
-
-.link {
-  color: yellow;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.wavy {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-}
-
-.dotted {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-}
+/* .note-body[style*="background-color: var(--mainYellow)"] {
+  background-color: var(--mainYellow);
+  padding: 0.1rem 0.2rem;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+} */
