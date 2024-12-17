@@ -76,7 +76,9 @@ export class NavComponent implements OnInit {
       '--bgColorArea': 'rgba(236, 236, 236, 0.5)',
       '--black': '#000000',
       '--white': '#ffffff',
-      '--mainYellow': '#FDD046',
+      '--mainYellow': '#FEECB5',
+      '--mainYellow1': '#FDD046',
+      '--textYellow': '#BF9102',
       '--bgAnimation': '#FFE38B',
       '--lightGrayHover': '#F5F5F5',
       '--grayText': '#5F5F5F',
@@ -90,7 +92,8 @@ export class NavComponent implements OnInit {
       '--lightRed': '#ff9b9b',
       '--black-filter': 'invert(1) grayscale(100%) brightness(0) contrast(100%)',
       '--white-filter': 'brightness(0) invert(1)',
-      '--gray-filter':  'brightness(60%) contrast(150%)'
+      '--gray-filter':  'brightness(60%) contrast(150%)',
+      '--yellow-filter': 'brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(950%) hue-rotate(13deg) brightness(95%) contrast(100%)',
     });
     localStorage.setItem('theme', 'light');
   }
@@ -101,7 +104,9 @@ export class NavComponent implements OnInit {
       '--bgColorArea': 'rgb(24, 24, 24, 0.5)',
       '--black': '#ffffff',
       '--white': '#222222',
-      '--mainYellow': '#af8a1c',
+      '--mainYellow': '#3B3626',
+      '--mainYellow1': '#af8a1c',
+      '--textYellow': '#CD9B00',
       '--bgAnimation': '#503c00',
       '--lightGrayHover': '#1d1d1d',
       '--grayText': '#AEAEAE',
@@ -115,7 +120,8 @@ export class NavComponent implements OnInit {
       '--lightRed': '#ff9b9b',
       '--black-filter': 'brightness(0) invert(1)',
       '--white-filter': 'brightness(0) invert(1)',
-      '--gray-filter':  'brightness(110%) contrast(100%)'
+      '--gray-filter':  'brightness(110%) contrast(100%)',
+      '--yellow-filter': 'filter: brightness(0) saturate(100%) invert(84%) sepia(99%) saturate(2429%) hue-rotate(320deg) brightness(102%) contrast(98%);',
     });
     localStorage.setItem('theme', 'dark');
   }

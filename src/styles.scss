@@ -17,7 +17,9 @@
   --bgColorArea: rgba(236, 236, 236, 0.5);
   --black: #000000;
   --white: #ffffff;
-  --mainYellow: #FDD046;
+  --mainYellow: #FEECB5;
+  --mainYellow1: #FDD046;
+  --textYellow: #BF9102;
   --bgAnimation: #FFE38B;
   --lightGrayHover: #F5F5F5;
   --grayText: #5F5F5F;
@@ -31,9 +33,11 @@
   --lightRed: #ff9b9b;
 
   --black-filter: invert(1) grayscale(100%) brightness(0) contrast(100%);
-  --white-filter:  brightness(0) invert(1);
-  --gray-filter:  brightness(60%) contrast(150%);
-  
+  --white-filter: brightness(0) invert(1);
+  --gray-filter: brightness(60%) contrast(150%);
+  --yellow-filter: brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(950%) hue-rotate(13deg) brightness(95%) contrast(100%);
+  ;
+
   // -----------------------------------------------------------
 
   // --bgColor: #181818;
@@ -70,7 +74,7 @@ body,
 html {
   height: 100%;
   background-color: var(--bgColor);
-  
+
 }
 
 
@@ -226,20 +230,20 @@ html {
   background-color: var(--white) !important;
   border: 1px solid var(--lightGrayStroke) !important;
   outline: 1px solid var(--lightStroke) !important;
-  border-radius: 12px !important;   
-  height: 2.8rem !important;  
+  border-radius: 12px !important;
+  height: 2.8rem !important;
 }
 
-.snackbar-container p{
+.snackbar-container p {
   color: var(--grayText) !important;
   font-weight: 400 !important;
   font-size: 12px !important;
 }
 
-.snackbar-container .action{
-color: var(--mainYellow) !important;
-font-weight: 500 !important;
-font-size: 12px !important;
+.snackbar-container .action {
+  color: var(--mainYellow) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
 }
 
 .snackbar-pos.bottom-left {

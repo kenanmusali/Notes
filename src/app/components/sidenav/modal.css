@@ -191,7 +191,7 @@ gap: 0.5rem;
   }
   
   input:checked + .slider {
-	background-color: var(--mainYellow); /* Change background when checked */
+	background-color: var(--mainYellow1); /* Change background when checked */
   }
   
   input:checked + .slider:before {

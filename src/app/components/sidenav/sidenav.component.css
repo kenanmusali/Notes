@@ -113,12 +113,13 @@
 }
 
 .MenuHoverYellow.active p {
-    color: white;
+    color: var(--textYellow);
     font-weight: 500;
 }
 
 .MenuHoverYellow.active img {
-    filter: var(--white-filter); /* Use the variable here */
+   filter: var( --yellow-filter);
+   -webkit-filter: var( --yellow-filter);
 }
 
 .IconToggle:hover {

@@ -946,10 +946,8 @@ applyFormat(format: string): void {
 
     case 'highlight':
       const highlightColor = 'var(--mainYellow)';
-      const textColor = 'var(--white)';
       const span = document.createElement('span');
       span.style.backgroundColor = highlightColor;
-      span.style.color = textColor;
       span.style.borderRadius = '5px';
       span.style.paddingBottom = '0.2rem';
       span.style.paddingTop = '0.1rem';
