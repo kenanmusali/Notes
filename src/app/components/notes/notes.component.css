@@ -292,7 +292,7 @@
 } */
 
 .note-container .note-main.selected {
-  outline: 1px solid var(--mainYellow);
+  outline: 1px solid var(--mainYellow1);
   border: 1px solid var(--bgColor);
 }
 .divEditNote.selected {

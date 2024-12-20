@@ -616,33 +616,6 @@ export class InputComponent implements OnInit {
       this.closeLabelMenu();
     }
   }
-  // ------------------------------------------------------------------------
-
-
-
-
-  // <ng-template #noteTemplate>
-  //     <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
-  //     <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
-  //         class="note-body" contenteditable="true" spellcheck="true">
-  //     </div>
-
-
-  // when type in note 
-  // inside this puntiction it will change style 
-
-  // **Text** (Bold, font weight 700)
-  // *Text* (Italic, Font style italic)
-  // ~~Text~~ (Strikethrou, text-decoration: overline;)
-  // ==Text== (Hightlight background color yellow)
-  // `Text` (Code, font family monospace)
-  // $text$ (Math, font family serif)
-  // [[text]] (link a, color yellow, text underline, font weight 500)
-  // _Text_ (underline,text-decoration: underline; )
-  // ~Text~ (wavy, text-decoration-style: wavy;)
-  // ..Text.. (dotted, text-decoration-style: dotted;)
-
-
   pasteEvent(event: ClipboardEvent) {
 
     event.preventDefault()
@@ -652,7 +625,7 @@ export class InputComponent implements OnInit {
     let sel = window.getSelection()
     sel?.selectAllChildren(target)
     sel?.collapseToEnd()
-   
+
   }
 
   updateInputLength(type: InputLengthI) {
@@ -660,375 +633,182 @@ export class InputComponent implements OnInit {
     if (type.body != undefined) this.inputLength.next({ ...this.inputLength.value, body: type.body })
   }
 
-  // onInput(event: Event): void {
-  //     const element = event.target as HTMLElement;
-  //     if (element && element.innerHTML) {
-  //         const selection = window.getSelection();
-  //         const range = selection?.getRangeAt(0);
-  //         const cursorPosition = range?.startOffset;
 
-  //         const text = this.applyTextStyles(element.innerHTML);
+  activeFormat: string = ''; // To track the active format
 
 
-  //         element.innerHTML = text;
-
-
-  //         if (selection && cursorPosition !== null && cursorPosition !== undefined) {
-  //             const newRange = document.createRange();
-  //             newRange.setStart(element.firstChild || element, cursorPosition);
-  //             newRange.collapse(true);
-  //             selection.removeAllRanges();
-  //             selection.addRange(newRange);
-  //         }
-  //     }
-  // }
-
-
-  // applyTextStyles(text: string): string {
-
-  //     text = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: 700;">$1</span>');
-
-
-  //     text = text.replace(/\*(.*?)\*/g, '<span style="font-style: italic;">$1</span>');
-
-
-  //     text = text.replace(/~~(.*?)~~/g, '<span style="text-decoration: line-through;">$1</span>');
-
-
-  //     text = text.replace(/==(.*?)==/g, '<span style="background-color: yellow;">$1</span>');
-
-  //     return text;
-  // }
-
-
-
-  // -----------------------------------------
-  
-  
-  
-  
-  
-  
-  
-  
-
-    // activeFormats: Set<string> = new Set();
-  
-    // // Toggle formatting classes
-
-    // // Check if a format is active
-    // isActive(format: string): boolean {
-    //   return this.activeFormats.has(format);
-    // }
-  
-
-    
-    
-// Method to check if a specific format is active
-isActive(format: string): boolean {
-  const selection = window.getSelection();
-  if (!selection || !selection.rangeCount) return false;
-
-  const range = selection.getRangeAt(0);
-  const selectedText = range.commonAncestorContainer as HTMLElement;
-  
-  // Check if the selected text has the required style
-  switch (format) {
-    case 'erase':
-      return document.queryCommandState('erase');
-    case 'bold':
-      return document.queryCommandState('bold');
-    case 'italic':
-      return document.queryCommandState('italic');
-    case 'underline':
-      return document.queryCommandState('underline');
-    case 'wavy':
-      return document.queryCommandState('wavy');
-    case 'strikethrough':
-      return document.queryCommandState('strikeThrough');
-    case 'highlight':
-      return document.queryCommandState('highlight');
-    case 'code':
-      return selectedText.style.fontFamily === '"DM Mono", monospace';
-    case 'math':
-      return selectedText.style.fontFamily === '"DM Serif Text", serif';
-    default:
-      return false;
+  isActive(format: string): boolean {
+    return this.activeFormat === format;
   }
-}
 
 
-// applyFormat(format: string): void {
-//   const selection = window.getSelection();
-//   if (!selection || !selection.rangeCount) return;
+  applyFormat(format: string): void {
+    const selection = window.getSelection();
 
-//   const range = selection.getRangeAt(0);
-//   const selectedText = range.commonAncestorContainer as HTMLElement;
+    // Ensure selection is not null or undefined
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      let span: HTMLElement | null = null;
 
-  
 
-//   switch (format) {
-//     case 'erase':
-//       if (!selection.isCollapsed) {
-//         try {
-//           // Process nodes individually in the selected range
-//           this.eraseStylesInRange(range);
-//         } catch (error) {
-//           console.error('Error applying erase:', error);
-//         }
-//       } else {
-//         // If no text is selected (just cursor), reset styles of the parent element
-//         const parentElement = range.startContainer.parentElement;
-//         if (parentElement) {
-//           parentElement.removeAttribute('style');
-//         }
-//       }
-//       break;
 
-//     case 'bold':
-//       document.execCommand('bold');
-//       break;
+      switch (format) {
+        case 'bold':
+          document.execCommand('bold');
+          break;
+        case 'italic':
+          document.execCommand('italic');
+          break;
+        case 'underline':
+          span = document.createElement('span');
+          span.style.textDecoration = 'underline';
+          range.surroundContents(span);
+          break;
+        case 'wavy':
+          // Implement custom logic for wavy text
+          span = document.createElement('span');
+          span.style.textDecoration = 'underline wavy';
+          range.surroundContents(span);
+          break;
+        case 'strikethrough':
 
-//     case 'italic':
-//       document.execCommand('italic');
-//       break;
-
-//     case 'underline':
-//       document.execCommand('underline');
-//       break;
-
-//     case 'wavy':
-//       const wavySpan = document.createElement('span');
-//       wavySpan.style.textDecoration = 'underline';
-//       wavySpan.style.textDecorationStyle = 'wavy';
-//       range.surroundContents(wavySpan);
-//       break;
-
-//     case 'strikethrough':
-//       document.execCommand('strikeThrough');
-//       break;
-
-//     case 'highlight':
-//       const highlightColor = 'var(--mainYellow)';
-//       const textColor = 'var(--white)';
-//       const span = document.createElement('span');
-//       span.style.backgroundColor = highlightColor;
-//       span.style.color = textColor;
-//       span.style.borderRadius = '5px';
-//       span.style.paddingBottom = '0.2rem';
-//       span.style.paddingTop = '0.1rem';
-//       span.style.paddingInline = '0.3rem';
-//       span.style.fontFamily = 'Inter';
-//       range.surroundContents(span);
-
-//       range.collapse(false);
-//       const zwsp = document.createTextNode('\u200B');
-//       range.insertNode(zwsp);
-
-//       if (span.parentNode) {
-//         const newParagraph = document.createElement('p');
-//         newParagraph.style.color = 'black';
-//         newParagraph.style.backgroundColor = 'transparent';
-//         newParagraph.innerHTML = '&#8203;';
-//         span.parentNode.insertBefore(newParagraph, span.nextSibling);
-//       }
-
-//       selection.removeAllRanges();
-//       selection.addRange(range);
-//       break;
-
-//     case 'code':
-//       const codeSpan = document.createElement('span');
-//       codeSpan.style.fontFamily = 'Cascadia-Mono';
-//       range.surroundContents(codeSpan);
-//       break;
-
-//     case 'math':
-//       const mathSpan = document.createElement('span');
-//       mathSpan.style.fontFamily = '"DM Serif Text", serif';
-//       range.surroundContents(mathSpan);
-//       break;
-
-//     default:
-//       selectedText.removeAttribute('style');
-//       break;
-//   }
-// }
-
-// private eraseStylesInRange(range: Range): void {
-//   let currentNode = range.startContainer;
-//   let endNode = range.endContainer;
-
-//   // Function to recursively reset styles of text nodes in the range
-//   function resetStyles(node: Node) {
-//     if (node.nodeType === Node.TEXT_NODE) {
-//       // If it's a text node, reset styles
-//       const parentElement = node.parentElement;
-//       if (parentElement) {
-//         parentElement.removeAttribute('style');
-//       }
-//     } else if (node.nodeType === Node.ELEMENT_NODE) {
-//       // Recursively handle child nodes of element nodes
-//       Array.from(node.childNodes).forEach(resetStyles);
-//     }
-//   }
-
-//   // Start processing from the start and end nodes of the range
-//   resetStyles(currentNode);
-//   resetStyles(endNode);
-// }
-
-applyFormat(format: string): void {
-  const selection = window.getSelection();
-  if (!selection || !selection.rangeCount) return;
-
-  const range = selection.getRangeAt(0);
-  const selectedText = range.commonAncestorContainer as HTMLElement;
-
-  // Helper function to remove specific styles
-  const removeTextDecorations = () => {
-    const elements = range.cloneContents().querySelectorAll('span');
-    elements.forEach(span => {
-      if (span.style.textDecoration || span.style.textDecorationStyle) {
-        span.style.textDecoration = '';
-        span.style.textDecorationStyle = '';
-      }
-    });
-  };
-
-  switch (format) {
-    case 'erase':
-      if (!selection.isCollapsed) {
-        try {
-          // Process nodes individually in the selected range
-          this.eraseStylesInRange(range);
-        } catch (error) {
-          console.error('Error applying erase:', error);
-        }
-      } else {
-        // If no text is selected (just cursor), reset styles of the parent element
-        const parentElement = range.startContainer.parentElement;
-        if (parentElement) {
-          parentElement.removeAttribute('style');
-        }
-      }
-      break;
-
-    case 'bold':
-      document.execCommand('bold');
-      break;
-
-    case 'italic':
-      document.execCommand('italic');
-      break;
-
-    case 'underline':
-      removeTextDecorations(); // Remove other decorations before applying underline
-      const underlineSpan = document.createElement('span');
-      underlineSpan.style.textDecoration = 'underline';
-      range.surroundContents(underlineSpan);
-      break;
-
-    case 'wavy':
-      removeTextDecorations(); // Remove other decorations before applying wavy underline
-      const wavySpan = document.createElement('span');
-      wavySpan.style.textDecoration = 'underline';
-      wavySpan.style.textDecorationStyle = 'wavy';
-      range.surroundContents(wavySpan);
-      break;
-
-    case 'strikethrough':
-      removeTextDecorations(); // Remove other decorations before applying strikethrough
-      const strikeSpan = document.createElement('span');
-      strikeSpan.style.textDecoration = 'line-through';
-      range.surroundContents(strikeSpan);
-      break;
-
-    case 'highlight':
-      const highlightColor = 'var(--mainYellow)';
-      const span = document.createElement('span');
-      span.style.backgroundColor = highlightColor;
-      span.style.borderRadius = '5px';
-      span.style.paddingBottom = '0.2rem';
-      span.style.paddingTop = '0.1rem';
-      span.style.paddingInline = '0.3rem';
-      span.style.fontFamily = 'Inter';
-      range.surroundContents(span);
-
-      range.collapse(false);
-      const zwsp = document.createTextNode('\u200B');
-      range.insertNode(zwsp);
-
-      if (span.parentNode) {
-        const newParagraph = document.createElement('p');
-        newParagraph.style.color = 'black';
-        newParagraph.style.backgroundColor = 'transparent';
-        newParagraph.innerHTML = '&#8203;';
-        span.parentNode.insertBefore(newParagraph, span.nextSibling);
+          span = document.createElement('span');
+          span.style.textDecoration = 'underline line-through';
+          range.surroundContents(span);
+          break;
+        case 'highlight':
+          // Highlight text by wrapping it in a span with background color
+          span = document.createElement('span');
+          span.style.backgroundColor = 'var(--mainYellow1)';
+          range.surroundContents(span);
+          break;
+        // case 'math':
+        //   // Wrap selected text in <code> element
+        //   span = document.createElement('code');
+        //   span.style.fontFamily = 'DM Serif Text';
+        //   range.surroundContents(span);
+        //   break;
+        // case 'code':
+        //   // Wrap selected text in <code> element
+        //   span = document.createElement('code');
+        //   span.style.fontFamily = 'Cascadia-Mono';
+        //   range.surroundContents(span);
+        //   break;
+        case 'erase':
+          document.execCommand('removeFormat');
+          break;
+        default:
+          break;
       }
 
-      selection.removeAllRanges();
-      selection.addRange(range);
-      break;
-
-    case 'code':
-      const codeSpan = document.createElement('span');
-      codeSpan.style.fontFamily = 'Cascadia-Mono';
-      range.surroundContents(codeSpan);
-      break;
-
-    case 'math':
-      const mathSpan = document.createElement('span');
-      mathSpan.style.fontFamily = '"DM Serif Text", serif';
-      range.surroundContents(mathSpan);
-      break;
-
-    default:
-      selectedText.removeAttribute('style');
-      break;
-  }
-}
-
-// Helper method to erase styles from selected range, processing only text nodes
-private eraseStylesInRange(range: Range): void {
-  let currentNode = range.startContainer;
-  let endNode = range.endContainer;
-
-  // Function to recursively reset styles of text nodes in the range
-  function resetStyles(node: Node) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      // If it's a text node, reset styles
-      const parentElement = node.parentElement;
-      if (parentElement) {
-        parentElement.removeAttribute('style');
-      }
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Recursively handle child nodes of element nodes
-      Array.from(node.childNodes).forEach(resetStyles);
+      // Update the active format after applying it
+      this.activeFormat = format;
     }
   }
 
-  // Start processing from the start and end nodes of the range
-  resetStyles(currentNode);
-  resetStyles(endNode);
+  applyFormat1(align: string): void {
+    const noteBody = document.querySelector('div[contenteditable="true"].note-body') as HTMLElement;
+    const noteMain = document.querySelector('.note-main') as HTMLElement;
+
+    if (noteBody && noteMain) {
+      if (noteMain.hidden) {
+        document.execCommand('justifyLeft');
+        this.activeFormat = 'alignL';
+
+      } else {
+        // Directly apply the style based on the alignment type
+        switch (align) {
+          case 'alignL':
+            document.execCommand('justifyLeft');
+            break;
+          case 'alignR':
+            document.execCommand('justifyRight');
+            break;
+          case 'alignC':
+            document.execCommand('justifyCenter');
+            break;
+          case 'alignJ':
+            document.execCommand('justifyFull');
+            break;
+          default:
+            break;
+        }
+        this.activeFormat = align;
+      }
+    }
+  }
+
+  applyFormat2(textSpacingY: string): void {
+    const noteBody = document.querySelector('div[contenteditable="true"].note-body') as HTMLElement;
+    const noteMain = document.querySelector('.note-main') as HTMLElement;
+  
+    if (noteBody && noteMain) {
+      if (noteMain.hidden) {
+
+        document.execCommand('normal'); 
+        this.activeFormat = 'normal'; 
+      } else {
+ 
+        switch (textSpacingY) {
+          case 'narrow':
+            document.execCommand('insertBrOnReturn');
+            break;
+          case 'normal':
+            document.execCommand('normal');
+            break;
+          case 'wide':
+            document.execCommand('insertBrOnReturn');
+            break;
+          default:
+            document.execCommand('normal');
+            break;
+        }
+        this.activeFormat = textSpacingY;
+      }
+    }
+  }
+
+    // applyFormat2(textSpacingY: string): void {
+  //   const noteBody = document.querySelector('div[contenteditable="true"].note-body') as HTMLElement;
+  //   const noteMain = document.querySelector('.note-main') as HTMLElement;
+
+  //   if (noteBody && noteMain) {
+  //       if (noteMain.hidden) {
+  //           document.execCommand('formatBlock', false, 'p');
+  //           this.activeFormat = 'normal';
+  //       } else {
+  //           switch (textSpacingY) {
+  //               case 'narrow':
+  //                   document.execCommand('formatBlock', false, 'p');
+  //                   noteBody.style.lineHeight = '1.2';
+  //                   break;
+  //               case 'normal':
+  //                   document.execCommand('formatBlock', false, 'p');
+  //                   noteBody.style.lineHeight = '1.25';
+  //                   break;
+  //               case 'wide':
+  //                   document.execCommand('formatBlock', false, 'p');
+  //                   noteBody.style.lineHeight = '2.2';
+  //                   break;
+  //               default:
+  //                   document.execCommand('formatBlock', false, 'p');
+  //                   noteBody.style.lineHeight = '1.25';
+  //                   break;
+  //           }
+  //           this.activeFormat = textSpacingY;
+  //       }
+  //   }
+
+  resetAlignment(): void {
+    const noteBody = document.querySelector('div[contenteditable="true"].note-body') as HTMLElement;
+
+    if (noteBody) {
+      this.applyFormat1('alignL');
+      this.applyFormat2('normal');
+    }
+  }
+
 }
 
 
 
-
-}
-
-  // span.style.paddingInline ='0.3rem'
-  //     span.style.color = 'var(--white)'
-    
-    
-    // case 'code':
-        //   document.execCommand('insertHTML', false, <code>${node.innerHTML}</code>);
-        //   break;
-        
-        // case 'link':
-        //   const url = prompt('Enter the URL:');
-        //   if (url) {
-        //     document.execCommand('createLink', false, url);
-        //   }
-        //   break;

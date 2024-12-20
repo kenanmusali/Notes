@@ -179,43 +179,47 @@
                         [ngClass]="{'active': formatVisibility.format}" />
                 </div>
                 <p class="AltText AltText1">Format</p>
-                <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.format">
+                <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.format" data-tooltip="true" data-is-tooltip-open="false">
                     <div class="MenuDiv FormatText1" [class.active]="isActive('erase')" (click)="applyFormat('erase')">
                         <p>Erase</p>
                         <img src="./assets/images/Icon/TextErase.svg">
-                      </div>
+                    </div>
 
                     <div class="MenuDiv FormatText1" [class.active]="isActive('bold')" (click)="applyFormat('bold')">
                         <p>Bold</p>
                         <img src="./assets/images/Icon/TextBold.svg">
-                      </div>
-                      
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('italic')" (click)="applyFormat('italic')">
+                    </div>
+
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('italic')"
+                        (click)="applyFormat('italic')">
                         <p>Italic</p>
                         <img src="./assets/images/Icon/TextItalic.svg">
-                      </div>
-                      
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('underline')" (click)="applyFormat('underline')">
+                    </div>
+
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('underline')"
+                        (click)="applyFormat('underline')">
                         <p>Underline</p>
                         <img src="./assets/images/Icon/TextUnderline.svg">
-                      </div>
+                    </div>
 
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('wavy')" (click)="applyFormat('wavy')">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('wavy')" (click)="applyFormat('wavy')">
                         <p>Wavy</p>
                         <img src="./assets/images/Icon/TextWave.svg">
-                      </div>
-                      
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('strikethrough')" (click)="applyFormat('strikethrough')">
+                    </div>
+
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('strikethrough')"
+                        (click)="applyFormat('strikethrough')">
                         <p>Strikethrough</p>
                         <img src="/assets/images/Icon/TextStrikethrough.svg">
-                      </div>
-                      
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('highlight')" (click)="applyFormat('highlight')">
+                    </div>
+
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('highlight')"
+                        (click)="applyFormat('highlight')">
                         <p>Highlight</p>
                         <img src="./assets/images/Icon/TextFill.svg">
-                      </div>
-                      
-                      <div class="MenuDiv FormatText1" [class.active]="isActive('code')" (click)="applyFormat('code')">
+                    </div>
+
+                    <!-- <div class="MenuDiv FormatText1" [class.active]="isActive('code')" (click)="applyFormat('code')">
                         <p>Code</p>
                         <img src="./assets/images/Icon/TextCode.svg">
                       </div>
@@ -223,9 +227,9 @@
                       <div class="MenuDiv FormatText1" [class.active]="isActive('math')" (click)="applyFormat('math')">
                         <p>Math</p>
                         <img src="./assets/images/Icon/TextMath.svg">
-                      </div>
-                      
-                    
+                      </div> -->
+
+
                     <div class="MenuDiv FormatText1">
                         <p>Link</p>
                         <img src="./assets/images/Icon/TextLink.svg">
@@ -281,7 +285,7 @@
                         [ngClass]="{'active': formatVisibility.font}" />
                 </div>
                 <p class="AltText AltText1">Typeface</p>
-                <div class="FormatText sectionStyle" *ngIf="formatVisibility.font">
+                <div class="FormatText  sectionStyle" *ngIf="formatVisibility.font" >
                     <div class="MenuDiv FormatText1">
                         <p>Sans-Serif</p>
                     </div>
@@ -317,19 +321,23 @@
                 </div>
                 <p class="AltText AltText1">Alignment</p>
                 <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.align">
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('alignL')"
+                        (click)="applyFormat1('alignL')">
                         <p>Align Left</p>
                         <img src="./assets/images/Icon/TextAlignLeft.svg">
                     </div>
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('alignR')"
+                        (click)="applyFormat1('alignR')">
                         <p>Align Right</p>
                         <img src="./assets/images/Icon/TextAlignRight.svg">
                     </div>
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('alignC')"
+                        (click)="applyFormat1('alignC')">
                         <p>Align Center</p>
                         <img src="./assets/images/Icon/TextAlignCenter.svg">
                     </div>
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('alignJ')"
+                        (click)="applyFormat1('alignJ')">
                         <p>Align Justify</p>
                         <img src="./assets/images/Icon/TextAlignJustify.svg">
                     </div>
@@ -343,15 +351,18 @@
                 </div>
                 <p class="AltText AltText1">Line height</p>
                 <div class="FormatText sectionStyle noSelect" *ngIf="formatVisibility.textSpacingY">
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('narrow')"
+                    (click)="applyFormat2('narrow')">
                         <p>Narrow</p>
                         <img src="./assets/images/Icon/TextNarrowY.svg">
                     </div>
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('normal')"
+                    (click)="applyFormat2('normal')">
                         <p>Normal</p>
-                        <img src="./assets/images/Icon/TextNormalY.svg">
+                        <img src="./assets/images/Icon/TextNormalY.svg" >
                     </div>
-                    <div class="MenuDiv FormatText1">
+                    <div class="MenuDiv FormatText1" [class.active]="isActive('wide')"
+                    (click)="applyFormat2('wide')">
                         <p>Wide</p>
                         <img src="./assets/images/Icon/TextWideY.svg">
                     </div>
@@ -512,288 +523,16 @@
                             Animals</p>
                         <div class="divEmojiArea">
                             <div class="divEmojiGroup">
-                                <span>😀</span>
-                                <span>😁</span>
-                                <span>😂</span>
-                                <span>🤣</span>
-                                <span>😃</span>
-                                <span>😄</span>
-                                <span>😅</span>
-                                <span>😆</span>
-                                <span>😉</span>
-                                <span>😊</span>
-                                <span>😋</span>
-                                <span>😎</span>
-                                <span>😍</span>
-                                <span>😘</span>
-                                <span>🥰</span>
-                                <span>😗</span>
-                                <span>😙</span>
-                                <span>🥲</span>
-                                <span>😚</span>
-                                <span>☺️</span>
-                                <span>🙂</span>
-                                <span>🤗</span>
-                                <span>🤩</span>
-                                <span>🤔</span>
-                                <span>🫡</span>
-                                <span>🤨</span>
-                                <span>😐</span>
-                                <span>😑</span>
-                                <span>😶</span>
-                                <span>🫥</span>
-                                <span>😶‍🌫️</span>
-                                <span>🙄</span>
-                                <span>😏</span>
-                                <span>😣</span>
-                                <span>😥</span>
-                                <span>😮</span>
-                                <span>🤐</span>
-                                <span>😯</span>
-                                <span>😪</span>
-                                <span>😫</span>
-                                <span>🥱</span>
-                                <span>😴</span>
-                                <span>😌</span>
-                                <span>😛</span>
-                                <span>😜</span>
-                                <span>😝</span>
-                                <span>🤤</span>
-                                <span>😒</span>
-                                <span>😓</span>
-                                <span>😔</span>
-                                <span>😕</span>
-                                <span>🫤</span>
-                                <span>🙃</span>
-                                <span>🫠</span>
-                                <span>🤑</span>
-                                <span>😲</span>
-                                <span>☹️</span>
-                                <span>🙁</span>
-                                <span>😖</span>
-                                <span>😞</span>
-                                <span>😟</span>
-                                <span>😤</span>
-                                <span>😢</span>
-                                <span>😭</span>
-                                <span>😦</span>
-                                <span>😧</span>
-                                <span>😨</span>
-                                <span>😩</span>
-                                <span>🤯</span>
-                                <span>😬</span>
-                                <span>😮‍💨</span>
-                                <span>😰</span>
-                                <span>😱</span>
-                                <span>🥵</span>
-                                <span>🥶</span>
-                                <span>😳</span>
-                                <span>🤪</span>
-                                <span>😵</span>
-                                <span>😵‍💫</span>
-                                <span>🥴</span>
-                                <span>😠</span>
-                                <span>😡</span>
-                                <span>🤬</span>
-                                <span>😷</span>
-                                <span>🤒</span>
-                                <span>🤕</span>
-                                <span>🤢</span>
-                                <span>🤮</span>
-                                <span>🤧</span>
-                                <span>😇</span>
-                                <span>🥳</span>
-                                <span>🥸</span>
-                                <span>🥺</span>
-                                <span>🥹</span>
-                                <span>🤠</span>
-                                <span>🤡</span>
-                                <span>🤥</span>
-                                <span>🫨</span>
-                                <span>🤫</span>
-                                <span>🤭</span>
-                                <span>🫢</span>
-                                <span>🫣</span>
-                                <span>🧐</span>
-                                <span>🤓</span>
-                                <span>😈</span>
-                                <span>👿</span>
-                                <span>👹</span>
-                                <span>👺</span>
-                                <span>💀</span>
-                                <span>☠️</span>
-                                <span>👻</span>
-                                <span>👽</span>
-                                <span>👾</span>
-                                <span>🤖</span>
-                                <span>💩</span>
-                                <span>😺</span>
-                                <span>😸</span>
-                                <span>😹</span>
-                                <span>😻</span>
-                                <span>😼</span>
-                                <span>😽</span>
-                                <span>🙀</span>
-                                <span>😿</span>
-                                <span>😾</span>
-                                <span>🙈</span>
-                                <span>🙉</span>
-                                <span>🙊</span>
-                                <span>🐵</span>
-                                <span>🐶</span>
-                                <span>🐺</span>
-                                <span>🐱</span>
-                                <span>🦁</span>
-                                <span>🐯</span>
-                                <span>🦒</span>
-                                <span>🦊</span>
-                                <span>🦝</span>
-                                <span>🐮</span>
-                                <span>🐷</span>
-                                <span>🐗</span>
-                                <span>🐭</span>
-                                <span>🐹</span>
-                                <span>🐰</span>
-                                <span>🐻</span>
-                                <span>🐻‍❄️</span>
-                                <span>🐨</span>
-                                <span>🐼</span>
-                                <span>🐸</span>
-                                <span>🦓</span>
-                                <span>🐴</span>
-                                <span>🫎</span>
-                                <span>🫏</span>
-                                <span>🦄</span>
-                                <span>🐔</span>
-                                <span>🐲</span>
-                                <span>🐽</span>
-                                <span>🐾</span>
-                                <span>🐒</span>
-                                <span>🦍</span>
-                                <span>🦧</span>
-                                <span>🦮</span>
-                                <span>🐕‍🦺</span>
-                                <span>🐩</span>
-                                <span>🐕</span>
-                                <span>🐈</span>
-                                <span>🐈‍⬛</span>
-                                <span>🐅</span>
-                                <span>🐆</span>
-                                <span>🐎</span>
-                                <span>🦌</span>
-                                <span>🦬</span>
-                                <span>🦏</span>
-                                <span>🦛</span>
-                                <span>🐂</span>
-                                <span>🐃</span>
-                                <span>🐄</span>
-                                <span>🐖</span>
-                                <span>🐏</span>
-                                <span>🐑</span>
-                                <span>🐐</span>
-                                <span>🐪</span>
-                                <span>🐫</span>
-                                <span>🦙</span>
-                                <span>🦘</span>
-                                <span>🦥</span>
-                                <span>🦨</span>
-                                <span>🦡</span>
-                                <span>🐘</span>
-                                <span>🦣</span>
-                                <span>🐁</span>
-                                <span>🐀</span>
-                                <span>🦔</span>
-                                <span>🐇</span>
-                                <span>🐿️</span>
-                                <span>🦫</span>
-                                <span>🦎</span>
-                                <span>🐊</span>
-                                <span>🐢</span>
-                                <span>🐍</span>
-                                <span>🐉</span>
-                                <span>🦕</span>
-                                <span>🦖</span>
-                                <span>🦦</span>
-                                <span>🦈</span>
-                                <span>🐬</span>
-                                <span>🦭</span>
-                                <span>🐳</span>
-                                <span>🐋</span>
-                                <span>🐟</span>
-                                <span>🐠</span>
-                                <span>🐡</span>
-                                <span>🦐</span>
-                                <span>🦑</span>
-                                <span>🐙</span>
-                                <span>🦞</span>
-                                <span>🦀</span>
-                                <span>🐚</span>
-                                <span>🪸</span>
-                                <span>🪼</span>
-                                <span>🦆</span>
-                                <span>🐓</span>
-                                <span>🦃</span>
-                                <span>🦅</span>
-                                <span>🕊️</span>
-                                <span>🦢</span>
-                                <span>🦜</span>
-                                <span>🪽</span>
-                                <span>🐦‍⬛</span>
-                                <span>🪿</span>
-                                <span>🦩</span>
-                                <span>🦚</span>
-                                <span>🦉</span>
-                                <span>🦤</span>
-                                <span>🪶</span>
-                                <span>🐦</span>
-                                <span>🐧</span>
-                                <span>🐥</span>
-                                <span>🐤</span>
-                                <span>🐣</span>
-                                <span>🦇</span>
-                                <span>🦋</span>
-                                <span>🐌</span>
-                                <span>🐛</span>
-                                <span>🦟</span>
-                                <span>🪰</span>
-                                <span>🪱</span>
-                                <span>🦗</span>
-                                <span>🐜</span>
-                                <span>🪳</span>
-                                <span>🐝</span>
-                                <span>🪲</span>
-                                <span>🐞</span>
-                                <span>🦂</span>
-                                <span>🕷️</span>
-                                <span>🕸️</span>
-                                <span>🦠</span>
-                                <span>🧞‍♀️</span>
-                                <span>🧞‍♂️</span>
-                                <span>🧞</span>
-                                <span>🧟‍♀️</span>
-                                <span>🧟‍♂️</span>
-                                <span>🧟</span>
-                                <span>🧌</span>
-                                <span>🗣️</span>
-                                <span>👤</span>
-                                <span>👥</span>
-                                <span>🫂</span>
-                                <span>👁️</span>
-                                <span>👀</span>
-                                <span>🦴</span>
-                                <span>🦷</span>
-                                <span>👅</span>
-                                <span>👄</span>
-                                <span>🫦</span>
-                                <span>🧠</span>
-                                <span>🫀</span>
-                                <span>🫁</span>
-                                <span>🦾</span>
-                                <span>🦿</span>
-                                <span>👣</span>
-                                <span>🤺</span>
-                                <span>⛷️</span>
-
+                                <span>😀</span><span>😁</span><span>😂</span><span>🤣</span><span>😃</span><span>😄</span><span>😅</span><span>😆</span><span>😉</span><span>😊</span><span>😋</span><span>😎</span>
+                                <span>😍</span><span>😘</span><span>🥰</span><span>😗</span><span>😙</span><span>🥲</span><span>😚</span><span>☺️</span><span>🙂</span><span>🤗</span><span>🤩</span><span>🤔</span>
+                                <span>🫡</span><span>🤨</span><span>😐</span><span>😑</span><span>😶</span><span>🫥</span><span>😶‍🌫️</span><span>🙄</span><span>😏</span><span>😣</span><span>😥</span><span>😮</span>
+                                <span>🤐</span><span>😯</span><span>😪</span><span>😫</span><span>🥱</span><span>😴</span><span>😌</span><span>😛</span><span>😜</span><span>😝</span><span>🤤</span><span>😒</span>
+                                <span>😓</span><span>😔</span><span>😕</span><span>🫤</span><span>🙃</span><span>🫠</span><span>🤑</span><span>😲</span><span>☹️</span><span>🙁</span><span>😖</span><span>😞</span>
+                                <span>😟</span><span>😤</span><span>😢</span><span>😭</span><span>😦</span><span>😧</span><span>😨</span><span>😩</span><span>🤯</span><span>😬</span><span>😮‍💨</span><span>😰</span>
+                                <span>😱</span><span>🥵</span><span>🥶</span><span>😳</span><span>🤪</span><span>😵</span><span>😵‍💫</span><span>🥴</span><span>😠</span><span>😡</span><span>🤬</span><span>😷</span>
+                                <span>🤒</span><span>🤕</span><span>🤢</span><span>🤮</span><span>🤧</span><span>😇</span><span>🥳</span><span>🥸</span><span>🥺</span><span>🥹</span><span>🤠</span><span>🤡</span>
+                                <span>🤥</span><span>🫨</span><span>🤫</span><span>🤭</span><span>🫢</span><span>🫣</span><span>🧐</span><span>🤓</span><span>😈</span><span>👿</span><span>👹</span><span>👺</span>
+                                <span>💀</span><span>☠️</span><span>👻</span><span>👽</span><span>👾</span><span>🤖</span><span>💩</span><span>😺</span><span>😸</span><span>😹</span><span>😻</span><span>😼</span><span>😽</span><span>🙀</span><span>😿</span><span>😾</span><span>🙈</span><span>🙉</span><span>🙊</span><span>🐵</span><span>🐶</span><span>🐺</span><span>🐱</span><span>🦁</span><span>🐯</span><span>🦒</span><span>🦊</span><span>🦝</span><span>🐮</span><span>🐷</span><span>🐗</span><span>🐭</span><span>🐹</span><span>🐰</span><span>🐻</span><span>🐻‍❄️</span><span>🐨</span><span>🐼</span><span>🐸</span><span>🦓</span><span>🐴</span><span>🫎</span><span>🫏</span><span>🦄</span><span>🐔</span><span>🐲</span><span>🐽</span><span>🐾</span><span>🐒</span><span>🦍</span><span>🦧</span><span>🦮</span><span>🐕‍🦺</span><span>🐩</span><span>🐕</span><span>🐈</span><span>🐈‍⬛</span><span>🐅</span><span>🐆</span><span>🐎</span><span>🦌</span><span>🦬</span><span>🦏</span><span>🦛</span><span>🐂</span><span>🐃</span><span>🐄</span><span>🐖</span><span>🐏</span><span>🐑</span><span>🐐</span><span>🐪</span><span>🐫</span><span>🦙</span><span>🦘</span><span>🦥</span><span>🦨</span><span>🦡</span><span>🐘</span><span>🦣</span><span>🐁</span><span>🐀</span><span>🦔</span><span>🐇</span><span>🐿️</span><span>🦫</span><span>🦎</span><span>🐊</span><span>🐢</span><span>🐍</span><span>🐉</span><span>🦕</span><span>🦖</span><span>🦦</span><span>🦈</span><span>🐬</span><span>🦭</span><span>🐳</span><span>🐋</span><span>🐟</span><span>🐠</span><span>🐡</span><span>🦐</span><span>🦑</span><span>🐙</span><span>🦞</span><span>🦀</span><span>🐚</span><span>🪸</span><span>🪼</span><span>🦆</span><span>🐓</span><span>🦃</span><span>🦅</span><span>🕊️</span><span>🦢</span><span>🦜</span><span>🪽</span><span>🐦‍⬛</span><span>🪿</span><span>🦩</span><span>🦚</span><span>🦉</span><span>🦤</span><span>🪶</span><span>🐦</span><span>🐧</span><span>🐥</span><span>🐤</span><span>🐣</span><span>🦇</span><span>🦋</span><span>🐌</span><span>🐛</span><span>🦟</span><span>🪰</span><span>🪱</span><span>🦗</span><span>🐜</span><span>🪳</span><span>🐝</span><span>🪲</span><span>🐞</span><span>🦂</span><span>🕷️</span><span>🕸️</span><span>🦠</span><span>🧞‍♀️</span><span>🧞‍♂️</span><span>🧞</span><span>🧟‍♀️</span><span>🧟‍♂️</span><span>🧟</span><span>🧌</span><span>🗣️</span><span>👤</span><span>👥</span><span>🫂</span><span>👁️</span><span>👀</span><span>🦴</span><span>🦷</span><span>👅</span><span>👄</span><span>🫦</span><span>🧠</span><span>🫀</span><span>🫁</span><span>🦾</span><span>🦿</span><span>👣</span><span>🤺</span><span>⛷️</span>
                             </div>
                             <div class="divFadeSec">
                             </div>
@@ -829,310 +568,7 @@
 
 
                                 <!-- SkinDefault -->
-                                <span>👩</span>
-                                <span>👨</span>
-                                <span>🧑</span>
-                                <span>👧</span>
-                                <span>👦</span>
-                                <span>🧒</span>
-                                <span>👶</span>
-                                <span>👵</span>
-                                <span>👴</span>
-                                <span>🧓</span>
-                                <span>👩‍🦰</span>
-                                <span>👨‍🦰</span>
-                                <span>🧑‍🦰</span>
-                                <span>👩‍🦱</span>
-                                <span>👨‍🦱</span>
-                                <span>🧑‍🦱</span>
-                                <span>👩‍🦲</span>
-                                <span>👨‍🦲</span>
-                                <span>🧑‍🦲</span>
-                                <span>👩‍🦳</span>
-                                <span>👨‍🦳</span>
-                                <span>🧑‍🦳</span>
-                                <span>👱‍♀️</span>
-                                <span>👱‍♂️</span>
-                                <span>👱</span>
-                                <span>👸</span>
-                                <span>🤴</span>
-                                <span>🫅</span>
-                                <span>👳‍♀️</span>
-                                <span>👳‍♂️</span>
-                                <span>👳</span>
-                                <span>👲</span>
-                                <span>🧔</span>
-                                <span>🧔‍♂️</span>
-                                <span>🧔‍♀️</span>
-                                <span>👼</span>
-                                <span>🤶</span>
-                                <span>🎅</span>
-                                <span>🧑‍🎄</span>
-                                <span>👮‍♀️</span>
-                                <span>👮‍♂️</span>
-                                <span>👮</span>
-                                <span>🕵️‍♀️</span>
-                                <span>🕵️‍♂️</span>
-                                <span>🕵️</span>
-                                <span>💂‍♀️</span>
-                                <span>💂‍♂️</span>
-                                <span>💂</span>
-                                <span>🥷</span>
-                                <span>👷‍♀️</span>
-                                <span>👷‍♂️</span>
-                                <span>👷</span>
-                                <span>👩‍⚕️</span>
-                                <span>👨‍⚕️</span>
-                                <span>🧑‍⚕️</span>
-                                <span>👩‍🎓</span>
-                                <span>👨‍🎓</span>
-                                <span>🧑‍🎓</span>
-                                <span>👩‍🏫</span>
-                                <span>👨‍🏫</span>
-                                <span>🧑‍🏫</span>
-                                <span>👩‍⚖️</span>
-                                <span>👨‍⚖️</span>
-                                <span>🧑‍⚖️</span>
-                                <span>👩‍🌾</span>
-                                <span>👨‍🌾</span>
-                                <span>🧑‍🌾</span>
-                                <span>👩‍🍳</span>
-                                <span>👨‍🍳</span>
-                                <span>🧑‍🍳</span>
-                                <span>👩‍🔧</span>
-                                <span>👨‍🔧</span>
-                                <span>🧑‍🔧</span>
-                                <span>👩‍🏭</span>
-                                <span>👨‍🏭</span>
-                                <span>🧑‍🏭</span>
-                                <span>👩‍💼</span>
-                                <span>👨‍💼</span>
-                                <span>🧑‍💼</span>
-                                <span>👩‍🔬</span>
-                                <span>👨‍🔬</span>
-                                <span>🧑‍🔬</span>
-                                <span>👩‍💻</span>
-                                <span>👨‍💻</span>
-                                <span>🧑‍💻</span>
-                                <span>👩‍🎤</span>
-                                <span>👨‍🎤</span>
-                                <span>🧑‍🎤</span>
-                                <span>👩‍🎨</span>
-                                <span>👨‍🎨</span>
-                                <span>🧑‍🎨</span>
-                                <span>👩‍✈️</span>
-                                <span>👨‍✈️</span>
-                                <span>🧑‍✈️</span>
-                                <span>👩‍🚀</span>
-                                <span>👨‍🚀</span>
-                                <span>🧑‍🚀</span>
-                                <span>👩‍🚒</span>
-                                <span>👨‍🚒</span>
-                                <span>🧑‍🚒</span>
-                                <span>🧕</span>
-                                <span>👰‍♀️</span>
-                                <span>👰‍♂️</span>
-                                <span>👰</span>
-                                <span>🤵‍♀️</span>
-                                <span>🤵‍♂️</span>
-                                <span>🤵</span>
-                                <span>🤱</span>
-                                <span>👩‍🍼</span>
-                                <span>👨‍🍼</span>
-                                <span>🧑‍🍼</span>
-                                <span>🤰</span>
-                                <span>🫃</span>
-                                <span>🫄</span>
-                                <span>🦸‍♀️</span>
-                                <span>🦸‍♂️</span>
-                                <span>🦸</span>
-                                <span>🦹‍♀️</span>
-                                <span>🦹‍♂️</span>
-                                <span>🦹</span>
-                                <span>🧙‍♀️</span>
-                                <span>🧙‍♂️</span>
-                                <span>🧙</span>
-                                <span>🧚‍♀️</span>
-                                <span>🧚‍♂️</span>
-                                <span>🧚</span>
-                                <span>🧛‍♀️</span>
-                                <span>🧛‍♂️</span>
-                                <span>🧛</span>
-                                <span>🧜‍♀️</span>
-                                <span>🧜‍♂️</span>
-                                <span>🧜</span>
-                                <span>🧝‍♀️</span>
-                                <span>🧝‍♂️</span>
-                                <span>🧝</span>
-                                <span>🙍‍♀️</span>
-                                <span>🙍‍♂️</span>
-                                <span>🙍</span>
-                                <span>🙎‍♀️</span>
-                                <span>🙎‍♂️</span>
-                                <span>🙎</span>
-                                <span>🙅‍♀️</span>
-                                <span>🙅‍♂️</span>
-                                <span>🙅</span>
-                                <span>🙆‍♀️</span>
-                                <span>🙆‍♂️</span>
-                                <span>🙆</span>
-                                <span>🧏‍♀️</span>
-                                <span>🧏‍♂️</span>
-                                <span>🧏</span>
-                                <span>💁‍♀️</span>
-                                <span>💁‍♂️</span>
-                                <span>💁</span>
-                                <span>🙋‍♀️</span>
-                                <span>🙋‍♂️</span>
-                                <span>🙋</span>
-                                <span>🙇‍♀️</span>
-                                <span>🙇‍♂️</span>
-                                <span>🙇</span>
-                                <span>🤦‍♀️</span>
-                                <span>🤦‍♂️</span>
-                                <span>🤦</span>
-                                <span>🤷‍♀️</span>
-                                <span>🤷‍♂️</span>
-                                <span>🤷</span>
-                                <span>💆‍♀️</span>
-                                <span>💆‍♂️</span>
-                                <span>💆</span>
-                                <span>💇‍♀️</span>
-                                <span>💇‍♂️</span>
-                                <span>💇</span>
-                                <span>🧖‍♀️</span>
-                                <span>🧖‍♂️</span>
-                                <span>🧖</span>
-                                <span>🤹‍♀️</span>
-                                <span>🤹‍♂️</span>
-                                <span>🤹</span>
-                                <span>👩‍🦽</span>
-                                <span>👨‍🦽</span>
-                                <span>🧑‍🦽</span>
-                                <span>👩‍🦼</span>
-                                <span>👨‍🦼</span>
-                                <span>🧑‍🦼</span>
-                                <span>👩‍🦯</span>
-                                <span>👨‍🦯</span>
-                                <span>🧑‍🦯</span>
-                                <span>🧎‍♀️</span>
-                                <span>🧎‍♂️</span>
-                                <span>🧎</span>
-                                <span>🧍‍♀️</span>
-                                <span>🧍‍♂️</span>
-                                <span>🧍</span>
-                                <span>🚶‍♀️</span>
-                                <span>🚶‍♂️</span>
-                                <span>🚶</span>
-                                <span>🏃‍♀️</span>
-                                <span>🏃‍♂️</span>
-                                <span>🏃</span>
-                                <span>💃</span>
-                                <span>🕺</span>
-                                <span>🧗‍♀️</span>
-                                <span>🧗‍♂️</span>
-                                <span>🧗</span>
-                                <span>🧘‍♀️</span>
-                                <span>🧘‍♂️</span>
-                                <span>🧘</span>
-                                <span>🛀</span>
-                                <span>🛌</span>
-                                <span>🕴️</span>
-                                <span>🏇</span>
-                                <span>🏂</span>
-                                <span>🏌️‍♀️</span>
-                                <span>🏌️‍♂️</span>
-                                <span>🏌️</span>
-                                <span>🏄‍♀️</span>
-                                <span>🏄‍♂️</span>
-                                <span>🏄</span>
-                                <span>🚣‍♀️</span>
-                                <span>🚣‍♂️</span>
-                                <span>🚣</span>
-                                <span>🏊‍♀️</span>
-                                <span>🏊‍♂️</span>
-                                <span>🏊</span>
-                                <span>🤽‍♀️</span>
-                                <span>🤽‍♂️</span>
-                                <span>🤽</span>
-                                <span>🤾‍♀️</span>
-                                <span>🤾‍♂️</span>
-                                <span>🤾</span>
-                                <span>⛹️‍♀️</span>
-                                <span>⛹️‍♂️</span>
-                                <span>⛹️</span>
-                                <span>🏋️‍♀️</span>
-                                <span>🏋️‍♂️</span>
-                                <span>🏋️</span>
-                                <span>🚴‍♀️</span>
-                                <span>🚴‍♂️</span>
-                                <span>🚴</span>
-                                <span>🚵‍♀️</span>
-                                <span>🚵‍♂️</span>
-                                <span>🚵</span>
-                                <span>🤸‍♀️</span>
-                                <span>🤸‍♂️</span>
-                                <span>🤸</span>
-                                <span>🤳</span>
-                                <span>💪</span>
-                                <span>🦵</span>
-                                <span>🦶</span>
-                                <span>👂</span>
-                                <span>🦻</span>
-                                <span>👃</span>
-                                <span>🤏</span>
-                                <span>👈</span>
-                                <span>👉</span>
-                                <span>☝️</span>
-                                <span>🫵</span>
-                                <span>👆</span>
-                                <span>👇</span>
-                                <span>✌️</span>
-                                <span>🤞</span>
-                                <span>🫰</span>
-                                <span>🖖</span>
-                                <span>🫱</span>
-                                <span>🫲</span>
-                                <span>🫳</span>
-                                <span>🫴</span>
-                                <span>🫷</span>
-                                <span>🤘</span>
-                                <span>🤙</span>
-                                <span>🖐️</span>
-                                <span>✋</span>
-                                <span>👌</span>
-                                <span>🤌</span>
-                                <span>👍</span>
-                                <span>👎</span>
-                                <span>✊</span>
-                                <span>👊</span>
-                                <span>🤛</span>
-                                <span>🤜</span>
-                                <span>🤚</span>
-                                <span>👋</span>
-                                <span>🤟</span>
-                                <span>✍️</span>
-                                <span>👏</span>
-                                <span>👐</span>
-                                <span>🙌</span>
-                                <span>🫶</span>
-                                <span>🤲</span>
-                                <span>🙏</span>
-                                <span>💅</span>
-                                <span>🤝</span>
-                                <span>🤼‍♀️</span>
-                                <span>🤼‍♂️</span>
-                                <span>🤼</span>
-                                <span>👯‍♀️</span>
-                                <span>👯‍♂️</span>
-                                <span>👯</span>
-                                <span>💑</span>
-                                <span>💏</span>
-                                <span>👪</span>
-                                <span>👨‍👩‍👧‍👦</span>
-                                <span>👩‍👦</span>
-                                <span>👩‍👧‍👦</span>
-                                <span>🧑‍🤝‍🧑</span>
+                                <span>👩</span><span>👨</span><span>🧑</span><span>👧</span><span>👦</span><span>🧒</span><span>👶</span><span>👵</span><span>👴</span><span>🧓</span><span>👩‍🦰</span><span>👨‍🦰</span><span>🧑‍🦰</span><span>👩‍🦱</span><span>👨‍🦱</span><span>🧑‍🦱</span><span>👩‍🦲</span><span>👨‍🦲</span><span>🧑‍🦲</span><span>👩‍🦳</span><span>👨‍🦳</span><span>🧑‍🦳</span><span>👱‍♀️</span><span>👱‍♂️</span><span>👱</span><span>👸</span><span>🤴</span><span>🫅</span><span>👳‍♀️</span><span>👳‍♂️</span><span>👳</span><span>👲</span><span>🧔</span><span>🧔‍♂️</span><span>🧔‍♀️</span><span>👼</span><span>🤶</span><span>🎅</span><span>🧑‍🎄</span><span>👮‍♀️</span><span>👮‍♂️</span><span>👮</span><span>🕵️‍♀️</span><span>🕵️‍♂️</span><span>🕵️</span><span>💂‍♀️</span><span>💂‍♂️</span><span>💂</span><span>🥷</span><span>👷‍♀️</span><span>👷‍♂️</span><span>👷</span><span>👩‍⚕️</span><span>👨‍⚕️</span><span>🧑‍⚕️</span><span>👩‍🎓</span><span>👨‍🎓</span><span>🧑‍🎓</span><span>👩‍🏫</span><span>👨‍🏫</span><span>🧑‍🏫</span><span>👩‍⚖️</span><span>👨‍⚖️</span><span>🧑‍⚖️</span><span>👩‍🌾</span><span>👨‍🌾</span><span>🧑‍🌾</span><span>👩‍🍳</span><span>👨‍🍳</span><span>🧑‍🍳</span><span>👩‍🔧</span><span>👨‍🔧</span><span>🧑‍🔧</span><span>👩‍🏭</span><span>👨‍🏭</span><span>🧑‍🏭</span><span>👩‍💼</span><span>👨‍💼</span><span>🧑‍💼</span><span>👩‍🔬</span><span>👨‍🔬</span><span>🧑‍🔬</span><span>👩‍💻</span><span>👨‍💻</span><span>🧑‍💻</span><span>👩‍🎤</span><span>👨‍🎤</span><span>🧑‍🎤</span><span>👩‍🎨</span><span>👨‍🎨</span><span>🧑‍🎨</span><span>👩‍✈️</span><span>👨‍✈️</span><span>🧑‍✈️</span><span>👩‍🚀</span><span>👨‍🚀</span><span>🧑‍🚀</span><span>👩‍🚒</span><span>👨‍🚒</span><span>🧑‍🚒</span><span>🧕</span><span>👰‍♀️</span><span>👰‍♂️</span><span>👰</span><span>🤵‍♀️</span><span>🤵‍♂️</span><span>🤵</span><span>🤱</span><span>👩‍🍼</span><span>👨‍🍼</span><span>🧑‍🍼</span><span>🤰</span><span>🫃</span><span>🫄</span><span>🦸‍♀️</span><span>🦸‍♂️</span><span>🦸</span><span>🦹‍♀️</span><span>🦹‍♂️</span><span>🦹</span><span>🧙‍♀️</span><span>🧙‍♂️</span><span>🧙</span><span>🧚‍♀️</span><span>🧚‍♂️</span><span>🧚</span><span>🧛‍♀️</span><span>🧛‍♂️</span><span>🧛</span><span>🧜‍♀️</span><span>🧜‍♂️</span><span>🧜</span><span>🧝‍♀️</span><span>🧝‍♂️</span><span>🧝</span><span>🙍‍♀️</span><span>🙍‍♂️</span><span>🙍</span><span>🙎‍♀️</span><span>🙎‍♂️</span><span>🙎</span><span>🙅‍♀️</span><span>🙅‍♂️</span><span>🙅</span><span>🙆‍♀️</span><span>🙆‍♂️</span><span>🙆</span><span>🧏‍♀️</span><span>🧏‍♂️</span><span>🧏</span><span>💁‍♀️</span><span>💁‍♂️</span><span>💁</span><span>🙋‍♀️</span><span>🙋‍♂️</span><span>🙋</span><span>🙇‍♀️</span><span>🙇‍♂️</span><span>🙇</span><span>🤦‍♀️</span><span>🤦‍♂️</span><span>🤦</span><span>🤷‍♀️</span><span>🤷‍♂️</span><span>🤷</span><span>💆‍♀️</span><span>💆‍♂️</span><span>💆</span><span>💇‍♀️</span><span>💇‍♂️</span><span>💇</span><span>🧖‍♀️</span><span>🧖‍♂️</span><span>🧖</span><span>🤹‍♀️</span><span>🤹‍♂️</span><span>🤹</span><span>👩‍🦽</span><span>👨‍🦽</span><span>🧑‍🦽</span><span>👩‍🦼</span><span>👨‍🦼</span><span>🧑‍🦼</span><span>👩‍🦯</span><span>👨‍🦯</span><span>🧑‍🦯</span><span>🧎‍♀️</span><span>🧎‍♂️</span><span>🧎</span><span>🧍‍♀️</span><span>🧍‍♂️</span><span>🧍</span><span>🚶‍♀️</span><span>🚶‍♂️</span><span>🚶</span><span>🏃‍♀️</span><span>🏃‍♂️</span><span>🏃</span><span>💃</span><span>🕺</span><span>🧗‍♀️</span><span>🧗‍♂️</span><span>🧗</span><span>🧘‍♀️</span><span>🧘‍♂️</span><span>🧘</span><span>🛀</span><span>🛌</span><span>🕴️</span><span>🏇</span><span>🏂</span><span>🏌️‍♀️</span><span>🏌️‍♂️</span><span>🏌️</span><span>🏄‍♀️</span><span>🏄‍♂️</span><span>🏄</span><span>🚣‍♀️</span><span>🚣‍♂️</span><span>🚣</span><span>🏊‍♀️</span><span>🏊‍♂️</span><span>🏊</span><span>🤽‍♀️</span><span>🤽‍♂️</span><span>🤽</span><span>🤾‍♀️</span><span>🤾‍♂️</span><span>🤾</span><span>⛹️‍♀️</span><span>⛹️‍♂️</span><span>⛹️</span><span>🏋️‍♀️</span><span>🏋️‍♂️</span><span>🏋️</span><span>🚴‍♀️</span><span>🚴‍♂️</span><span>🚴</span><span>🚵‍♀️</span><span>🚵‍♂️</span><span>🚵</span><span>🤸‍♀️</span><span>🤸‍♂️</span><span>🤸</span><span>🤳</span><span>💪</span><span>🦵</span><span>🦶</span><span>👂</span><span>🦻</span><span>👃</span><span>🤏</span><span>👈</span><span>👉</span><span>☝️</span><span>🫵</span><span>👆</span><span>👇</span><span>✌️</span><span>🤞</span><span>🫰</span><span>🖖</span><span>🫱</span><span>🫲</span><span>🫳</span><span>🫴</span><span>🫷</span><span>🤘</span><span>🤙</span><span>🖐️</span><span>✋</span><span>👌</span><span>🤌</span><span>👍</span><span>👎</span><span>✊</span><span>👊</span><span>🤛</span><span>🤜</span><span>🤚</span><span>👋</span><span>🤟</span><span>✍️</span><span>👏</span><span>👐</span><span>🙌</span><span>🫶</span><span>🤲</span><span>🙏</span><span>💅</span><span>🤝</span><span>🤼‍♀️</span><span>🤼‍♂️</span><span>🤼</span><span>👯‍♀️</span><span>👯‍♂️</span><span>👯</span><span>💑</span><span>💏</span><span>👪</span><span>👨‍👩‍👧‍👦</span><span>👩‍👦</span><span>👩‍👧‍👦</span><span>🧑‍🤝‍🧑</span>
 
                                 <div class="divFadeSec">
                                 </div>
@@ -1140,297 +576,31 @@
 
                             <div class="divEmojiGroup" *ngIf="selectedSkin === 'SkinLight'">
                                 <!-- SkinDefault -->
-                                <span>👩🏻</span>
-                                <span>👨🏻</span>
-                                <span>🧑🏻</span>
-                                <span>👧🏻</span>
-                                <span>👦🏻</span>
-                                <span>🧒🏻</span>
-                                <span>👶🏻</span>
-                                <span>👵🏻</span>
-                                <span>👴🏻</span>
-                                <span>🧓🏻</span>
-                                <span>👩🏻‍🦰</span>
-                                <span>👨🏻‍🦰</span>
-                                <span>🧑🏻‍🦰</span>
-                                <span>👩🏻‍🦱</span>
-                                <span>👨🏻‍🦱</span>
-                                <span>🧑🏻‍🦱</span>
-                                <span>👩🏻‍🦲</span>
-                                <span>👨🏻‍🦲</span>
-                                <span>🧑🏻‍🦲</span>
-                                <span>👩🏻‍🦳</span>
-                                <span>👨🏻‍🦳</span>
-                                <span>🧑🏻‍🦳</span>
-                                <span>👱🏻‍♀️</span>
-                                <span>👱🏻‍♂️</span>
-                                <span>👱🏻</span>
-                                <span>👸🏻</span>
-                                <span>🤴🏻</span>
-                                <span>🫅🏻</span>
-                                <span>👳🏻‍♀️</span>
-                                <span>👳🏻‍♂️</span>
-                                <span>👳🏻</span>
-                                <span>👲🏻</span>
-                                <span>🧔🏻</span>
-                                <span>🧔🏻‍♂️</span>
-                                <span>🧔🏻‍♀️</span>
-                                <span>👼🏻</span>
-                                <span>🤶🏻</span>
-                                <span>🎅🏻</span>
-                                <span>🧑🏻‍🎄</span>
-                                <span>👮🏻‍♀️</span>
-                                <span>👮🏻‍♂️</span>
-                                <span>👮🏻</span>
-                                <span>🕵🏻‍♀️</span>
-                                <span>🕵🏻‍♂️</span>
-                                <span>🕵🏻</span>
-                                <span>💂🏻‍♀️</span>
-                                <span>💂🏻‍♂️</span>
-                                <span>💂🏻</span>
-                                <span>🥷🏻</span>
-                                <span>👷🏻‍♀️</span>
-                                <span>👷🏻‍♂️</span>
-                                <span>👷🏻</span>
-                                <span>👩🏻‍⚕️</span>
-                                <span>👨🏻‍⚕️</span>
-                                <span>🧑🏻‍⚕️</span>
-                                <span>👩🏻‍🎓</span>
-                                <span>👨🏻‍🎓</span>
-                                <span>🧑🏻‍🎓</span>
-                                <span>👩🏻‍🏫</span>
-                                <span>👨🏻‍🏫</span>
-                                <span>🧑🏻‍🏫</span>
-                                <span>👩🏻‍⚖️</span>
-                                <span>👨🏻‍⚖️</span>
-                                <span>🧑🏻‍⚖️</span>
-                                <span>👩🏻‍🌾</span>
-                                <span>👨🏻‍🌾</span>
-                                <span>🧑🏻‍🌾</span>
-                                <span>👩🏻‍🍳</span>
-                                <span>👨🏻‍🍳</span>
-                                <span>🧑🏻‍🍳</span>
-                                <span>👩🏻‍🔧</span>
-                                <span>👨🏻‍🔧</span>
-                                <span>🧑🏻‍🔧</span>
-                                <span>👩🏻‍🏭</span>
-                                <span>👨🏻‍🏭</span>
-                                <span>🧑🏻‍🏭</span>
-                                <span>👩🏻‍💼</span>
-                                <span>👨🏻‍💼</span>
-                                <span>🧑🏻‍💼</span>
-                                <span>👩🏻‍🔬</span>
-                                <span>👨🏻‍🔬</span>
-                                <span>🧑🏻‍🔬</span>
-                                <span>👩🏻‍💻</span>
-                                <span>👨🏻‍💻</span>
-                                <span>🧑🏻‍💻</span>
-                                <span>👨🏻‍🎤</span>
-                                <span>👩🏻‍🎤</span>
-                                <span>🧑🏻‍🎤</span>
-                                <span>👩🏻‍🎨</span>
-                                <span>👨🏻‍🎨</span>
-                                <span>🧑🏻‍🎨</span>
-                                <span>👩🏻‍✈️</span>
-                                <span>👨🏻‍✈️</span>
-                                <span>🧑🏻‍✈️</span>
-                                <span>👩🏻‍🚀</span>
-                                <span>👨🏻‍🚀</span>
-                                <span>🧑🏻‍🚀</span>
-                                <span>👩🏻‍🚒</span>
-                                <span>👨🏻‍🚒</span>
-                                <span>🧑🏻‍🚒</span>
-                                <span>🧕🏻</span>
-                                <span>👰🏻‍♀️</span>
-                                <span>👰🏻‍♂️</span>
-                                <span>👰🏻</span>
-                                <span>🤵🏻‍♀️</span>
-                                <span>🤵🏻‍♂️</span>
-                                <span>🤵🏻</span>
-                                <span>🤱🏻</span>
-                                <span>👩🏻‍🍼</span>
-                                <span>👨🏻‍🍼</span>
-                                <span>🧑🏻‍🍼</span>
-                                <span>🤰🏻</span>
-                                <span>🫃🏻</span>
-                                <span>🫄🏻</span>
-                                <span>🦸🏻‍♀️</span>
-                                <span>🦸🏻‍♂️</span>
-                                <span>🦸🏻</span>
-                                <span>🦹🏻‍♀️</span>
-                                <span>🦹🏻‍♂️</span>
-                                <span>🦹🏻</span>
-                                <span>🧙🏻‍♀️</span>
-                                <span>🧙🏻‍♂️</span>
-                                <span>🧙🏻</span>
-                                <span>🧚🏻‍♀️</span>
-                                <span>🧚🏻‍♂️</span>
-                                <span>🧚🏻</span>
-                                <span>🧛🏻‍♀️</span>
-                                <span>🧛🏻‍♂️</span>
-                                <span>🧛🏻</span>
-                                <span>🧜🏻‍♀️</span>
-                                <span>🧜🏻‍♂️</span>
-                                <span>🧜🏻</span>
-                                <span>🧝🏻‍♀️</span>
-                                <span>🧝🏻‍♂️</span>
-                                <span>🧝🏻</span>
-                                <span>🙍🏻‍♀️</span>
-                                <span>🙍🏻‍♂️</span>
-                                <span>🙍🏻</span>
-                                <span>🙎🏻‍♀️</span>
-                                <span>🙎🏻‍♂️</span>
-                                <span>🙎🏻</span>
-                                <span>🙅🏻‍♀️</span>
-                                <span>🙅🏻‍♂️</span>
-                                <span>🙅🏻</span>
-                                <span>🙆🏻‍♀️</span>
-                                <span>🙆🏻‍♂️</span>
-                                <span>🙆🏻</span>
-                                <span>🧏🏻‍♀️</span>
-                                <span>🧏🏻‍♂️</span>
-                                <span>🧏🏻</span>
-                                <span>💁🏻‍♀️</span>
-                                <span>💁🏻‍♂️</span>
-                                <span>💁🏻</span>
-                                <span>🙋🏻‍♀️</span>
-                                <span>🙋🏻‍♂️</span>
-                                <span>🙋🏻</span>
-                                <span>🙇🏻‍♀️</span>
-                                <span>🙇🏻‍♂️</span>
-                                <span>🙇🏻</span>
-                                <span>🤦🏻‍♀️</span>
-                                <span>🤦🏻‍♂️</span>
-                                <span>🤦🏻</span>
-                                <span>🤷🏻‍♀️</span>
-                                <span>🤷🏻‍♂️</span>
-                                <span>🤷🏻</span>
-                                <span>💆🏻‍♀️</span>
-                                <span>💆🏻‍♂️</span>
-                                <span>💆🏻</span>
-                                <span>💇🏻‍♀️</span>
-                                <span>💇🏻‍♂️</span>
-                                <span>💇🏻</span>
-                                <span>🧖🏻‍♀️</span>
-                                <span>🧖🏻‍♂️</span>
-                                <span>🧖🏻</span>
-                                <span>🤹🏻‍♀️</span>
-                                <span>🤹🏻‍♂️</span>
-                                <span>🤹🏻</span>
-                                <span>👩🏻‍🦽</span>
-                                <span>👨🏻‍🦽</span>
-                                <span>🧑🏻‍🦽</span>
-                                <span>👩🏻‍🦼</span>
-                                <span>👨🏻‍🦼</span>
-                                <span>🧑🏻‍🦼</span>
-                                <span>👩🏻‍🦯</span>
-                                <span>👨🏻‍🦯</span>
-                                <span>🧑🏻‍🦯</span>
-                                <span>🧎🏻‍♀️</span>
-                                <span>🧎🏻‍♂️</span>
-                                <span>🧎🏻</span>
-                                <span>🧍🏻‍♀️</span>
-                                <span>🧍🏻‍♂️</span>
-                                <span>🧍🏻</span>
-                                <span>🚶🏻‍♀️</span>
-                                <span>🚶🏻‍♂️</span>
-                                <span>🚶🏻</span>
-                                <span>🏃🏻‍♀️</span>
-                                <span>🏃🏻‍♂️</span>
-                                <span>🏃🏻</span>
-                                <span>💃🏻</span>
-                                <span>🕺🏻</span>
-                                <span>🧗🏻‍♀️</span>
-                                <span>🧗🏻‍♂️</span>
-                                <span>🧗🏻</span>
-                                <span>🧘🏻‍♀️</span>
-                                <span>🧘🏻‍♂️</span>
-                                <span>🧘🏻</span>
-                                <span>🛀🏻</span>
-                                <span>🕴🏻</span>
-                                <span>🏇🏻</span>
-                                <span>🏌🏻‍♀️</span>
-                                <span>🏌🏻‍♂️</span>
-                                <span>🏌🏻</span>
-                                <span>🏄🏻‍♀️</span>
-                                <span>🏄🏻‍♂️</span>
-                                <span>🏄🏻</span>
-                                <span>🚣🏻‍♀️</span>
-                                <span>🚣🏻‍♂️</span>
-                                <span>🚣🏻</span>
-                                <span>🏊🏻‍♀️</span>
-                                <span>🏊🏻‍♂️</span>
-                                <span>🏊🏻</span>
-                                <span>🤽🏻‍♀️</span>
-                                <span>🤽🏻‍♂️</span>
-                                <span>🤽🏻</span>
-                                <span>🤾🏻‍♀️</span>
-                                <span>🤾🏻‍♂️</span>
-                                <span>🤾🏻</span>
-                                <span>⛹🏻‍♀️</span>
-                                <span>⛹🏻‍♂️</span>
-                                <span>⛹🏻</span>
-                                <span>🏋🏻‍♀️</span>
-                                <span>🏋🏻‍♂️</span>
-                                <span>🏋🏻</span>
-                                <span>🚴🏻‍♀️</span>
-                                <span>🚴🏻‍♂️</span>
-                                <span>🚴🏻</span>
-                                <span>🚵🏻‍♀️</span>
-                                <span>🚵🏻‍♂️</span>
-                                <span>🚵🏻</span>
-                                <span>🤸🏻‍♀️</span>
-                                <span>🤸🏻‍♂️</span>
-                                <span>🤸🏻</span>
-                                <span>🤳🏻</span>
-                                <span>💪🏻</span>
-                                <span>🦵🏻</span>
-                                <span>🦶🏻</span>
-                                <span>👂🏻</span>
-                                <span>🦻🏻</span>
-                                <span>👃🏻</span>
-                                <span>🤏🏻</span>
-                                <span>👈🏻</span>
-                                <span>👉🏻</span>
-                                <span>☝🏻</span>
-                                <span>🫵🏻</span>
-                                <span>👆🏻</span>
-                                <span>👇🏻</span>
-                                <span>✌🏻</span>
-                                <span>🤞🏻</span>
-                                <span>🫰🏻</span>
-                                <span>🖖🏻</span>
-                                <span>🫱🏻</span>
-                                <span>🫲🏻</span>
-                                <span>🫳🏻</span>
-                                <span>🫴🏻</span>
-                                <span>🫷🏻</span>
-                                <span>🫸🏻</span>
-                                <span>🤘🏻</span>
-                                <span>🤙🏻</span>
-                                <span>🖐🏻</span>
-                                <span>✋🏻</span>
-                                <span>👌🏻</span>
-                                <span>🤌🏻</span>
-                                <span>👍🏻</span>
-                                <span>👎🏻</span>
-                                <span>✊🏻</span>
-                                <span>👊🏻</span>
-                                <span>🤛🏻</span>
-                                <span>🤜🏻</span>
-                                <span>🤚🏻</span>
-                                <span>👋🏻</span>
-                                <span>🤟🏻</span>
-                                <span>✍🏻</span>
-                                <span>👏🏻</span>
-                                <span>👐🏻</span>
-                                <span>🙌🏻</span>
-                                <span>🫶🏻</span>
-                                <span>🤲🏻</span>
-                                <span>🤝🏻</span>
-                                <span>🙏🏻</span>
-                                <span>💅🏻</span>
-
+                                <span>👩🏻</span><span>👨🏻</span><span>🧑🏻</span><span>👧🏻</span><span>👦🏻</span><span>🧒🏻</span><span>👶🏻</span><span>👵🏻</span><span>👴🏻</span><span>🧓🏻</span><span>👩🏻‍🦰</span><span>👨🏻‍🦰</span>
+                                <span>🧑🏻‍🦰</span><span>👩🏻‍🦱</span><span>👨🏻‍🦱</span><span>🧑🏻‍🦱</span><span>👩🏻‍🦲</span><span>👨🏻‍🦲</span><span>🧑🏻‍🦲</span><span>👩🏻‍🦳</span><span>👨🏻‍🦳</span><span>🧑🏻‍🦳</span><span>👱🏻‍♀️</span><span>👱🏻‍♂️</span>
+                                <span>👱🏻</span><span>👸🏻</span><span>🤴🏻</span><span>🫅🏻</span><span>👳🏻‍♀️</span><span>👳🏻‍♂️</span><span>👳🏻</span><span>👲🏻</span><span>🧔🏻</span><span>🧔🏻‍♂️</span><span>🧔🏻‍♀️</span><span>👼🏻</span>
+                                <span>🤶🏻</span><span>🎅🏻</span><span>🧑🏻‍🎄</span><span>👮🏻‍♀️</span><span>👮🏻‍♂️</span><span>👮🏻</span><span>🕵🏻‍♀️</span><span>🕵🏻‍♂️</span><span>🕵🏻</span><span>💂🏻‍♀️</span><span>💂🏻‍♂️</span><span>💂🏻</span>
+                                <span>🥷🏻</span><span>👷🏻‍♀️</span><span>👷🏻‍♂️</span><span>👷🏻</span><span>👩🏻‍⚕️</span><span>👨🏻‍⚕️</span><span>🧑🏻‍⚕️</span><span>👩🏻‍🎓</span><span>👨🏻‍🎓</span><span>🧑🏻‍🎓</span><span>👩🏻‍🏫</span><span>👨🏻‍🏫</span>
+                                <span>🧑🏻‍🏫</span><span>👩🏻‍⚖️</span><span>👨🏻‍⚖️</span><span>🧑🏻‍⚖️</span><span>👩🏻‍🌾</span><span>👨🏻‍🌾</span><span>🧑🏻‍🌾</span><span>👩🏻‍🍳</span><span>👨🏻‍🍳</span><span>🧑🏻‍🍳</span><span>👩🏻‍🔧</span><span>👨🏻‍🔧</span>
+                                <span>🧑🏻‍🔧</span><span>👩🏻‍🏭</span><span>👨🏻‍🏭</span><span>🧑🏻‍🏭</span><span>👩🏻‍💼</span><span>👨🏻‍💼</span><span>🧑🏻‍💼</span><span>👩🏻‍🔬</span><span>👨🏻‍🔬</span><span>🧑🏻‍🔬</span><span>👩🏻‍💻</span><span>👨🏻‍💻</span>
+                                <span>🧑🏻‍💻</span><span>👨🏻‍🎤</span><span>👩🏻‍🎤</span><span>🧑🏻‍🎤</span><span>👩🏻‍🎨</span><span>👨🏻‍🎨</span><span>🧑🏻‍🎨</span><span>👩🏻‍✈️</span><span>👨🏻‍✈️</span><span>🧑🏻‍✈️</span><span>👩🏻‍🚀</span><span>👨🏻‍🚀</span>
+                                <span>🧑🏻‍🚀</span><span>👩🏻‍🚒</span><span>👨🏻‍🚒</span><span>🧑🏻‍🚒</span><span>🧕🏻</span><span>👰🏻‍♀️</span><span>👰🏻‍♂️</span><span>👰🏻</span><span>🤵🏻‍♀️</span><span>🤵🏻‍♂️</span><span>🤵🏻</span><span>🤱🏻</span>
+                                <span>👩🏻‍🍼</span><span>👨🏻‍🍼</span><span>🧑🏻‍🍼</span><span>🤰🏻</span><span>🫃🏻</span><span>🫄🏻</span><span>🦸🏻‍♀️</span><span>🦸🏻‍♂️</span><span>🦸🏻</span><span>🦹🏻‍♀️</span><span>🦹🏻‍♂️</span><span>🦹🏻</span>
+                                <span>🧙🏻‍♀️</span><span>🧙🏻‍♂️</span><span>🧙🏻</span><span>🧚🏻‍♀️</span><span>🧚🏻‍♂️</span><span>🧚🏻</span><span>🧛🏻‍♀️</span><span>🧛🏻‍♂️</span><span>🧛🏻</span><span>🧜🏻‍♀️</span><span>🧜🏻‍♂️</span><span>🧜🏻</span>
+                                <span>🧝🏻‍♀️</span><span>🧝🏻‍♂️</span><span>🧝🏻</span><span>🙍🏻‍♀️</span><span>🙍🏻‍♂️</span><span>🙍🏻</span><span>🙎🏻‍♀️</span><span>🙎🏻‍♂️</span><span>🙎🏻</span><span>🙅🏻‍♀️</span><span>🙅🏻‍♂️</span><span>🙅🏻</span>
+                                <span>🙆🏻‍♀️</span><span>🙆🏻‍♂️</span><span>🙆🏻</span><span>🧏🏻‍♀️</span><span>🧏🏻‍♂️</span><span>🧏🏻</span><span>💁🏻‍♀️</span><span>💁🏻‍♂️</span><span>💁🏻</span><span>🙋🏻‍♀️</span><span>🙋🏻‍♂️</span><span>🙋🏻</span>
+                                <span>🙇🏻‍♀️</span><span>🙇🏻‍♂️</span><span>🙇🏻</span><span>🤦🏻‍♀️</span><span>🤦🏻‍♂️</span><span>🤦🏻</span><span>🤷🏻‍♀️</span><span>🤷🏻‍♂️</span><span>🤷🏻</span><span>💆🏻‍♀️</span><span>💆🏻‍♂️</span><span>💆🏻</span>
+                                <span>💇🏻‍♀️</span><span>💇🏻‍♂️</span><span>💇🏻</span><span>🧖🏻‍♀️</span><span>🧖🏻‍♂️</span><span>🧖🏻</span><span>🤹🏻‍♀️</span><span>🤹🏻‍♂️</span><span>🤹🏻</span><span>👩🏻‍🦽</span><span>👨🏻‍🦽</span><span>🧑🏻‍🦽</span>
+                                <span>👩🏻‍🦼</span><span>👨🏻‍🦼</span><span>🧑🏻‍🦼</span><span>👩🏻‍🦯</span><span>👨🏻‍🦯</span><span>🧑🏻‍🦯</span><span>🧎🏻‍♀️</span><span>🧎🏻‍♂️</span><span>🧎🏻</span><span>🧍🏻‍♀️</span><span>🧍🏻‍♂️</span><span>🧍🏻</span>
+                                <span>🚶🏻‍♀️</span><span>🚶🏻‍♂️</span><span>🚶🏻</span><span>🏃🏻‍♀️</span><span>🏃🏻‍♂️</span><span>🏃🏻</span><span>💃🏻</span><span>🕺🏻</span><span>🧗🏻‍♀️</span><span>🧗🏻‍♂️</span><span>🧗🏻</span><span>🧘🏻‍♀️</span>
+                                <span>🧘🏻‍♂️</span><span>🧘🏻</span><span>🛀🏻</span><span>🕴🏻</span><span>🏇🏻</span><span>🏌🏻‍♀️</span><span>🏌🏻‍♂️</span><span>🏌🏻</span><span>🏄🏻‍♀️</span><span>🏄🏻‍♂️</span><span>🏄🏻</span><span>🚣🏻‍♀️</span>
+                                <span>🚣🏻‍♂️</span><span>🚣🏻</span><span>🏊🏻‍♀️</span><span>🏊🏻‍♂️</span><span>🏊🏻</span><span>🤽🏻‍♀️</span><span>🤽🏻‍♂️</span><span>🤽🏻</span><span>🤾🏻‍♀️</span><span>🤾🏻‍♂️</span><span>🤾🏻</span><span>⛹🏻‍♀️</span>
+                                <span>⛹🏻‍♂️</span><span>⛹🏻</span><span>🏋🏻‍♀️</span><span>🏋🏻‍♂️</span><span>🏋🏻</span><span>🚴🏻‍♀️</span><span>🚴🏻‍♂️</span><span>🚴🏻</span><span>🚵🏻‍♀️</span><span>🚵🏻‍♂️</span><span>🚵🏻</span><span>🤸🏻‍♀️</span>
+                                <span>🤸🏻‍♂️</span><span>🤸🏻</span><span>🤳🏻</span><span>💪🏻</span><span>🦵🏻</span><span>🦶🏻</span><span>👂🏻</span><span>🦻🏻</span><span>👃🏻</span><span>🤏🏻</span><span>👈🏻</span><span>👉🏻</span>
+                                <span>☝🏻</span><span>🫵🏻</span><span>👆🏻</span><span>👇🏻</span><span>✌🏻</span><span>🤞🏻</span><span>🫰🏻</span><span>🖖🏻</span><span>🫱🏻</span><span>🫲🏻</span><span>🫳🏻</span><span>🫴🏻</span>
+                                <span>🫷🏻</span><span>🫸🏻</span><span>🤘🏻</span><span>🤙🏻</span><span>🖐🏻</span><span>✋🏻</span><span>👌🏻</span><span>🤌🏻</span><span>👍🏻</span><span>👎🏻</span><span>✊🏻</span><span>👊🏻</span>
+                                <span>🤛🏻</span><span>🤜🏻</span><span>🤚🏻</span><span>👋🏻</span><span>🤟🏻</span><span>✍🏻</span><span>👏🏻</span><span>👐🏻</span><span>🙌🏻</span><span>🫶🏻</span><span>🤲🏻</span><span>🤝🏻</span>
+                                <span>🙏🏻</span><span>💅🏻</span>
                                 <div class="divFadeSec">
                                 </div>
                             </div>

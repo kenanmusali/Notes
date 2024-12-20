@@ -19,6 +19,11 @@
   padding-bottom: 0.1rem;
 }
 
+.placeholder .input:hover { 
+  outline: 1px solid var(--mainYellow1);
+}
+
+
 
 .placeholder .input {
   font-size: 16px;
@@ -53,6 +58,11 @@
 
 .placeholder .AddIcon:hover {
   filter: var(--black-filter);
+}
+
+.placeholder .input:hover .AddIcon img {
+  filter: var(--black-filter) ;
+  -webkit-filter: var(--black-filter) ;
 }
 
 .placeholder .check.pop::before,
@@ -162,6 +172,11 @@
   left: 50%;
   /* Move the element's left edge to 50% of the parent's width */
   transform: translateX(-50%);
+  /* top: -17.5rem; */
+}
+
+.FormatText.editing {
+  top: -17.5rem;  /* Adjust the top value when editing is true */
 }
 
 .FormatText2 {
@@ -458,3 +473,6 @@ background-color: #F7D7C4;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 } */
+
+
+

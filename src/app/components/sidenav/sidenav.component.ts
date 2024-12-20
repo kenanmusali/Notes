@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { LabelActionsT } from 'src/app/interfaces/labels';
 import { Router } from '@angular/router';
+// import { bgColors, bgImages } from '../../interfaces/tooltip';
 
 @Component({
   selector: 'app-sidenav',
@@ -55,6 +56,7 @@ export class NavComponent implements OnInit {
     } else {
       this.isDarkMode = false;
       this.setLightMode();
+      
     }
   }
 
@@ -76,7 +78,7 @@ export class NavComponent implements OnInit {
       '--bgColorArea': 'rgba(236, 236, 236, 0.5)',
       '--black': '#000000',
       '--white': '#ffffff',
-      '--mainYellow': '#FEECB5',
+      '--mainYellow': '#FEEFBE',
       '--mainYellow1': '#FDD046',
       '--textYellow': '#BF9102',
       '--bgAnimation': '#FFE38B',
@@ -93,9 +95,10 @@ export class NavComponent implements OnInit {
       '--black-filter': 'invert(1) grayscale(100%) brightness(0) contrast(100%)',
       '--white-filter': 'brightness(0) invert(1)',
       '--gray-filter':  'brightness(60%) contrast(150%)',
-      '--yellow-filter': 'brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(950%) hue-rotate(13deg) brightness(95%) contrast(100%)',
+      '--yellow-filter': 'brightness(0) saturate(100%) invert(52%) sepia(53%) saturate(2464%) hue-rotate(21deg) brightness(106%) contrast(101%);',
     });
     localStorage.setItem('theme', 'light');
+
   }
 
   setDarkMode() {
@@ -121,9 +124,11 @@ export class NavComponent implements OnInit {
       '--black-filter': 'brightness(0) invert(1)',
       '--white-filter': 'brightness(0) invert(1)',
       '--gray-filter':  'brightness(110%) contrast(100%)',
-      '--yellow-filter': 'filter: brightness(0) saturate(100%) invert(84%) sepia(99%) saturate(2429%) hue-rotate(320deg) brightness(102%) contrast(98%);',
+      '--yellow-filter': 'brightness(0) saturate(100%) invert(88%) sepia(74%) saturate(1777%) hue-rotate(320deg) brightness(101%) contrast(98%);',
     });
     localStorage.setItem('theme', 'dark');
+
+    
   }
 
   setCSSVariables(variables: { [key: string]: string }) {
