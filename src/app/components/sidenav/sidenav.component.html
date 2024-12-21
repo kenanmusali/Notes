@@ -1,4 +1,4 @@
-<div class="SideBar noSelect">
+<div class="SideBar noSelect" [class.toggle]="isToggled">
     <div class="SbGroup sectionStyle">
         <div class="TopGroup">
 
@@ -9,7 +9,8 @@
                         <p class=LogoText>Notes</p>
 
                     </div>
-                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false" />
+                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false" (click)="toggleSidebar()" />
+
                 </div>
                 <div class="TopSecDown">
                     <p>Notes</p>

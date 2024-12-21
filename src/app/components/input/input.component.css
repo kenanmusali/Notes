@@ -5,6 +5,11 @@
   position: relative;
 
 }
+.divNoteSection {
+  padding-inline: 0rem;
+}
+
+
 
 .placeholder .input {
   padding-inline: 1.5rem;

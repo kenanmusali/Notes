@@ -90,16 +90,16 @@ export class NotesComponent implements OnInit {
       instance.pack();
     }
   
-    // Adjust the title max-width based on masonry width
+  
     this.title.forEach(el => {
       if (this.Shared.noteViewType.value === 'list') {
-        el.nativeElement.style.maxWidth = masonryWidth; // Set max-width for list view
+        el.nativeElement.style.maxWidth = masonryWidth; 
       } else {
-        el.nativeElement.style.maxWidth = ''; // Remove max-width for grid view
+        el.nativeElement.style.maxWidth = ''; 
       }
     });
   
-    // Resize handler: Listen for window resize event and call buildMasonry
+   
     window.addEventListener('resize', this.handleResize.bind(this));
   }
   

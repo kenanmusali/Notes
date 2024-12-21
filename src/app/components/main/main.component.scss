@@ -49,6 +49,7 @@ overflow: hidden;
     left: 50%;
     transform: translateX(-50%);
     margin-left: 8rem;
+    -webkit-filter: blur(20px);
 }
 
 .BarBottom {

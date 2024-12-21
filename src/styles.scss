@@ -141,7 +141,7 @@ html {
   background-color: var(--white);
   font-size: 12px;
   font-weight: 500;
-  padding: 0.2rem 0.7rem 0.3rem 0.7rem;
+  padding: 0.2rem 0.7rem 0.5rem 0.7rem;
   border-radius: 5px;
   color: var(--grayText);
   top: calc(35px + 0.5rem);
@@ -206,10 +206,7 @@ html {
 
 
 
-// .EmptyBar {
-//   // display: flex;
-//   display: none;
-// }
+
 
 //? snackbar AKA toast
 @import "~node-snackbar/dist/snackbar.css";
@@ -253,4 +250,167 @@ html {
   left: auto;
   bottom: -0.7rem;
   transform: translateX(0);
+}
+
+.EmptyBar {
+  background-color: transparent;
+  width: 14.9rem + calc(0.6rem * 2);
+  height: 100%;
+}
+
+
+
+@media screen and (max-width: 350px) {}
+
+@media screen and (min-width: 350px) and (max-width: 767px) {
+
+  //   .EmptyBar {
+  //     width: 5rem + calc(0.6rem * 2) !important;
+  //   }
+  //   .MenuSection .MenuDiv p{
+  //     display: none !important;
+  //   }
+  //   .LabelSection .MenuDiv p{
+  //     display: none !important;
+  //   }
+  //   .SbGroup {
+
+  //     width: fit-content !important;
+  //     height: calc(100vh - 1.2rem - 2px);
+
+  //   }
+
+  //   .SearchSection input{
+  // display: none !important;
+  //   }
+
+  //   .HeadText{
+  // display: none !important;
+  //   }
+
+  //   .TopSecDown{
+  // display: none !important;
+  //   }
+  //   .MenuDiv {
+  //     height: 2rem !important;
+  //     padding: 0.5rem !important;
+  //   }
+  //   .MenuDiv img {
+  //     height: 100% !important;
+  //   }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+
+  // .divNoteSection {
+  //   padding-inline: 9.8rem !important;
+  // }
+  .AppInput {
+    min-height: 25vh !important;
+  }
+
+  .divScrollBg {
+    height: 25vh !important;
+  }
+
+  .modal-container .modal {
+
+    padding: 0rem 1.3rem 0rem 0.8rem;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+// .SbGroup {
+
+//   width: 10rem !important;
+//   height: fit-content !important;
+
+
+//   & .SearchSection, .MenuSection, .LabelSection, .BottomGroup, .hr, .TopSecDown {
+//     display: none !important;
+//   }
+// }
+
+// .LogoText {
+//   display: flex !important;
+// }
+
+// .EmptyBar {
+//   width: 0.5rem !important;
+// }
+
+// .BarTop img{
+//   margin-left: 0rem !important;
+// }
+
+// .divScrollBg {
+//   margin-left: 0rem !important;
+// }
+
+
+.SideBar {
+  transition: width 0.5s ease, height 0.5s ease;
+
+  &.toggle {
+    .SbGroup {
+      width: 10rem !important;
+      height: fit-content !important;
+      transition: width 0.5s ease, height 0.5s ease;
+
+      & .SearchSection,
+      .MenuSection,
+      .LabelSection,
+      .BottomGroup,
+      .hr,
+      .TopSecDown {
+        display: none !important;
+      }
+    }
+
+    .LogoText {
+      display: flex !important;
+    }
+
+    .EmptyBar {
+      width: 0.5rem !important;
+    }
+
+    .BarTop img {
+      margin-left: 0rem !important;
+    }
+
+    .divScrollBg {
+      margin-left: 0rem !important;
+    }
+  }
+}
+
+.main-section.toggle .EmptyBar {
+  width: 0.5rem !important;
+  transition: width 0.5s ease;
+}
+
+.main-section.toggle .BarTop img {
+  margin-left: 0rem !important;
+  transition: margin-left 0.5s ease;
+}
+
+.main-section.toggle .divScrollBg {
+  margin-left: 0rem !important;
+  transition: margin-left 0.5s ease;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+  .main-section.toggle .divNoteSection {
+    padding-inline: 9.8rem !important;
+  }
 }

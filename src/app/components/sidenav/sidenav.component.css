@@ -268,15 +268,11 @@ font-weight: 500;
 
 
 .LogoText {
-    font-weight: 500;
     display: none;
-    transition: opacity 0.3s ease;
+    font-weight: 500;
     font-size: 16px;
+    line-height: 0;
     margin-left: 0.1rem;
-    -webkit-transition: opacity 0.3s ease;
-    -moz-transition: opacity 0.3s ease;
-    -ms-transition: opacity 0.3s ease;
-    -o-transition: opacity 0.3s ease;
     margin-bottom: 0.1rem;
 }
 

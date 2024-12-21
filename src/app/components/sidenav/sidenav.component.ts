@@ -47,6 +47,8 @@ export class NavComponent implements OnInit {
     if (window.innerWidth <= 600) {
       this.collapseSideBar();
     }
+    const savedToggleState = localStorage.getItem('isToggled');
+    this.isToggled = savedToggleState === 'true';
   }
 
   toggleTheme(event: any) {
@@ -56,7 +58,7 @@ export class NavComponent implements OnInit {
     } else {
       this.isDarkMode = false;
       this.setLightMode();
-      
+
     }
   }
 
@@ -94,7 +96,7 @@ export class NavComponent implements OnInit {
       '--lightRed': '#ff9b9b',
       '--black-filter': 'invert(1) grayscale(100%) brightness(0) contrast(100%)',
       '--white-filter': 'brightness(0) invert(1)',
-      '--gray-filter':  'brightness(60%) contrast(150%)',
+      '--gray-filter': 'brightness(60%) contrast(150%)',
       '--yellow-filter': 'brightness(0) saturate(100%) invert(52%) sepia(53%) saturate(2464%) hue-rotate(21deg) brightness(106%) contrast(101%);',
     });
     localStorage.setItem('theme', 'light');
@@ -123,12 +125,12 @@ export class NavComponent implements OnInit {
       '--lightRed': '#ff9b9b',
       '--black-filter': 'brightness(0) invert(1)',
       '--white-filter': 'brightness(0) invert(1)',
-      '--gray-filter':  'brightness(110%) contrast(100%)',
+      '--gray-filter': 'brightness(110%) contrast(100%)',
       '--yellow-filter': 'brightness(0) saturate(100%) invert(88%) sepia(74%) saturate(1777%) hue-rotate(320deg) brightness(101%) contrast(98%);',
     });
     localStorage.setItem('theme', 'dark');
 
-    
+
   }
 
   setCSSVariables(variables: { [key: string]: string }) {
@@ -219,4 +221,45 @@ export class NavComponent implements OnInit {
   collapseSideBar() {
     document.querySelector('[sideBar]')?.classList.toggle('close');
   }
+
+
+  // isToggled = false;
+
+
+  
+//   toggleSidebar() {
+//     this.isToggled = !this.isToggled;
+//     // Save the sidebar toggle state to local storage
+//     localStorage.setItem('isToggled', this.isToggled.toString());
+//   }
+// }
+
+
+isToggled = false;
+
+toggleSidebar() {
+    this.isToggled = !this.isToggled;
+    // Save the sidebar toggle state to local storage
+    localStorage.setItem('isToggled', this.isToggled.toString());
+
+    // Simulate random clicks on the screen
+    for (let i = 0; i < 2; i++) {
+        setTimeout(() => {
+            const randomX = Math.floor(Math.random() * window.innerWidth);
+            const randomY = Math.floor(Math.random() * window.innerHeight);
+            const event = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+                clientX: randomX,
+                clientY: randomY
+            });
+            const element = document.elementFromPoint(randomX, randomY);
+            if (element) {
+                element.dispatchEvent(event);
+                console.log(`Clicked at (${randomX}, ${randomY})`);
+            }
+        }, i * 100); // Add a small delay between clicks
+    }
+}
 }

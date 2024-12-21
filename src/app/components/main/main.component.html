@@ -1,5 +1,4 @@
-
-<section class="main-section">
+<section class="main-section" [class.toggle]="sidenav.isToggled">
 
     <div class="container noSelect">
         <div class="ball"></div>
@@ -8,8 +7,8 @@
       </div>
     <div class="Flex">
         <div class="Flex">
-            <app-sidenav class="SideNavFixed"></app-sidenav>
-            <div class="EmptyBar"></div>
+            <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
+            <span class="EmptyBar"></span>
         </div>
         <div class="Canva">
             <div class="divScrollBg noSelect"></div>
