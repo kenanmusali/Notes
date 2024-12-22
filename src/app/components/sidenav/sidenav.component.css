@@ -33,6 +33,10 @@
     align-items: center;
 }
 
+.LogoText {
+    color: var(--black);
+}
+
 .LogoGroup img {
     filter: var(--black-filter);
     -webkit-filter: var(--black-filter);

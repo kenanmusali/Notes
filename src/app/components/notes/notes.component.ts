@@ -21,6 +21,7 @@ export class NotesComponent implements OnInit {
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>
   @ViewChildren('noteEl') noteEl!: QueryList<ElementRef<HTMLDivElement>>
   @ViewChildren('title') title!: QueryList<ElementRef<HTMLDivElement>>
+  
   selectedNotes: Set<HTMLElement> = new Set();
   selectedCount: number = 0;
   notes: HTMLElement[] = [];
@@ -101,6 +102,9 @@ export class NotesComponent implements OnInit {
   
    
     window.addEventListener('resize', this.handleResize.bind(this));
+    //    setTimeout(() => {
+    //   this.buildMasonry();
+    // }, 0);
   }
   
   // Add a function to handle resizing and call buildMasonry on resize

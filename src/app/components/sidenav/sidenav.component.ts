@@ -223,43 +223,13 @@ export class NavComponent implements OnInit {
   }
 
 
-  // isToggled = false;
+  isToggled = false;
 
 
-  
-//   toggleSidebar() {
-//     this.isToggled = !this.isToggled;
-//     // Save the sidebar toggle state to local storage
-//     localStorage.setItem('isToggled', this.isToggled.toString());
-//   }
-// }
 
-
-isToggled = false;
-
-toggleSidebar() {
+  toggleSidebar() {
     this.isToggled = !this.isToggled;
-    // Save the sidebar toggle state to local storage
     localStorage.setItem('isToggled', this.isToggled.toString());
+  }
+}
 
-    // Simulate random clicks on the screen
-    for (let i = 0; i < 2; i++) {
-        setTimeout(() => {
-            const randomX = Math.floor(Math.random() * window.innerWidth);
-            const randomY = Math.floor(Math.random() * window.innerHeight);
-            const event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true,
-                clientX: randomX,
-                clientY: randomY
-            });
-            const element = document.elementFromPoint(randomX, randomY);
-            if (element) {
-                element.dispatchEvent(event);
-                console.log(`Clicked at (${randomX}, ${randomY})`);
-            }
-        }, i * 100); // Add a small delay between clicks
-    }
-}
-}

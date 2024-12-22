@@ -131,28 +131,19 @@
 }
 
 .no-notes {
-  margin-top: 20vh;
+  user-select: none;
+  margin-top: 10vh;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.no-notes .image {
-  background-size: 120px 120px;
-  height: 120px;
-  width: 120px;
-  margin: 20px;
-  opacity: 0.1;
-  background-image: url(/assets/images/svg/no-notes.svg);
-}
-
 .no-notes .text {
-  color: #c0d314;
-  font-size: 1.375rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.75rem;
+  color: var(--grayText);
+  font-size: 20px;
+  font-weight: 500;
+
 }
 
 .modal-container {
