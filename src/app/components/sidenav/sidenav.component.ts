@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { LabelActionsT } from 'src/app/interfaces/labels';
 import { Router } from '@angular/router';
-// import { bgColors, bgImages } from '../../interfaces/tooltip';
+import { bgColors, bgImages } from '../../interfaces/tooltip';
 
 @Component({
   selector: 'app-sidenav',
@@ -98,8 +98,21 @@ export class NavComponent implements OnInit {
       '--white-filter': 'brightness(0) invert(1)',
       '--gray-filter': 'brightness(60%) contrast(150%)',
       '--yellow-filter': 'brightness(0) saturate(100%) invert(52%) sepia(53%) saturate(2464%) hue-rotate(21deg) brightness(106%) contrast(101%);',
+      '--ColorMenuB': '#FAAFA8',
+      '--ColorMenuC': '#F39F76',
+      '--ColorMenuD': '#FFF8B8',
+      '--ColorMenuE': '#E2F6D3',
+      '--ColorMenuF': '#B4DDD3',
+      '--ColorMenuG': '#D4E4ED',
+      '--ColorMenuH': '#AECCDC',
+      '--ColorMenuI': '#D3BFDB',
+      '--ColorMenuJ': '#F6E2DD',
+      '--ColorMenuK': '#E9E3D4',
+      
     });
     localStorage.setItem('theme', 'light');
+    
+//  document.note-container.style.backgroundImage = `url(${bgImages.B})`;
 
   }
 
@@ -127,10 +140,21 @@ export class NavComponent implements OnInit {
       '--white-filter': 'brightness(0) invert(1)',
       '--gray-filter': 'brightness(110%) contrast(100%)',
       '--yellow-filter': 'brightness(0) saturate(100%) invert(88%) sepia(74%) saturate(1777%) hue-rotate(320deg) brightness(101%) contrast(98%);',
+      '--ColorMenuB': '#77172e',
+      '--ColorMenuC': '#692b17',
+      '--ColorMenuD': '#7c4a03',
+      '--ColorMenuE': '#264d3b',
+      '--ColorMenuF': '#0c625d',
+      '--ColorMenuG': '#256377',
+      '--ColorMenuH': '#284255',
+      '--ColorMenuI': '#472e5b',
+      '--ColorMenuJ': '#6c394f',
+      '--ColorMenuK': '#4b443a',
+  
     });
     localStorage.setItem('theme', 'dark');
 
-
+    // document.body.style.backgroundImage = `url(${bgImages.B})`;
   }
 
   setCSSVariables(variables: { [key: string]: string }) {

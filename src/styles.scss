@@ -38,29 +38,29 @@
   --white-filter: brightness(0) invert(1);
   --gray-filter: brightness(60%) contrast(150%);
   --yellow-filter: brightness(0) saturate(100%) invert(52%) sepia(53%) saturate(2464%) hue-rotate(21deg) brightness(106%) contrast(101%);
-  ;
 
-  // -----------------------------------------------------------
+ --ColorMenuB: #FAAFA8;
+ --ColorMenuC: #F39F76;
+ --ColorMenuD: #FFF8B8;
+ --ColorMenuE: #E2F6D3;
+ --ColorMenuF: #B4DDD3;
+ --ColorMenuG: #D4E4ED;
+ --ColorMenuH: #AECCDC;
+ --ColorMenuI: #D3BFDB;
+ --ColorMenuJ: #F6E2DD;
+ --ColorMenuK: #E9E3D4;
+ 
+ --bgImageB: url('/src/assets/images/backgrounds/Light/i1_ph.svg');
+ --bgImageC: url('/src/assets/images/backgrounds/Light/i2_ph.svg');
+ --bgImageD: url('/src/assets/images/backgrounds/Light/i3_ph.svg');
+ --bgImageE: url('/src/assets/images/backgrounds/Light/i4_ph.svg');
+ --bgImageF: url('/src/assets/images/backgrounds/Light/i5_ph.svg');
+ --bgImageG: url('/src/assets/images/backgrounds/Light/i6_ph.svg');
+ --bgImageH: url('/src/assets/images/backgrounds/Light/i7_ph.svg');
+ --bgImageI: url('/src/assets/images/backgrounds/Light/i8_ph.svg');
+ --bgImageJ: url('/src/assets/images/backgrounds/Light/i9_ph.svg');
+ --bgImageK: url('/src/assets/images/backgrounds/Light/i95_ph.svg');
 
-  // --bgColor: #181818;
-  // --bgColorArea: rgb(24, 24, 24, 0.5);
-  // --black: #ffffff;
-  // --white: #222222;
-  // --mainYellow: #af8a1c;
-  // --bgAnimation: #503c00;
-  // --lightGrayHover: #1d1d1d;
-  // --grayText: #AEAEAE;
-  // --lightGrayStroke: #333333;
-  // --lightStroke: transparent;
-  // --lightGrayVersion: #AEAEAE;
-  // --hrLine: #313131;
-  // --highlight: #FFE79D;
-  // --scroll: #434343;
-  // --scrollHover: #7D7D7D;
-  // --lightRed: #ff9b9b;
-
-  // --black-filter:  brightness(0) invert(1);
-  // --white-filter:  brightness(0) invert(1);
 }
 
 
@@ -70,7 +70,9 @@
   box-sizing: border-box;
   font-family: "Inter", 'Emoji', sans-serif;
   scroll-behavior: smooth;
+
 }
+
 
 body,
 html {
@@ -78,6 +80,7 @@ html {
   background-color: var(--bgColor);
 
 }
+
 
 
 
