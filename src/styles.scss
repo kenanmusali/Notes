@@ -39,27 +39,27 @@
   --gray-filter: brightness(60%) contrast(150%);
   --yellow-filter: brightness(0) saturate(100%) invert(52%) sepia(53%) saturate(2464%) hue-rotate(21deg) brightness(106%) contrast(101%);
 
- --ColorMenuB: #FAAFA8;
- --ColorMenuC: #F39F76;
- --ColorMenuD: #FFF8B8;
- --ColorMenuE: #E2F6D3;
- --ColorMenuF: #B4DDD3;
- --ColorMenuG: #D4E4ED;
- --ColorMenuH: #AECCDC;
- --ColorMenuI: #D3BFDB;
- --ColorMenuJ: #F6E2DD;
- --ColorMenuK: #E9E3D4;
- 
- --bgImageB: url('/src/assets/images/backgrounds/Light/i1_ph.svg');
- --bgImageC: url('/src/assets/images/backgrounds/Light/i2_ph.svg');
- --bgImageD: url('/src/assets/images/backgrounds/Light/i3_ph.svg');
- --bgImageE: url('/src/assets/images/backgrounds/Light/i4_ph.svg');
- --bgImageF: url('/src/assets/images/backgrounds/Light/i5_ph.svg');
- --bgImageG: url('/src/assets/images/backgrounds/Light/i6_ph.svg');
- --bgImageH: url('/src/assets/images/backgrounds/Light/i7_ph.svg');
- --bgImageI: url('/src/assets/images/backgrounds/Light/i8_ph.svg');
- --bgImageJ: url('/src/assets/images/backgrounds/Light/i9_ph.svg');
- --bgImageK: url('/src/assets/images/backgrounds/Light/i95_ph.svg');
+  --ColorMenuB: #FAAFA8;
+  --ColorMenuC: #F39F76;
+  --ColorMenuD: #FFF8B8;
+  --ColorMenuE: #E2F6D3;
+  --ColorMenuF: #B4DDD3;
+  --ColorMenuG: #D4E4ED;
+  --ColorMenuH: #AECCDC;
+  --ColorMenuI: #D3BFDB;
+  --ColorMenuJ: #F6E2DD;
+  --ColorMenuK: #E9E3D4;
+
+  --bgImageB: url('/src/assets/images/backgrounds/Light/i1_ph.svg');
+  --bgImageC: url('/src/assets/images/backgrounds/Light/i2_ph.svg');
+  --bgImageD: url('/src/assets/images/backgrounds/Light/i3_ph.svg');
+  --bgImageE: url('/src/assets/images/backgrounds/Light/i4_ph.svg');
+  --bgImageF: url('/src/assets/images/backgrounds/Light/i5_ph.svg');
+  --bgImageG: url('/src/assets/images/backgrounds/Light/i6_ph.svg');
+  --bgImageH: url('/src/assets/images/backgrounds/Light/i7_ph.svg');
+  --bgImageI: url('/src/assets/images/backgrounds/Light/i8_ph.svg');
+  --bgImageJ: url('/src/assets/images/backgrounds/Light/i9_ph.svg');
+  --bgImageK: url('/src/assets/images/backgrounds/Light/i95_ph.svg');
 
 }
 
@@ -117,18 +117,21 @@ html {
 ::-webkit-scrollbar {
   width: 2px;
   transition: all;
+  cursor: default !important;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: none;
   border-radius: 1000px;
+  cursor: default !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--scroll);
   border-radius: 1000px;
+  cursor: default !important;
 
 }
 
@@ -136,6 +139,7 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollHover);
   border-radius: 1000px;
+  cursor: default !important;
 }
 
 
@@ -208,7 +212,7 @@ html {
 /* ===== Scrollbar CSS ===== */
 
 
-.displayNone{
+.displayNone {
   display: none !important
 }
 
@@ -267,49 +271,10 @@ html {
 
 @media screen and (max-width: 350px) {}
 
-@media screen and (min-width: 350px) and (max-width: 767px) {
-
-  //   .EmptyBar {
-  //     width: 5rem + calc(0.6rem * 2) !important;
-  //   }
-  //   .MenuSection .MenuDiv p{
-  //     display: none !important;
-  //   }
-  //   .LabelSection .MenuDiv p{
-  //     display: none !important;
-  //   }
-  //   .SbGroup {
-
-  //     width: fit-content !important;
-  //     height: calc(100vh - 1.2rem - 2px);
-
-  //   }
-
-  //   .SearchSection input{
-  // display: none !important;
-  //   }
-
-  //   .HeadText{
-  // display: none !important;
-  //   }
-
-  //   .TopSecDown{
-  // display: none !important;
-  //   }
-  //   .MenuDiv {
-  //     height: 2rem !important;
-  //     padding: 0.5rem !important;
-  //   }
-  //   .MenuDiv img {
-  //     height: 100% !important;
-  //   }
-}
+@media screen and (min-width: 350px) and (max-width: 767px) {}
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
 
-  // .divNoteSection {
-  //   padding-inline: 9.8rem !important;
-  // }
   .AppInput {
     min-height: 25vh !important;
   }
@@ -326,50 +291,20 @@ html {
 
 }
 
-
-
-
-
-
-
-
-
-// .SbGroup {
-
-//   width: 10rem !important;
-//   height: fit-content !important;
-
-
-//   & .SearchSection, .MenuSection, .LabelSection, .BottomGroup, .hr, .TopSecDown {
-//     display: none !important;
-//   }
-// }
-
-// .LogoText {
-//   display: flex !important;
-// }
-
-// .EmptyBar {
-//   width: 0.5rem !important;
-// }
-
-// .BarTop img{
-//   margin-left: 0rem !important;
-// }
-
-// .divScrollBg {
-//   margin-left: 0rem !important;
-// }
-
+.SideBar.toggle {
+  height: fit-content !important;
+}
 
 .SideBar {
-  transition: width 0.5s ease, height 0.5s ease;
+
+  transition: all 1s ease;
 
   &.toggle {
     .SbGroup {
-      width: 10rem !important;
+      width: 11.5rem !important;
       height: fit-content !important;
-      transition: width 0.5s ease, height 0.5s ease;
+      transition: all 0.5s ease;
+      padding: 0rem ;
 
       & .SearchSection,
       .MenuSection,
@@ -382,6 +317,10 @@ html {
     }
 
     .LogoText {
+      display: flex !important;
+    }
+
+    .LogoText1 {
       display: flex !important;
     }
 
@@ -416,22 +355,10 @@ html {
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
   .main-section.toggle .divNoteSection {
-    padding-inline: 9.8rem !important;
+    padding-inline: 11.2rem !important;
   }
 }
 
-.modal-container.toggle {
-  position: fixed;
-  display: none;
-  z-index: 999;
-  top: 50% !important;
-  left: 50% !important;
-  width: calc(100% - 16rem) !important;
-  height: 100%;
-  transform: translate(-50%, -50%) !important;
-  overflow: hidden;
-  -webkit-transform: translate(-50%, -50%) !important;
-  -moz-transform: translate(-50%, -50%) !important;
-  -ms-transform: translate(-50%, -50%) !important;
-  -o-transform: translate(-50%, -50%) !important;
+.modal-container.toggle {  
+    width: 100% !important;
 }

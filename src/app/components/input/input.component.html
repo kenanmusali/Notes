@@ -15,20 +15,13 @@
                 <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})"
                     (paste)="pasteEvent($event)" class="note-title" contenteditable="true" spellcheck="true">
                 </div>
+
                 <!--? note OR checkboxes -->
                 <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
                 </ng-container>
 
                 <!--? labels -->
-                <div class="labels-container">
-                    <ng-container *ngFor="let label of labels">
-                        <div class="label-container" *ngIf="label.added">
-                            <div class="label"><span>{{label.name}}</span>
-                                <div class="cancel-icon" (click)="label.added = !label.added"></div>
-                            </div>
-                        </div>
-                    </ng-container>
-                </div>
+   
 
             </div>
             <!--? icons -->
@@ -170,6 +163,16 @@
         class="note-body" contenteditable="true" spellcheck="true">
     </div>
 
+             <div class="labels-container">
+                    <ng-container *ngFor="let label of labels">
+                        <div class="label-container" *ngIf="label.added">
+                            <div class="label"><span>{{label.name}}</span>
+                                <div class="cancel-icon" (click)="label.added = !label.added"></div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+    
     <div class="icons-container icons-container2">
         <div class="icons1">
 

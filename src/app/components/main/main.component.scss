@@ -170,3 +170,57 @@ align-items: center;
       }
 
  
+.SideBarAccount {
+  position: fixed;
+  right: 0.6rem;
+  top: 0.6rem;
+  height: 3.3rem;
+  width: fit-content;
+  padding-left: 0.9rem;
+  padding-right: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .AccountSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bgColor);
+    height: 31px;
+    width: 31px;
+    border: 1px solid var(--white);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+  & .AccountSection:hover {
+  outline: 1px solid var(--mainYellow1);
+  border: 1px solid var(--white);
+}
+
+& .AccountGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s;
+}
+
+& .AccountGroup .IconHover:hover{
+  filter: var(--black-filter);
+  -webkit-filter: var(--black-filter);
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
+
+& .AccountGroup .IconHover{
+  margin-right: 0.6rem;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+}

@@ -4,11 +4,21 @@
         <div class="ball"></div>
         <div class="ball ball1"></div>
         <div class="ball ball2"></div>
-      </div>
+    </div>
     <div class="Flex">
         <div class="Flex">
             <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
             <span class="EmptyBar"></span>
+
+            <div class="SideBarAccount sectionStyle">
+                <div class="AccountGroup">
+                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false"  />
+                    <div class="AccountSection">
+                        <img src="../../../assets/images/Icon/UserProfile.svg" draggable="false" />
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="Canva">
             <div class="divScrollBg noSelect"></div>
@@ -17,9 +27,9 @@
             <div class="BarTop noSelect">
                 <img src="../../../assets/images/Icon/UpArrow.svg" draggable="false" (click)="scrollToTop()">
             </div>
-            <app-notes></app-notes>
-            
+            <app-notes [isToggled]="sidenav.isToggled"></app-notes>
+
         </div>
-     
+
     </div>
 </section>

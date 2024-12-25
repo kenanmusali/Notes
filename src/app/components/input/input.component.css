@@ -150,7 +150,7 @@
 
 .icons-container1 {
   margin-bottom: 0.6rem;
-  margin-top: -0.4rem;
+  margin-top: 0.5rem;
 
 
 }
@@ -179,6 +179,8 @@
   transform: translateX(-50%);
   /* top: -17.5rem; */
 }
+
+
 
 .FormatText.editing {
   top: -17.5rem;  /* Adjust the top value when editing is true */

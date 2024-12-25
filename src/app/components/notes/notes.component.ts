@@ -1,7 +1,7 @@
 import { CheckboxI, NoteI } from './../../interfaces/notes';
 import { ChangeDetectorRef, HostListener, OnDestroy } from '@angular/core';
 
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 // @ts-ignore
 import Bricks from 'bricks.js'
 import { SharedService } from 'src/app/services/shared.service';
@@ -15,7 +15,7 @@ import { ActivationEnd, NavigationEnd, Router } from '@angular/router';
 })
 export class NotesComponent implements OnInit {
 
-
+  @Input() isToggled: boolean = false;
   @ViewChild("mainContainer") mainContainer!: ElementRef<HTMLInputElement>
   @ViewChild("modalContainer") modalContainer!: ElementRef<HTMLInputElement>
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>
@@ -43,91 +43,103 @@ export class NotesComponent implements OnInit {
   //? -----------------------------------------------------
   trackBy(item: any) { return item.id }
 
-  buildMasonry() {
-    let gutter = 8; // Space between the notes
-    let containerWidth = this.mainContainer.nativeElement.clientWidth; // Get the container's width
-    let numberOfColumns = 0;
-    let masonryWidth = '0px';
   
-    // -- Adjust for grid view, where noteWidth starts at 240px and dynamically adjusts
-    if (this.Shared.noteViewType.value === 'grid') {
-      // Initial noteWidth starts at 240px
-      const initialNoteWidth = 240;
-  
-      // Calculate the number of columns based on container width and note width, but allow for a minimum of 1 column
-      numberOfColumns = Math.max(1, Math.floor(containerWidth / (initialNoteWidth + gutter)));
-  
-      // Calculate the maximum possible noteWidth, depending on the number of columns
-      const maxNoteWidth = (containerWidth - (numberOfColumns - 1) * gutter) / numberOfColumns;
-  
-      // Set noteWidth to the maximum possible value, but don't go below 240px
-      this.noteWidth = Math.max(initialNoteWidth, maxNoteWidth);
-  
+private isBuildingMasonry = false;
+
+buildMasonry() {
+  if (this.isBuildingMasonry) return;
+  this.isBuildingMasonry = true;
+
+  let gutter = 8; 
+  let containerWidth = this.mainContainer.nativeElement.clientWidth; // Get the container's width
+  let numberOfColumns = 0;
+  let masonryWidth = '0px';
+
+
+  if (this.Shared.noteViewType.value === 'grid') {
+    // Initial noteWidth starts at 240px
+    const initialNoteWidth = 240;
+
+    numberOfColumns = Math.max(1, Math.floor(containerWidth / (initialNoteWidth + gutter)));
+
+    const maxNoteWidth = (containerWidth - (numberOfColumns - 1) * gutter) / numberOfColumns;
+
+
+    this.noteWidth = Math.max(initialNoteWidth, maxNoteWidth);
+
+  } else {
+    if (containerWidth >= 600) {
+      this.noteWidth = 600;
     } else {
-      // For list view, keep noteWidth as it was originally
-      if (containerWidth >= 600) {
-        this.noteWidth = 600;
-      } else {
-        this.noteWidth = containerWidth - 10;
-      }
-      numberOfColumns = 1; // Only 1 column for list view
+      this.noteWidth = containerWidth - 10;
     }
-  
-    // Set the custom CSS variable for note width
-    document.documentElement.style.setProperty('--note-width', `${this.noteWidth}px`);
-  
-    // Define sizes for the masonry layout based on columns and gutter
-    const sizes = [{ columns: numberOfColumns, gutter: gutter }];
-  
-    // Apply masonry layout to each note element
-    this.noteEl.toArray().forEach(el => {
-      brikcs(el.nativeElement);
-      if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width;
-    });
-  
-    // Function to apply masonry layout
-    function brikcs(node: HTMLDivElement) {
-      const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false });
-      instance.pack();
-    }
-  
-  
-    this.title.forEach(el => {
-      if (this.Shared.noteViewType.value === 'list') {
-        el.nativeElement.style.maxWidth = masonryWidth; 
-      } else {
-        el.nativeElement.style.maxWidth = ''; 
-      }
-    });
-  
-   
-    window.addEventListener('resize', this.handleResize.bind(this));
-    //    setTimeout(() => {
-    //   this.buildMasonry();
-    // }, 0);
+    numberOfColumns = 1; 
   }
-  
-  // Add a function to handle resizing and call buildMasonry on resize
-  handleResize() {
-    // Recalculate the masonry layout on resize
+
+  document.documentElement.style.setProperty('--note-width', `${this.noteWidth}px`);
+
+  const sizes = [{ columns: numberOfColumns, gutter: gutter }];
+
+  this.noteEl.toArray().forEach(el => {
+    brikcs(el.nativeElement);
+    if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width;
+  });
+
+  function brikcs(node: HTMLDivElement) {
+    const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false });
+    instance.pack();
+  }
+
+  this.title.forEach(el => {
+    if (this.Shared.noteViewType.value === 'list') {
+      el.nativeElement.style.maxWidth = masonryWidth;
+    } else {
+      el.nativeElement.style.maxWidth = '';
+    }
+  });
+
+  window.addEventListener('resize', this.handleResize.bind(this));
+
+  setTimeout(() => {
+    this.buildMasonry();
+    this.isBuildingMasonry = false; 
+  }, 300); 
+}
+
+
+handleResize() {
+
+  if (!this.isBuildingMasonry) {
     this.buildMasonry();
   }
-  
+}
 
-  //? modal  -----------------------------------------------------------
+// Modal functions remain unchanged
+openModal(clickedNote: HTMLDivElement, noteData: NoteI) {
+  this.Shared.note.id = noteData.id!;
+  this.clickedNoteData = noteData;
+  this.clickedNoteEl = clickedNote;
+  let modalContainer = this.modalContainer.nativeElement;
+  let modal = this.modal.nativeElement;
+  this.setModalStyling();
+  setTimeout(() => { modal.removeAttribute("style"); });
+  clickedNote.classList.add('hide');
+  modalContainer.style.display = 'block';
+  document.addEventListener('mousedown', this.mouseDownEvent);
+}
 
-  openModal(clickedNote: HTMLDivElement, noteData: NoteI) {
-    this.Shared.note.id = noteData.id!
-    this.clickedNoteData = noteData
-    this.clickedNoteEl = clickedNote
-    let modalContainer = this.modalContainer.nativeElement
-    let modal = this.modal.nativeElement
-    this.setModalStyling()
-    setTimeout(() => { modal.removeAttribute("style") })
-    clickedNote.classList.add('hide')
-    modalContainer.style.display = 'block';
-    document.addEventListener('mousedown', this.mouseDownEvent)
-  }
+clickedNoteEl!: HTMLDivElement; // needed in setModalStyling()
+
+closeModal() {
+  document.removeEventListener('mousedown', this.mouseDownEvent);
+  let modalContainer = this.modalContainer.nativeElement;
+  this.setModalStyling();
+  setTimeout(() => {
+    this.clickedNoteEl.classList.remove('hide');
+    modalContainer.style.display = 'none';
+  }, 300);
+}
+
 
   mouseDownEvent = (event: Event) => {
     let isTooltipOpen = document.querySelector('[data-is-tooltip-open="true"]')
@@ -138,17 +150,6 @@ export class NotesComponent implements OnInit {
         this.closeModal()
       }
     }
-  }
-
-  clickedNoteEl!: HTMLDivElement // needed in setModalStyling()
-  closeModal() {
-    document.removeEventListener('mousedown', this.mouseDownEvent)
-    let modalContainer = this.modalContainer.nativeElement
-    this.setModalStyling()
-    setTimeout(() => {
-      this.clickedNoteEl.classList.remove('hide')
-      modalContainer.style.display = 'none'
-    }, 300)
   }
 
   setModalStyling() {

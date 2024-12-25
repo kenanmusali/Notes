@@ -25,12 +25,13 @@
 </section>
 
 
-<div #modalContainer class="modal-container" >
+<div #modalContainer class="modal-container" [ngClass]="{'toggle': isToggled}">
     <div #modal class="modal">
-        <app-input [noteToEdit]="clickedNoteData" [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
-        </app-input>
+      <app-input [noteToEdit]="clickedNoteData" [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
+      </app-input>
     </div>
-</div>
+  </div>
+  
 
 <!--*  note template -->
 <ng-template #noteTemplate let-notes="notes">
@@ -89,7 +90,7 @@
                         </ng-template>
 
                     </div>
-                    <div class="labels-container min noSelect">
+                    <div class="labels-container minLabel noSelect">
                         <ng-container *ngFor="let label of note.labels">
                             <div class="label-container" *ngIf="label.added">
                                 <div class="label"><span>{{label.name}}</span>

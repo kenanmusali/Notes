@@ -111,9 +111,7 @@ export class NavComponent implements OnInit {
       
     });
     localStorage.setItem('theme', 'light');
-    
-//  document.note-container.style.backgroundImage = `url(${bgImages.B})`;
-
+//  document.body.style.backgroundImage = `url(${bgImages.B})`;
   }
 
   setDarkMode() {

@@ -2,6 +2,7 @@
     padding: 0.6rem;
     height: 100vh;
     z-index: 1;
+    transition: all 1s ease;
 }
 
 .SbGroup {
@@ -13,7 +14,7 @@
     justify-content: space-between;
     width: 15rem;
     height: calc(100vh - 1.2rem - 2px);
-
+    transition: all 0.4s ease;
 }
 
 
@@ -42,9 +43,6 @@
     -webkit-filter: var(--black-filter);
 }
 
-.LogoText.hide {
-    display: flex !important;
-}
 
 .TopSection .TopSecUp {
     width: 100%;
@@ -276,8 +274,21 @@ font-weight: 500;
     font-weight: 500;
     font-size: 16px;
     line-height: 0;
+    margin-left: 0.3rem;
+    margin-bottom: 0.1rem;
+}
+
+.LogoText1 {
+    display: none;
+    font-weight: 600;
+    font-size: 11px;
+  border-radius: 5px;
     margin-left: 0.1rem;
     margin-bottom: 0.1rem;
+    padding: 0.2rem 0.4rem;
+    color: var(--textYellow);
+    background-color: var(--mainYellow);
+    margin-left: 0.5rem;
 }
 
 .EmptyBar {
@@ -315,3 +326,4 @@ font-weight: 500;
 
 
 /* Ends */
+
