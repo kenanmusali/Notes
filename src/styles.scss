@@ -322,6 +322,10 @@ html {
     padding: 0.5rem;
   }
 
+  .item img, .SelectIcon {
+    width: 21px !important;
+  }
+
   .EmptyBar {
     background-color: transparent;
     width: 4rem !important;
@@ -464,19 +468,25 @@ html {
 
       .LabelSection {
 
-          padding: 0.5rem calc(0.5rem - 4px) 0.5rem 0.5rem;
+        padding: 0.5rem calc(0.5rem - 4px) 0.5rem 0.5rem;
       }
 
       .MenuSection .MenuDiv p {
         display: flex;
+        font-size: 12px;
+        white-space: nowrap;
       }
 
       .ScrollLabel .MenuDiv p {
         display: flex;
+        font-size: 12px;
+        white-space: nowrap;
       }
 
       .SearchSection input {
         display: flex;
+        font-size: 12px;
+        white-space: nowrap;
       }
 
 
@@ -489,7 +499,7 @@ html {
         display: none !important;
       }
 
-    
+
 
       .BarTop img {
         margin-left: 0rem;
@@ -517,8 +527,8 @@ html {
 
     }
 
-  }
 
+  }
 
 
 
