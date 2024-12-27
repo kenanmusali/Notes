@@ -10,12 +10,33 @@
             <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
             <span class="EmptyBar"></span>
 
-            <div class="SideBarAccount sectionStyle">
+            <div class="SideBarAccount sectionStyle" [ngClass]="{'Accounttoggled': isToggled}">
                 <div class="AccountGroup">
-                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false"  />
-                    <div class="AccountSection">
+                    <img class="IconHover IconToggle noSelect" 
+                    src="./assets/images/Icon/Sidebar.svg" 
+                    draggable="false"
+                    (click)="toggleImage($event)" >
+                    <p>Notes</p>
+                    <div class="AccountSection noSelect">
                         <img src="../../../assets/images/Icon/UserProfile.svg" draggable="false" />
                     </div>
+
+
+                </div>
+
+                <div class="divLogAccount">
+
+                    <button type="button" class="login1 MenuDiv">Continue with Google</button>
+                    <button type="button" class="login1 MenuDiv">Continue with Apple</button>
+                    <p>or continue with email</p>
+                    <input type="email" class="inputLog MenuDiv" id="" placeholder="Email">
+                    <input type="password" class="inputLog MenuDiv" id="" placeholder="Password">
+                    <div class="resetDiv">
+                        <p class="resetLog">Reset Password</p>
+                    </div>
+                    <button type="button" class="login MenuDiv">Log in</button>
+                    <button type="button" class="login2 MenuDiv">Sign in</button>
+
                 </div>
             </div>
 

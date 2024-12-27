@@ -232,6 +232,8 @@ html {
 //? tooltips
 @import "./assets/scss/tooltips.scss";
 
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 /* Customize the snackbar styles */
 .snackbar-container {
@@ -269,9 +271,147 @@ html {
 
 
 
-@media screen and (max-width: 350px) {}
+// @media screen and (max-width: 350px) {}
 
-@media screen and (min-width: 350px) and (max-width: 767px) {}
+@media screen and (min-width: 350px) and (max-width: 767px) {
+
+  .TopSecDown {
+    display: none;
+  }
+
+  .MenuDiv,
+  .SearchSection,
+  .TopSecUp {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .MenuSection .MenuDiv p {
+    display: none;
+  }
+
+  .ScrollLabel .MenuDiv p {
+    display: none;
+  }
+
+  .MenuSection .MenuDiv img {
+    width: 21px;
+  }
+
+  .ScrollLabel .MenuDiv img {
+    width: 21px;
+  }
+
+  .SearchSection img {
+    width: 21px;
+  }
+
+  .SearchSection input {
+    display: none;
+  }
+
+  .HeadText,
+  .LogoGroup {
+    display: none !important;
+  }
+
+  .SbGroup {
+    width: 4rem !important;
+  }
+
+  .LabelSection {
+    padding: 0.5rem !important;
+  }
+
+  .EmptyBar {
+    background-color: transparent;
+    width: 4rem !important;
+    height: 100%;
+  }
+
+  .Canva {
+    padding: 0.6rem 0.6rem 0.6rem 1.2rem !important;
+  }
+
+  .AppInput {
+    min-height: 25vh !important;
+  }
+
+  .divScrollBg {
+    display: none !important;
+  }
+
+  .note-container .body {
+    line-clamp: 5 !important;
+    -webkit-line-clamp: 5 !important;
+  }
+
+
+  .BarTop img {
+    display: none !important;
+  }
+
+  .modal-container {
+    width: 100% !important;
+    background-color: var(--white) !important;
+  }
+
+  .modal-container .modal {
+    height: 100% !important;
+  }
+
+  .modal {
+    padding-inline: 0.6rem !important;
+    padding: 0 !important;
+  }
+
+  .note-main {
+    border-radius: 0px !important;
+  }
+
+  .AppInput {
+    align-items: unset !important;
+    min-height: 10vh !important;
+  }
+
+  .note-template {
+    // display: flex !important;
+    // flex-direction: column !important;
+    // justify-content: space-between !important;
+    // align-items: center !important;
+  }
+
+  .note-main .note-container {
+    margin: 0.6rem 0.6rem 0rem 0.6rem !important;
+    height: calc(100vh - 3.8rem) !important;
+
+  }
+
+  .note-main .note-container .note-body {
+    height: calc(100vh - 3.8rem) !important;
+    max-height: 79.5vh !important;
+  }
+
+  .note-container .note-main {
+    border-radius: 12px !important;
+  }
+
+  .icons-container .icons1 {
+    bottom: 0 !important;
+  }
+
+  .main-section .divNoteSection {
+    padding-right: 5.9rem !important;
+  }
+
+  .SideBarAccount {
+    position: absolute;
+    right: 0.6rem !important;
+    top: 0.6rem !important;
+  }
+
+}
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
 
@@ -291,6 +431,16 @@ html {
 
 }
 
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+  .main-section.toggle .divNoteSection {
+    padding-inline: 11.2rem !important;
+  }
+}
+
+.modal-container.toggle {
+  width: 100% !important;
+}
+
 .SideBar.toggle {
   height: fit-content !important;
 }
@@ -304,7 +454,7 @@ html {
       width: 11.5rem !important;
       height: fit-content !important;
       transition: all 0.5s ease;
-      padding: 0rem ;
+      padding: 0rem;
 
       & .SearchSection,
       .MenuSection,
@@ -335,7 +485,28 @@ html {
     .divScrollBg {
       margin-left: 0rem !important;
     }
+
+    @media screen and (min-width: 350px) and (max-width: 767px) {
+
+      .SearchSection,
+      .MenuSection,
+      .LabelSection,
+      .BottomGroup,
+      .hr,
+      .TopSecDown {
+        display: flex !important;
+      }
+
+
+
+
+
+    }
+
   }
+
+
+
 }
 
 .main-section.toggle .EmptyBar {
@@ -351,14 +522,4 @@ html {
 .main-section.toggle .divScrollBg {
   margin-left: 0rem !important;
   transition: margin-left 0.5s ease;
-}
-
-@media screen and (min-width: 767px) and (max-width: 1024px) {
-  .main-section.toggle .divNoteSection {
-    padding-inline: 11.2rem !important;
-  }
-}
-
-.modal-container.toggle {  
-    width: 100% !important;
 }
