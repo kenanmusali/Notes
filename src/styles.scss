@@ -232,8 +232,6 @@ html {
 //? tooltips
 @import "./assets/scss/tooltips.scss";
 
-@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
-@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 /* Customize the snackbar styles */
 .snackbar-container {
@@ -321,7 +319,7 @@ html {
   }
 
   .LabelSection {
-    padding: 0.5rem !important;
+    padding: 0.5rem;
   }
 
   .EmptyBar {
@@ -375,11 +373,13 @@ html {
     min-height: 10vh !important;
   }
 
-  .note-template {
-    // display: flex !important;
-    // flex-direction: column !important;
-    // justify-content: space-between !important;
-    // align-items: center !important;
+
+  .AddIcon {
+    margin-right: 1rem !important;
+  }
+
+  .input {
+    padding-inline: 1rem !important;
   }
 
   .note-main .note-container {
@@ -402,7 +402,7 @@ html {
   }
 
   .main-section .divNoteSection {
-    padding-right: 5.9rem !important;
+    padding-right: 5.85rem !important;
   }
 
   .SideBarAccount {
@@ -411,7 +411,147 @@ html {
     top: 0.6rem !important;
   }
 
+  // -----------------------------------------------------------------------------------------------
+
+  .AccountGroup .IconHover {
+    width: 21px !important;
+  }
+
+  .SideNavFixed.toggle {
+    background-color: red !important;
+  }
+
+  .SideBar {
+    transition: all 1s ease;
+
+    &.toggle {
+      .SbGroup {
+        width: 15rem !important;
+        height: calc(100vh - 1.2rem - 2px) !important;
+        transition: all 0.5s ease;
+        padding: 0rem;
+
+        & .SearchSection,
+        .MenuSection,
+        .LabelSection,
+        .BottomGroup,
+        .hr,
+        .TopSecDown {
+          display: flex !important;
+        }
+
+        & .MenuSection,
+        .LabelSection,
+        .BottomGroup,
+
+        .TopSecDown {
+          display: flex !important;
+          flex-direction: column
+        }
+
+        .MenuDiv {
+          height: 1.7rem;
+        }
+      }
+
+      .LogoGroup img {
+        width: 21px !important;
+      }
+
+      .TopSecUp img {
+        width: 21px !important;
+      }
+
+      .LabelSection {
+
+          padding: 0.5rem calc(0.5rem - 4px) 0.5rem 0.5rem;
+      }
+
+      .MenuSection .MenuDiv p {
+        display: flex;
+      }
+
+      .ScrollLabel .MenuDiv p {
+        display: flex;
+      }
+
+      .SearchSection input {
+        display: flex;
+      }
+
+
+
+      .LogoText {
+        display: none !important;
+      }
+
+      .LogoText1 {
+        display: none !important;
+      }
+
+    
+
+      .BarTop img {
+        margin-left: 0rem;
+      }
+
+      .divScrollBg {
+        margin-left: 0rem;
+      }
+
+      .MenuDiv,
+      .SearchSection,
+      .TopSecUp {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+      }
+
+      .HeadText,
+      .LogoGroup {
+        display: flex !important;
+      }
+
+
+
+
+    }
+
+  }
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
 
@@ -428,13 +568,11 @@ html {
     padding: 0rem 1.3rem 0rem 0.8rem;
   }
 
-
-}
-
-@media screen and (min-width: 767px) and (max-width: 1024px) {
   .main-section.toggle .divNoteSection {
-    padding-inline: 11.2rem !important;
+    padding-inline: 11.35rem !important;
   }
+
+
 }
 
 .modal-container.toggle {
@@ -442,7 +580,7 @@ html {
 }
 
 .SideBar.toggle {
-  height: fit-content !important;
+  height: fit-content;
 }
 
 .SideBar {
@@ -451,8 +589,8 @@ html {
 
   &.toggle {
     .SbGroup {
-      width: 11.5rem !important;
-      height: fit-content !important;
+      width: 11.5rem;
+      height: fit-content;
       transition: all 0.5s ease;
       padding: 0rem;
 
@@ -462,45 +600,28 @@ html {
       .BottomGroup,
       .hr,
       .TopSecDown {
-        display: none !important;
+        display: none;
       }
     }
 
     .LogoText {
-      display: flex !important;
+      display: flex;
     }
 
     .LogoText1 {
-      display: flex !important;
+      display: flex;
     }
 
     .EmptyBar {
-      width: 0.5rem !important;
+      width: 0.5rem;
     }
 
     .BarTop img {
-      margin-left: 0rem !important;
+      margin-left: 0rem;
     }
 
     .divScrollBg {
-      margin-left: 0rem !important;
-    }
-
-    @media screen and (min-width: 350px) and (max-width: 767px) {
-
-      .SearchSection,
-      .MenuSection,
-      .LabelSection,
-      .BottomGroup,
-      .hr,
-      .TopSecDown {
-        display: flex !important;
-      }
-
-
-
-
-
+      margin-left: 0rem;
     }
 
   }
@@ -510,7 +631,7 @@ html {
 }
 
 .main-section.toggle .EmptyBar {
-  width: 0.5rem !important;
+  width: 0.5rem;
   transition: width 0.5s ease;
 }
 
