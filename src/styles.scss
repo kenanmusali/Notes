@@ -277,6 +277,26 @@ html {
     display: none;
   }
 
+  .close-btn {
+    font-weight: 500;
+    margin: 0.5rem 0rem 0.5rem 0.5rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 1rem;
+  }
+
+  .close-btn img {
+    width: 21px;
+    filter: var(--gray-filter);
+  }
+
+  .close-btn:hover img {
+    width: 21px;
+    filter: var(--black-filter);
+  }
+
   .MenuDiv,
   .SearchSection,
   .TopSecUp {
@@ -322,7 +342,8 @@ html {
     padding: 0.5rem;
   }
 
-  .item img, .SelectIcon {
+  .item img,
+  .SelectIcon {
     width: 21px !important;
   }
 
@@ -336,9 +357,9 @@ html {
     padding: 0.6rem 0.6rem 0.6rem 1.2rem !important;
   }
 
-  .AppInput {
-    min-height: 25vh !important;
-  }
+  // .AppInput {
+  //   min-height: 25vh !important;
+  // }
 
   .divScrollBg {
     display: none !important;
@@ -387,23 +408,51 @@ html {
   }
 
   .note-main .note-container {
-    margin: 0.6rem 0.6rem 0rem 0.6rem !important;
-    height: calc(100vh - 3.8rem) !important;
+    margin: 0.65rem 0.6rem 0rem 0.6rem !important;
+    height: calc(100vh - 4.8rem) !important;
 
   }
 
-  .note-main .note-container .note-body {
-    height: calc(100vh - 3.8rem) !important;
-    max-height: 79.5vh !important;
+  // .note-main .note-container .note-body {
+  //   height: calc(100vh - 3.8rem) !important;
+  //   height: 79.5vh !important;
+  //   // max-height: fit-content !important;
+  // }
+
+
+
+  .icons-container2 {
+    height: fit-content !important;
+    position: absolute !important;
+    padding: 0rem 0.5rem !important;
+    width: 100% !important;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
   }
+
+  .icons-container1 {
+margin: 1rem 0rem !important;
+   
+  }
+
+  .icons .ItemHoverAlt:last-child {
+    display: flex !important;
+  }
+
+  .noIcon {
+    display: none !important;
+  }
+
 
   .note-container .note-main {
     border-radius: 12px !important;
   }
 
-  .icons-container .icons1 {
-    bottom: 0 !important;
-  }
+  // .icons-container .icons1 {
+  //   bottom: 0 !important;
+  // }
 
   .main-section .divNoteSection {
     padding-right: 5.95rem !important;

@@ -99,7 +99,7 @@
   border-radius: 6px;
   margin: 0.5rem 0.5rem 0rem 0.5rem;
   padding: 0.5rem 0.5rem 0rem 0.5rem;
-
+position: relative;
 }
 
 .note-main .note-container .note-title {
@@ -159,6 +159,10 @@
   padding-bottom: 0.6rem;
   padding-top: 0.15rem;
 
+}
+
+ .icons .ItemHoverAlt:last-child{
+  display: none;
 }
 
 /*  */
@@ -482,4 +486,7 @@ background-color: #F7D7C4;
 } */
 
 
+.close-btn {
+  display: none;
+}
 

@@ -1,7 +1,8 @@
 .minLabel  {
 
-      padding-left: 1.3rem;
+      padding-left: 0.5rem;
     margin-bottom: 1rem;
+    margin-left: 0.5rem ;
 }
 
 .labels-container {
@@ -12,15 +13,15 @@
 
 
     .label-container {
-        margin: 8px 8px 0 0;
+        margin: 8px 8px 0 0rem;
         display: inline-block;
         border-radius: 12px;
         font-size: 11px;
         font-weight: 500;
-        color: var(--grayText);
+        color: var(--textYellow);
         text-align: center;
         position: relative;
-        background-color: var(--lightGrayHover);
+        background-color: var(--mainYellow);
         transition: all 0.5s;
         padding-left: 0.6rem;
 
@@ -45,13 +46,13 @@
             }
 
             .cancel-icon {
-                background: url(../images/Icon/labelTag.svg) no-repeat center;
+                background: url(../images/Icon/LabelTag.svg) no-repeat center;
                 height: 10px;
                 width: 13px;
-                
+                filter: var(--yellow-filter);
                 margin: 0.5rem 0.6rem 0.5rem 0.5rem;
-      
-            }
+                -webkit-filter: var(--yellow-filter);
+}
             .cancel-icon:hover {
                 filter: var(--black-filter);
             }

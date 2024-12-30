@@ -44,16 +44,7 @@
 
     }
 
-    
-    .delete {
-      @extend %icon;
-      background-image: url(/assets/images/svg/delete.svg);
-    }
 
-    .restore {
-      @extend %icon;
-      background-image: url(/assets/images/svg/restore.svg);
-    }
 
 
   }
@@ -64,8 +55,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-margin-bottom: 0rem;
-margin-top: 0.2rem;
+    margin-bottom: 0rem;
+    margin-top: 0.2rem;
     padding-inline: 0rem;
     width: 100%;
 
@@ -76,15 +67,12 @@ margin-top: 0.2rem;
 
     }
 
-    
-    .delete {
-      @extend %icon;
-      background-image: url(/assets/images/svg/delete.svg);
-    }
 
-    .restore {
-      @extend %icon;
-      background-image: url(/assets/images/svg/restore.svg);
+    .spaceTrashEmpty {
+      width: 100%  !important;
+      height: 0.5rem !important;
+      line-height: 0.5rem !important;
+      background-color: red !important;
     }
 
 
@@ -118,5 +106,3 @@ margin-top: 0.2rem;
 
 
 // 
-
-

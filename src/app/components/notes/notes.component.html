@@ -168,11 +168,24 @@
                         </div>
                     </div>
                     <ng-template #trashed>
-                        <div class="icons-container min">
-                            <div class="icons">
-                                <div class="delete H pop" data-pop="Delete forever" (click)="removeNote(note.id!)">
-                                </div>
-                                <div class="restore H pop" data-pop="Restore" (click)="restoreNote(note.id!)"></div>
+                        <div class="icons-container min" >
+                            <div class="icons iconsMini ">
+                         
+                                <span class="ItemHoverAlt "data-pop="Delete forever" (click)="removeNote(note.id!)">
+                                    <div class="item itemHover noSelect">
+                                        <img src="./assets/images/Icon/TrashDelete.svg" draggable="false" />
+                                    </div>
+                                    <p class="AltText">Delete</p>
+                                </span>
+                            
+    
+                            
+                                <span class="ItemHoverAlt " data-pop="Restore" (click)="restoreNote(note.id!)">
+                                    <div class="item itemHover noSelect">
+                                        <img src="./assets/images/Icon/TrashRestore.svg" draggable="false" />
+                                    </div>
+                                    <p class="AltText">Restore</p>
+                                </span> 
                             </div>
                         </div>
                     </ng-template>
