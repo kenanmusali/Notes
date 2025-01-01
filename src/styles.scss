@@ -80,6 +80,7 @@ html {
   background-color: var(--bgColor);
 
 }
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -363,10 +364,6 @@ body::-webkit-scrollbar {
     padding: 0.6rem 0.6rem 0.6rem 1.2rem !important;
   }
 
-  // .AppInput {
-  //   min-height: 25vh !important;
-  // }
-
   .divScrollBg {
     display: none !important;
   }
@@ -389,18 +386,22 @@ body::-webkit-scrollbar {
   .modal-container .modal {
 
     width: 15rem !important;
-    
 
-	top: 5.8rem !important;
+
+    top: 5.8rem !important;
   }
+
   .modal-container .modalNotesSection {
 
     width: 100% !important;
 
-	top: 0.65rem !important;
+    top: 0.65rem !important;
   }
 
 
+  .SideBarAccount.visibleNote {
+    display: none !important;
+  }
 
   .modal-container .modal1 {
 
@@ -410,6 +411,8 @@ body::-webkit-scrollbar {
   .modal {
     padding-inline: 0.6rem !important;
     padding: 0 !important;
+    z-index: 100 !important;
+
   }
 
   .note-main {
@@ -419,9 +422,10 @@ body::-webkit-scrollbar {
 
   .divNoteSection .note-main {
     border-radius: 0px !important;
-position: absolute !important;
-width: 100% !important;
-height: 100vh !important;
+    width: 100% !important;
+    height: 100vh !important;
+    position: fixed !important;
+    z-index: 100 !important;
   }
 
   .AppInput {
@@ -443,19 +447,6 @@ height: 100vh !important;
     height: calc(100dvh - 4.8rem) !important;
   }
 
-  // .divNoteSection .note-main {
- 
-
-
-  // }
-
-  // .note-main .note-container .note-body {
-  //   // height: calc(100vh - 3.8rem) !important;
-  //   // height: 79.5vh !important;
-
-  //   // max-height: fit-content !important;
-  // }
-
 
 
   .icons-container2 {
@@ -466,12 +457,12 @@ height: 100vh !important;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-   
+
   }
 
   .icons-container1 {
-margin: 1rem 0rem !important;
-   
+    margin: 1rem 0rem !important;
+
   }
 
   .icons .ItemHoverAlt:last-child {
@@ -535,7 +526,8 @@ margin: 1rem 0rem !important;
           display: flex !important;
           flex-direction: column
         }
-        .TopSecDown p{
+
+        .TopSecDown p {
           white-space: nowrap !important;
         }
 

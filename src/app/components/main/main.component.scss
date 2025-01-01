@@ -1,92 +1,91 @@
-
 .main-section {
-    position: relative;
+  position: relative;
 }
 
 .Canva {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0.6rem 1.3rem 0.6rem 0.8rem;
-scrollbar-width: hidden !important;
-overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.6rem 1.3rem 0.6rem 0.8rem;
+  scrollbar-width: hidden !important;
+  overflow: hidden;
 }
 
 .Flex {
-    display: flex;
-    z-index: 999 !important;
+  display: flex;
+  z-index: 999 !important;
 
 }
 
 .EmptyBar {
-    background-color: transparent;
-    width: 14.9rem + calc(0.6rem * 2) ;
-    height: 100%;
+  background-color: transparent;
+  width: 14.9rem + calc(0.6rem * 2);
+  height: 100%;
 }
 
 .SideNavFixed {
-    position: fixed;
+  position: fixed;
 }
 
 .AppInput {
-    display: flex;
-    align-items:center ;
-    justify-content: center;
-    min-height: 45vh;
-    height: fit-content;
-    z-index: 14;
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45vh;
+  height: fit-content;
+  z-index: 14;
+
 
 }
 
 .divScrollBg {
-    background: linear-gradient(to bottom, var(--bgColor) 90%, rgba(234, 234, 234, 0) 100%);
-    filter: blur(20px);
-    height: 44vh;
-    width:  10rem;
-    position: absolute;
-    z-index: 13;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 8rem;
-    -webkit-filter: blur(20px);
+  background: linear-gradient(to bottom, var(--bgColor) 90%, rgba(234, 234, 234, 0) 100%);
+  filter: blur(20px);
+  height: 44vh;
+  width: 10rem;
+  position: absolute;
+  z-index: 13;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 8rem;
+  -webkit-filter: blur(20px);
 }
 
 .BarBottom {
-    position: fixed;
-    bottom: 0;
-    z-index: 99;
-    background: linear-gradient(to top, var(--bgColor) 0%, rgba(234, 234, 234, 0) 100%);
-    width: 100%;
-    right: 0;
-    height: 10rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  background: linear-gradient(to top, var(--bgColor) 0%, rgba(234, 234, 234, 0) 100%);
+  width: 100%;
+  right: 0;
+  height: 10rem;
 }
 
 .BarTop {
-    position: fixed;
-    top: 0;
-    z-index: 11;
-    background: linear-gradient(to bottom, var(--bgColor) 0%, rgba(234, 234, 234, 0) 100%);
-display: flex;
-justify-content: center;
-align-items: center;
-    width: 100%;
-    right: 0;
-    height: 7rem;
+  position: fixed;
+  top: 0;
+  z-index: 11;
+  background: linear-gradient(to bottom, var(--bgColor) 0%, rgba(234, 234, 234, 0) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  right: 0;
+  height: 7rem;
 }
 
 .BarTop img {
-    margin-left: 15.5rem;
-    padding: 0.6rem;
-    border-radius: 100%;
-    background-color: var(--white);
-    border: 1px solid var(--lightGrayStroke);
-    outline: 1px solid var(--lightStroke);
+  margin-left: 15.5rem;
+  padding: 0.6rem;
+  border-radius: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--lightGrayStroke);
+  outline: 1px solid var(--lightStroke);
 }
 
 .BarTop img:hover {
 
-    background-color: var(--lightGrayHover);
+  background-color: var(--lightGrayHover);
 }
 
 // .BarTop img {
@@ -94,82 +93,90 @@ align-items: center;
 // margin-left: 0;
 // }
 
-    /* Container takes the bottom half of the screen */
-    .container {
-      
-        opacity: var(--container-opacity, 1);
-     
-     position: relative;
-     z-index: 8;
-      }
-  
-      /* Ball styling and animations */
-      .ball {
-        position: fixed;
-        width: 31vw;
-        height: 31vw;
-      opacity: 0.3;
-        background-color: var(--bgAnimation);
-        border-radius: 50%;
-        margin-top: 15vw;
-        margin-left: 70vw;
-        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
-      }
-  
-      .ball1 {
-        position: fixed;
-        width: 31vw;
-        height: 31vw;
-      opacity: 0.5;
-        background-color: var(--bgAnimation);
-        border-radius: 50%;
-        margin-top: -20vw;
-        margin-left: 10vw;
-        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
-      }
-  
-  
-      .ball2 {
-        position: fixed;
-        width: 31vw;
-        height: 31vw;
-      opacity: 0.5;
-        background-color: var(--bgAnimation);
-        border-radius: 50%;
-        margin-top: 35vw;
-        margin-left: 25vw;
-        animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
-      }
-  
-  
-      /* Slow and smooth movement along a curved path */
-      @keyframes moveBall {
-        0% {
-          transform: translate(0, 0);
-        }
-        33% {
-          transform: translate(60px, 80px); /* Move right and down */
-        }
-        66% {
-          transform: translate(100px, -50px); /* Move further right and slightly up */
-        }
-        100% {
-          transform: translate(0, 0); /* Return to original position */
-        }
-      }
-  
-      /* Keep the blur effect constant */
-      @keyframes ballBlur {
-        0% {
-          filter: blur(80px);
-     
-        }
-        100% {
-          filter: blur(70px);;
-        }
-      }
+/* Container takes the bottom half of the screen */
+.container {
 
- 
+  opacity: var(--container-opacity, 1);
+
+  position: relative;
+  z-index: 8;
+}
+
+/* Ball styling and animations */
+.ball {
+  position: fixed;
+  width: 31vw;
+  height: 31vw;
+  opacity: 0.3;
+  background-color: var(--bgAnimation);
+  border-radius: 50%;
+  margin-top: 15vw;
+  margin-left: 70vw;
+  animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+}
+
+.ball1 {
+  position: fixed;
+  width: 31vw;
+  height: 31vw;
+  opacity: 0.5;
+  background-color: var(--bgAnimation);
+  border-radius: 50%;
+  margin-top: -20vw;
+  margin-left: 10vw;
+  animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+}
+
+
+.ball2 {
+  position: fixed;
+  width: 31vw;
+  height: 31vw;
+  opacity: 0.5;
+  background-color: var(--bgAnimation);
+  border-radius: 50%;
+  margin-top: 35vw;
+  margin-left: 25vw;
+  animation: moveBall 25s ease-in-out infinite, ballBlur 2s ease-in-out infinite;
+}
+
+
+/* Slow and smooth movement along a curved path */
+@keyframes moveBall {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(60px, 80px);
+    /* Move right and down */
+  }
+
+  66% {
+    transform: translate(100px, -50px);
+    /* Move further right and slightly up */
+  }
+
+  100% {
+    transform: translate(0, 0);
+    /* Return to original position */
+  }
+}
+
+/* Keep the blur effect constant */
+@keyframes ballBlur {
+  0% {
+    filter: blur(80px);
+
+  }
+
+  100% {
+    filter: blur(70px);
+    ;
+  }
+}
+
+
 .SideBarAccount {
   position: absolute;
   right: 0.5rem;
@@ -182,7 +189,7 @@ align-items: center;
   transition: all 0.6s;
   display: flex;
   flex-direction: column;
-
+  z-index: 99;
   justify-content: center;
 
   & .AccountSection {
@@ -200,45 +207,45 @@ align-items: center;
     -o-border-radius: 5px;
 
 
-}
+  }
 
   & .AccountSection:hover {
-  outline: 1px solid var(--mainYellow1);
-  border: 1px solid var(--white);
-}
+    outline: 1px solid var(--mainYellow1);
+    border: 1px solid var(--white);
+  }
 
-& .AccountGroup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s;
+  & .AccountGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s;
 
-  p {
-    display: none;
-    font-size: 16px;
-    font-weight: 500 !important;
+    p {
+      display: none;
+      font-size: 16px;
+      font-weight: 500 !important;
+    }
+  }
+
+  & .AccountGroup .IconHover:hover {
+    filter: var(--black-filter);
+    -webkit-filter: var(--black-filter);
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+  }
+
+  & .AccountGroup .IconHover {
+    margin-right: 0.6rem;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
   }
 }
 
-& .AccountGroup .IconHover:hover{
-  filter: var(--black-filter);
-  -webkit-filter: var(--black-filter);
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  -ms-transition: all 0.4s;
-  -o-transition: all 0.4s;
-}
-
-& .AccountGroup .IconHover{
-  margin-right: 0.6rem;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-}
-
-.SideBarAccount .divLogAccount{
-display: none;
+.SideBarAccount .divLogAccount {
+  display: none;
 }
 
 
@@ -251,9 +258,9 @@ display: none;
 
 .resetDiv {
   display: flex;
-width: 100%;
-padding-inline: 0.5rem;
- 
+  width: 100%;
+  padding-inline: 0.5rem;
+
 }
 
 .resetLog {
@@ -261,8 +268,8 @@ padding-inline: 0.5rem;
   font-weight: 400 !important;
   color: var(--grayText) !important;
   text-decoration: underline;
- text-align: left;
- margin: 0rem 0rem 0.4rem 0rem !important;
+  text-align: left;
+  margin: 0rem 0rem 0.4rem 0rem !important;
 }
 
 .MenuDiv {
@@ -278,103 +285,105 @@ padding-inline: 0.5rem;
 
 
 
-.SideBarAccount.Accounttoggled { 
+.SideBarAccount.Accounttoggled {
   width: 15rem;
   padding-left: 0.6rem;
   transition: all 0.6s;
 
   & .AccountGroup {
-  justify-content: space-between ;
-  margin-bottom: 0.6rem;
-  margin-left: 0.3rem;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    margin-left: 0.3rem;
 
-  p {
+    p {
+      display: flex;
+      font-size: 16px;
+      font-weight: 500 !important;
+      color: var(--black);
+    }
+  }
+
+  & .divLogAccount {
     display: flex;
-    font-size: 16px;
-    font-weight: 500 !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+
+
+
+  & .login {
+    background-color: var(--mainYellow);
+    font-size: 11px;
+    border: none;
+    justify-content: center !important;
+    width: 100%;
+    color: var(--textYellow);
+    transition: all 0.4s;
+    font-size: 500;
+  }
+
+  & .login1 {
+    border: 1px solid var(--hrLine);
+    font-size: 11px;
+
+    justify-content: center !important;
+    width: 100%;
+    color: var(--grayText);
+    transition: all 0.4s;
+    font-size: 500;
+    background: none;
+  }
+
+  & .login2 {
+    background-color: var(--lightGrayHover);
+    font-size: 11px;
+    border: none;
+    justify-content: center !important;
+    width: 100%;
+    color: var(--grayText);
+    transition: all 0.4s;
+    font-size: 500;
+  }
+
+  & .login:hover {
+    background-color: var(--mainYellow1);
+    font-size: 11px;
+    border: none;
+    justify-content: center !important;
+    width: 100%;
+    color: var(--white);
+    transition: all 0.4s;
+  }
+
+  & .login1:hover {
+    background-color: var(--lightGrayHover);
+    color: var(--black);
+    transition: all 0.4s;
+    border: none;
+  }
+
+  & .login2:hover {
+    background-color: var(--lightGrayHover);
+    color: var(--black);
+    transition: all 0.4s;
+    border: none;
+  }
+
+
+  & .inputLog {
+    border: none;
+    background-color: var(--lightGrayHover);
+    font-size: 11px;
+    width: 100%;
     color: var(--black);
   }
-}
 
-& .divLogAccount {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-
-
-
-& .login {
-  background-color: var(--mainYellow);
-  font-size: 11px;
-  border: none;
-  justify-content: center!important;
-  width: 100%;
-  color: var(--textYellow);
-  transition: all 0.4s;
-  font-size: 500;
-}
-& .login1 {
-  border: 1px solid var(--hrLine);
-  font-size: 11px;
-
-  justify-content: center!important;
-  width: 100%;
-  color: var(--grayText);
-  transition: all 0.4s;
-  font-size: 500;
-  background: none;
-}
-& .login2 {
-  background-color: var(--lightGrayHover);
-  font-size: 11px;
-border: none;
-  justify-content: center!important;
-  width: 100%;
-  color: var(--grayText);
-  transition: all 0.4s;
-  font-size: 500;
-}
-
-& .login:hover {
-  background-color: var(--mainYellow1);
-  font-size: 11px;
-  border: none;
-  justify-content: center!important;
-  width: 100%;
-  color: var(--white);
-  transition: all 0.4s;
-}
-
-& .login1:hover {
-  background-color: var(--lightGrayHover);
-  color: var(--black);
-  transition: all 0.4s;
-  border: none;
-}
-
-& .login2:hover {
-  background-color: var(--lightGrayHover);
-  color: var(--black);
-  transition: all 0.4s;
-  border: none;
-}
-
-
-& .inputLog {
-  border: none;
-  background-color: var(--lightGrayHover);
-  font-size: 11px;
-  width: 100%;  
-  color: var(--black);
-}
-
-& .inputLog:focus {
-outline: 1px solid var(--mainYellow1);
-border: 1px solid var(--white);
-}
+  & .inputLog:focus {
+    outline: 1px solid var(--mainYellow1);
+    border: 1px solid var(--white);
+  }
 
 }
