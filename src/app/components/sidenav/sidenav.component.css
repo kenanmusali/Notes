@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 15rem;
-    height: calc(100vh - 1.2rem - 2px);
+    height: 100%;
     transition: all 0.4s ease;
 }
 
