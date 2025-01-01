@@ -297,7 +297,8 @@ html {
     filter: var(--black-filter);
   }
 
-  .MenuDiv,
+  .MenuSection .MenuDiv,
+  .ScrollLabel .MenuDiv,
   .SearchSection,
   .TopSecUp {
     display: flex !important;
@@ -325,7 +326,7 @@ html {
     width: 21px;
   }
 
-  .SearchSection input {
+  .TopGroup .SearchSection input {
     display: none;
   }
 
@@ -334,7 +335,7 @@ html {
     display: none !important;
   }
 
-  .SbGroup {
+  .SideBar .SbGroup {
     width: 4rem !important;
   }
 
@@ -381,7 +382,16 @@ html {
   }
 
   .modal-container .modal {
-    height: 100% !important;
+
+    width: 15rem !important;
+    
+
+	top: 5.8rem !important;
+  }
+
+  .modal-container .modal1 {
+
+    width: 15rem !important;
   }
 
   .modal {
@@ -500,6 +510,9 @@ margin: 1rem 0rem !important;
         .TopSecDown {
           display: flex !important;
           flex-direction: column
+        }
+        .TopSecDown p{
+          white-space: nowrap !important;
         }
 
         .MenuDiv {
@@ -622,10 +635,10 @@ margin: 1rem 0rem !important;
     height: 25vh !important;
   }
 
-  .modal-container .modal {
+  // .modal-container .modal {
 
-    padding: 0rem 1.3rem 0rem 0.8rem;
-  }
+  //   padding: 0rem 1.3rem 0rem 0.8rem;
+  // }
 
   .main-section.toggle .divNoteSection {
     padding-inline: 11.35rem !important;
