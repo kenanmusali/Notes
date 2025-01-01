@@ -7,15 +7,16 @@
     </div>
     <div class="Flex">
         <div class="Flex">
-            <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
+            <div class="divGroupSidenav">
+                <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
+                <div class="BarRight"></div>
+            </div>
             <span class="EmptyBar"></span>
 
             <div class="SideBarAccount sectionStyle" [ngClass]="{'Accounttoggled': isToggled}">
                 <div class="AccountGroup">
-                    <img class="IconHover IconToggle noSelect" 
-                    src="./assets/images/Icon/Sidebar.svg" 
-                    draggable="false"
-                    (click)="toggleImage($event)" >
+                    <img class="IconHover IconToggle noSelect" src="./assets/images/Icon/Sidebar.svg" draggable="false"
+                        (click)="toggleImage($event)">
                     <p>Notes</p>
                     <div class="AccountSection noSelect">
                         <img src="../../../assets/images/Icon/UserProfile.svg" draggable="false" />
@@ -48,7 +49,9 @@
             <div class="BarTop noSelect">
                 <img src="../../../assets/images/Icon/UpArrow.svg" draggable="false" (click)="scrollToTop()">
             </div>
+
             <app-notes [isToggled]="sidenav.isToggled"></app-notes>
+
 
         </div>
 

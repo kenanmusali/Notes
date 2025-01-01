@@ -492,6 +492,35 @@ body::-webkit-scrollbar {
     top: 0.6rem !important;
   }
 
+  .MenuDiv {
+    height: 1.7rem;
+  }
+
+  .MenuDiv p,
+  .SearchInput {
+    font-size: 12px !important;
+  }
+
+  .MenuDiv img {
+    width: 21px !important;
+  }
+
+
+  .main-section.toggle .BarRight {
+    display: flex !important;
+    position: absolute;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+
+   background: linear-gradient(to right, var(--bgColor) 40%, rgba(234, 234, 234, 0) 100%);
+   
+    width: 100% !important;
+    height: 100vh;
+  
+}
 
 
   // -----------------------------------------------------------------------------------------------
@@ -504,6 +533,8 @@ body::-webkit-scrollbar {
     transition: all 1s ease;
 
     &.toggle {
+
+
       .SbGroup {
         width: 15rem !important;
         transition: all 0.5s ease;
@@ -551,13 +582,13 @@ body::-webkit-scrollbar {
 
       .MenuSection .MenuDiv p {
         display: flex;
-        font-size: 12px;
+        font-size: 12px !important;
         white-space: nowrap;
       }
 
       .ScrollLabel .MenuDiv p {
         display: flex;
-        font-size: 12px;
+        font-size: 12px !important;
         white-space: nowrap;
       }
 
