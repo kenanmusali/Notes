@@ -293,10 +293,7 @@ html {
   }
 
 
-  .SideNavFixed{
-    height: 100vh !important;
-  }
-  
+
   .close-btn:hover img {
     width: 21px;
     filter: var(--black-filter);
@@ -340,6 +337,10 @@ html {
     display: none !important;
   }
 
+  .SideBar {
+    height: 100vh !important;
+    background-color: red !important;
+  }
   .SideBar .SbGroup {
     width: 4rem !important;
     height: 100% !important;
