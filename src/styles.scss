@@ -338,8 +338,8 @@ html {
   }
 
   .SideBar {
-    height: calc(100vh - env(safe-area-inset-bottom))!important;
-    background-color: red !important;
+
+    background-color: blue !important;
   }
   .SideBar .SbGroup {
     width: 4rem !important;
@@ -503,7 +503,6 @@ margin: 1rem 0rem !important;
     &.toggle {
       .SbGroup {
         width: 15rem !important;
-        height: 100% !important;
         transition: all 0.5s ease;
         padding: 0rem;
 
