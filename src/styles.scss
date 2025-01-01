@@ -292,6 +292,11 @@ html {
     filter: var(--gray-filter);
   }
 
+
+  .SideNavFixed{
+    height: 100vh !important;
+  }
+  
   .close-btn:hover img {
     width: 21px;
     filter: var(--black-filter);
@@ -337,6 +342,7 @@ html {
 
   .SideBar .SbGroup {
     width: 4rem !important;
+    height: 100% !important;
   }
 
   .LabelSection {
@@ -401,6 +407,14 @@ html {
 
   .note-main {
     border-radius: 0px !important;
+
+  }
+
+  .divNoteSection .note-main {
+    border-radius: 0px !important;
+position: absolute !important;
+width: 100% !important;
+height: 100vh !important;
   }
 
   .AppInput {
@@ -417,11 +431,11 @@ html {
     padding-inline: 1rem !important;
   }
 
-  .note-main .note-container {
-    margin: 0.65rem 0.6rem 0rem 0.6rem !important;
-    height: calc(100% - 4.8rem) !important;
+  // .note-main .note-container {
+  //   margin: 0.65rem 0.6rem 0rem 0.6rem !important;
+  //   height: calc(100vh - 4.8rem) !important;
 
-  }
+  // }
 
   // .note-main .note-container .note-body {
   //   height: calc(100vh - 3.8rem) !important;
@@ -474,14 +488,12 @@ margin: 1rem 0rem !important;
     top: 0.6rem !important;
   }
 
+
+
   // -----------------------------------------------------------------------------------------------
 
   .AccountGroup .IconHover {
     width: 21px !important;
-  }
-
-  .SideNavFixed.toggle {
-    background-color: red !important;
   }
 
   .SideBar {
@@ -490,7 +502,7 @@ margin: 1rem 0rem !important;
     &.toggle {
       .SbGroup {
         width: 15rem !important;
-        height: calc(100% - 1.2rem - 2px) !important;
+        height: 100% !important;
         transition: all 0.5s ease;
         padding: 0rem;
 
