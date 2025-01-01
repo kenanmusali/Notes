@@ -80,7 +80,9 @@ html {
   background-color: var(--bgColor);
 
 }
-
+body::-webkit-scrollbar {
+  display: none;
+}
 
 
 
@@ -337,10 +339,6 @@ html {
     display: none !important;
   }
 
-  .SideBar {
-
-    background-color: green  !important;
-  }
   .SideBar .SbGroup {
     width: 4rem !important;
     height: 100% !important;
@@ -395,6 +393,14 @@ html {
 
 	top: 5.8rem !important;
   }
+  .modal-container .modalNotesSection {
+
+    width: 100% !important;
+
+	top: 0.65rem !important;
+  }
+
+
 
   .modal-container .modal1 {
 
@@ -432,15 +438,21 @@ height: 100vh !important;
     padding-inline: 1rem !important;
   }
 
-  // .note-main .note-container {
-  //   margin: 0.65rem 0.6rem 0rem 0.6rem !important;
-  //   height: calc(100vh - 4.8rem) !important;
+  .note-main .note-container {
+    margin: 0.65rem 0.6rem 0rem 0.6rem !important;
+    height: calc(100dvh - 4.8rem) !important;
+  }
+
+  // .divNoteSection .note-main {
+ 
+
 
   // }
 
   // .note-main .note-container .note-body {
-  //   height: calc(100vh - 3.8rem) !important;
-  //   height: 79.5vh !important;
+  //   // height: calc(100vh - 3.8rem) !important;
+  //   // height: 79.5vh !important;
+
   //   // max-height: fit-content !important;
   // }
 
