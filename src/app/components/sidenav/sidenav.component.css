@@ -1,6 +1,6 @@
 .SideBar {
     padding: 0.6rem;
-    height: 100vh;
+    height: 100dvh;
     z-index: 1;
     transition: all 1s ease;
 }
