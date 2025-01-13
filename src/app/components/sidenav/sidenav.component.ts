@@ -13,6 +13,7 @@ export class NavComponent implements OnInit {
   @ViewChild("modalContainer") modalContainer!: ElementRef<HTMLInputElement>;
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>;
   @ViewChild("settingsModal") settingsModal!: ElementRef<HTMLInputElement>;
+  @ViewChild("keyModal") keyModal!: ElementRef<HTMLInputElement>;
   @ViewChild("labelInput") labelInput!: ElementRef<HTMLInputElement>;
   @ViewChild("labelError") labelError!: ElementRef<HTMLInputElement>;
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
@@ -20,6 +21,7 @@ export class NavComponent implements OnInit {
   // Flags to track the active state of "Add labels" and "Settings"
   isLabelsActive: boolean = false;
   isSettingsActive: boolean = false;
+  isKeyActive: boolean = false;
 
   // New property to handle dark mode state
   isDarkMode: boolean = false;
@@ -164,11 +166,15 @@ export class NavComponent implements OnInit {
   }
 
   // ? modal ----------------------------------------------------------
-  openModal(isSettings: boolean = false) {
+  openModal(isSettings: boolean = false, isKey: boolean = false) {
     if (isSettings) {
       // Open settings modal
       this.settingsModal.nativeElement.style.display = 'block';
       this.isSettingsActive = true;
+    } else if (isKey) {
+      // Open key modal
+      this.keyModal.nativeElement.style.display = 'block';
+      this.isKeyActive = true;
     } else {
       // Open label modal
       this.modalContainer.nativeElement.style.display = 'block';
@@ -176,12 +182,16 @@ export class NavComponent implements OnInit {
     }
     document.addEventListener('mousedown', this.mouseDownEvent);
   }
-
-  hideModal(isSettings: boolean = false) {
+  
+  hideModal(isSettings: boolean = false, isKey: boolean = false) {
     if (isSettings) {
       // Hide settings modal
       this.settingsModal.nativeElement.style.display = 'none';
       this.isSettingsActive = false;
+    } else if (isKey) {
+      // Hide key modal
+      this.keyModal.nativeElement.style.display = 'none';
+      this.isKeyActive = false;
     } else {
       // Hide label modal
       this.modalContainer.nativeElement.style.display = 'none';
@@ -189,23 +199,28 @@ export class NavComponent implements OnInit {
     }
     document.removeEventListener('mousedown', this.mouseDownEvent);
   }
-
+  
   mouseDownEvent = (event: Event) => {
-    let modalEl = this.modal.nativeElement;
-    let settingsModalEl = this.settingsModal.nativeElement;
-
+    const modalEl = this.modal.nativeElement;
+    const settingsModalEl = this.settingsModal.nativeElement;
+    const keyModalEl = this.keyModal.nativeElement;
+  
     // Handle click outside label modal
-    if (this.isLabelsActive && !modalEl.contains(event.target as Node) && !settingsModalEl.contains(event.target as Node)) {
-      // Clicked outside label modal, so close label modal
+    if (this.isLabelsActive && !modalEl.contains(event.target as Node)) {
       this.hideModal();
     }
-
+  
     // Handle click outside settings modal
     if (this.isSettingsActive && !settingsModalEl.contains(event.target as Node)) {
-      // Clicked outside settings modal, so close settings modal
       this.hideModal(true);
     }
-  }
+  
+    // Handle click outside key modal
+    if (this.isKeyActive && !keyModalEl.contains(event.target as Node)) {
+      this.hideModal(false, true);
+    }
+  };
+  
 
   // ? labels ----------------------------------------------------
   addLabel(el: HTMLInputElement) {

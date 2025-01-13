@@ -328,8 +328,29 @@
 /* SearchSection */
 
 
+.divKeyText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1rem;
+    background-color: var(--lightGrayHover) !important;
+    width: fit-content;
+    padding-inline: 0.3rem;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
 
-
+.KeyText {
+    line-height: 0;
+    
+    color: var(--lightGrayVersion) !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    
+}
 
 
 /* Ends */

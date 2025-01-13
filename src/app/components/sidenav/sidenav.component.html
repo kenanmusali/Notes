@@ -1,13 +1,13 @@
-<div class="SideBar noSelect" [class.toggle]="isToggled"> 
-    
+<div class="SideBar noSelect" [class.toggle]="isToggled">
+
 
 
 
 
     <div class="SbGroup sectionStyle">
-       
 
-        
+
+
         <div class="TopGroup">
 
             <div class="TopSection">
@@ -18,7 +18,8 @@
                         <p class=LogoText1>v1.1.0</p>
 
                     </div>
-                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false" (click)="toggleSidebar()" />
+                    <img class="IconHover IconToggle" src="./assets/images/Icon/Sidebar.svg" draggable="false"
+                        (click)="toggleSidebar()" />
 
                 </div>
                 <div class="TopSecDown">
@@ -78,8 +79,12 @@
             <div class="hr"></div>
 
             <div class="MenuSection">
-                <div class="MenuDiv MenuHoverBottom">
+                <div class="MenuDiv MenuHoverBottom" [class.active]="isKeyActive" (click)="openModal(false, true)">
+                    <p>ShortKey</p>
+                    <img src="./assets/images/Icon/ShortKey.svg" draggable="false" />
+                </div>
 
+                <div class="MenuDiv MenuHoverBottom">
                     <p>Refresh</p>
                     <img src="./assets/images/Icon/Refresh.svg" draggable="false" />
                 </div>
@@ -88,12 +93,6 @@
                     <p>Trash</p>
                     <img src="./assets/images/Icon/Trash.svg">
                 </div>
-
-                <div class="MenuDiv MenuHoverBottom">
-                    <p>Help & Feedback</p>
-                    <img src="./assets/images/Icon/Help.svg" draggable="false" />
-                </div>
-
                 <div [class.active]="isSettingsActive" class="MenuHoverBottom MenuDiv" (click)="openModal(true)">
                     <p>Settings</p>
                     <img src="./assets/images/Icon/Settings.svg">
@@ -106,6 +105,196 @@
 
 
 
+
+<div #settingsModal class="modal-container">
+    <div class="modal1">
+        <div class="settings-modal-main sectionStyle noSelect">
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Dark Mode</p>
+                <label class="switch">
+                    <input type="checkbox" [checked]="isDarkMode" (change)="toggleTheme($event)">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Gradient</p>
+                <label class="switch">
+                    <input type="checkbox" (change)="toggleContainerVisibility($event)" [checked]="isContainerVisible">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>List view</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Web preview</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Language</p>
+                <img src="./assets/images/Icon/Language.svg" draggable="false" />
+            </div>
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Privacy policy</p>
+                <img src="./assets/images/Icon/PrivacyPolicy.svg" draggable="false" />
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Help & Feedback</p>
+                <img src="./assets/images/Icon/Help.svg" draggable="false" />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div #keyModal class="modal-container">
+    <div class="modal1">
+        <div class="settings-modal-main sectionStyle noSelect">
+
+
+
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Add note</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + N
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Search note</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + F
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open archive</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Alt + A
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open calendar</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Alt + C
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Delete note</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Delete
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Add labels</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + L
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Select all notes</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + A
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open settings</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + ,
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Navigate back</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Alt + &larr;
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Navigate forward</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Alt + &rarr;
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Close sidebar</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + [
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open sidebar</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + ]
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open account</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Shift + A
+                    </p>
+                </div>
+            </div>
+            
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Open trash</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + Shift + D
+                    </p>
+                </div>
+            </div>
+            <div class="MenuDiv MenuHoverBottom">
+                <p>Refresh page</p>
+                <div class="divKeyText">
+                    <p class="KeyText">
+                        Ctrl + R
+                    </p>
+                </div>
+            </div>
+            
+
+        
+
+        </div>
+    </div>
+</div>
 
 <div #modalContainer class="modal-container ">
     <div #modal class="modal">
@@ -167,56 +356,5 @@
 
         </div>
 
-    </div>
-</div>
-
-<div #settingsModal class="modal-container">
-    <div class="modal1">
-        <div class="settings-modal-main sectionStyle noSelect">
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>Dark Mode</p>
-                <label class="switch">
-                    <input type="checkbox" [checked]="isDarkMode" (change)="toggleTheme($event)">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>Gradient</p>
-                <label class="switch">
-                    <input type="checkbox" (change)="toggleContainerVisibility($event)" [checked]="isContainerVisible">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>List view</p>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>Web preview</p>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>Language</p>
-                <img src="./assets/images/Icon/Language.svg" draggable="false" />
-            </div>
-
-            <div class="MenuDiv MenuHoverBottom">
-                <p>Privacy policy</p>
-                <img src="./assets/images/Icon/Help.svg" draggable="false" />
-            </div>
-
-        </div>
     </div>
 </div>
