@@ -403,9 +403,19 @@ body::-webkit-scrollbar {
     display: none !important;
   }
 
-  .modal-container .modal1 {
+  .modal-container .modal1, .modal-container .modal2 {
 
     width: 15rem !important;
+  }
+
+  .modal2 {
+    position: absolute;
+    right: -14.1rem;
+    top: 10rem !important;
+  }
+
+  .HoverIconSigle {
+    width: 21px !important;
   }
 
   .modal {
@@ -447,7 +457,9 @@ body::-webkit-scrollbar {
     height: calc(100dvh - 4.8rem) !important;
   }
 
-
+  .BottomGroup .MenuSection .MenuDiv:first-child {
+    display: none !important;
+  }
 
   .icons-container2 {
     height: fit-content !important;
@@ -515,12 +527,12 @@ body::-webkit-scrollbar {
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
 
-   background: linear-gradient(to right, var(--bgColor) 40%, rgba(234, 234, 234, 0) 100%);
-   
+    background: linear-gradient(to right, var(--bgColor) 40%, rgba(234, 234, 234, 0) 100%);
+
     width: 100% !important;
     height: 100vh;
-  
-}
+
+  }
 
 
   // -----------------------------------------------------------------------------------------------
@@ -645,33 +657,6 @@ body::-webkit-scrollbar {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (min-width: 767px) and (max-width: 1024px) {
 
   .AppInput {
@@ -691,6 +676,9 @@ body::-webkit-scrollbar {
     padding-inline: 11.35rem !important;
   }
 
+  .BottomGroup .MenuSection .MenuDiv:first-child {
+    display: none !important;
+  }
 
 }
 

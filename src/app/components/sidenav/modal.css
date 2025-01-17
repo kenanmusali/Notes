@@ -132,9 +132,20 @@
 
 .modal1 {
 	position: absolute;
+	right: -14.1rem;
+	bottom: 0.65rem;
+	transition: all 0.4s;
+	max-width: 14.9rem;
+	width: 100%;
+	z-index: 5;
+    height: fit-content;
 
-	right: -14rem;
-	bottom: 0.75rem;
+}
+
+.modal2 {
+	position: absolute;
+	right: -14.1rem;
+	top: 13rem;
 	transition: all 0.4s;
 	max-width: 14.9rem;
 	width: 100%;
@@ -150,6 +161,14 @@ flex-direction: column;
 justify-content: center;
 gap: 0.5rem;
 
+}
+
+.calendar-modal-main {
+	padding: 0.5rem calc(0.5rem - 2px) 0.5rem 0.5rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 0.5rem;
 }
 .switch {
 	position: relative;

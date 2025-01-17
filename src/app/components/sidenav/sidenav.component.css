@@ -345,12 +345,217 @@
 
 .KeyText {
     line-height: 0;
-    
+
     color: var(--lightGrayVersion) !important;
     font-size: 9px !important;
     font-weight: 500 !important;
-    
+
 }
 
 
 /* Ends */
+
+
+
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 3px; */
+}
+
+.nav-button {
+    /* padding: 10px;
+    font-size: 16px;
+    cursor: pointer; */
+}
+
+.month-year .month:hover,
+.month-year .year:hover {
+    background-color: var(--lightGrayHover);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.month-year .month,
+.month-year .year {
+    padding: 6px 6px;
+
+}
+
+.month-year {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 500;
+    /* margin-left: 5px; */
+}
+
+
+
+.month-selector,
+.year-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Display months in 3 columns */
+    gap: 0.5rem;
+    margin-top: 0.5rem
+}
+
+.divScrollArea {
+    height: 10rem;
+    overflow-y: scroll;
+    width: 100%;
+
+
+}
+
+
+.month-item,
+.year-item {
+    /* width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer; */
+}
+
+
+.prev-month {
+    color: var(--grayText);
+}
+
+
+.month-item:hover,
+.year-item:hover {
+    background-color: var(--bgColor);
+    color: var(--black);
+
+    height: 1.6rem;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+
+    -o-border-radius: 5px;
+}
+
+
+.month-item,
+.year-item {
+    height: 1.6rem;
+    display: flex;
+    background-color: var(--lightGrayHover);
+    align-items: center;
+    justify-content: center;
+    padding-inline: 0.5rem;
+    font-size: 11px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--grayText);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.date-grid {
+    margin-top: 12px;
+
+}
+
+.calendar-header,
+.date-grid,
+.month-selector {
+    margin-right: 2px;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+
+}
+
+.weekday {
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: var(--black);
+}
+
+
+.dates {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+
+}
+
+.date-item {
+
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--grayText);
+}
+
+.date-item:hover {
+    background-color: var(--lightGrayHover);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: var(--black);
+}
+
+.current-day {
+
+    background-color: var(--mainYellow);
+    color: var(--textYellow);
+    border-radius: 5px;
+
+
+}
+
+.HoverIconSigle:hover {
+    filter: var(--black-filter);
+    -webkit-filter: var(--black-filter);
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+
+}
+
+.HoverIconSigle {
+    transition: all 0.2s;
+    display: none;
+  }
+  
+  .HoverIconSigle.ng-trigger.ng-trigger-state {
+    display: block;  /* Display when custom month or year is selected */
+  }
+  

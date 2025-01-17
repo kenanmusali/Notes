@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>;
   @ViewChild("settingsModal") settingsModal!: ElementRef<HTMLInputElement>;
   @ViewChild("keyModal") keyModal!: ElementRef<HTMLInputElement>;
+  @ViewChild("calendarModal") calendarModal!: ElementRef<HTMLInputElement>;
   @ViewChild("labelInput") labelInput!: ElementRef<HTMLInputElement>;
   @ViewChild("labelError") labelError!: ElementRef<HTMLInputElement>;
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
@@ -22,13 +23,105 @@ export class NavComponent implements OnInit {
   isLabelsActive: boolean = false;
   isSettingsActive: boolean = false;
   isKeyActive: boolean = false;
-
+  isCalendarActive: boolean = false;
+  showHoverIcon: boolean = false;
   // New property to handle dark mode state
   isDarkMode: boolean = false;
   isContainerVisible: boolean = true;  // New property to track container visibility
 
-  constructor(public Shared: SharedService, public router: Router) { }
+  constructor(public Shared: SharedService, public router: Router) { this.generateDates();
+    this.generateYearRange();}
 
+    currentMonth: string = 'January';
+    currentYear: number = new Date().getFullYear();
+    dates: { date: number, isCurrentDay: boolean }[] = [];
+    months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    yearRange: number[] = []; // Range of years from 1990 to 3000
+    viewMode: 'month' | 'year' | 'date' = 'date'; // toggle between month, year, and date views
+  
+    generateDates() {
+      const firstDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth), 1);
+      const lastDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth) + 1, 0);
+    
+      this.dates = [];
+      const startDay = firstDay.getDay();
+    
+      // Get the previous month's last day
+      const prevMonth = this.months.indexOf(this.currentMonth) === 0 ? 11 : this.months.indexOf(this.currentMonth) - 1;
+      const prevMonthLastDate = new Date(this.currentYear, prevMonth + 1, 0).getDate();
+    
+      // Add days from the previous month to fill in the empty spaces
+      for (let i = prevMonthLastDate - startDay + 1; i <= prevMonthLastDate; i++) {
+        this.dates.push({ date: i, isCurrentDay: false }); // Add previous month's dates
+      }
+    
+      // Add current month's dates
+      for (let i = 1; i <= lastDay.getDate(); i++) {
+        const isToday = i === new Date().getDate() && this.currentMonth === this.months[new Date().getMonth()] && this.currentYear === new Date().getFullYear();
+        this.dates.push({ date: i, isCurrentDay: isToday }); // Add current month's dates with current day check
+      }
+    
+      // Calculate if there are remaining slots after the last day of the current month
+      const remainingSlots = 7 - (this.dates.length % 7);
+    
+      // If there are remaining slots (space left in the current row), fill them with "slot" values
+      if (remainingSlots < 7) {
+        for (let i = 1; i <= remainingSlots; i++) {
+          this.dates.push({ date: i, isCurrentDay: false }); // Add slots at the end of the calendar to fill the row
+        }
+      }
+    }
+    
+    
+
+  
+    generateYearRange() {
+      // Generate a year range from 1990 to 3000
+      this.yearRange = [];
+      for (let year = 1990; year <= 3000; year++) {
+        this.yearRange.push(year);
+      }
+    }
+  
+
+  
+    toggleView(view: 'month' | 'year') {
+      if (view === 'year') {
+        this.generateYearRange(); // Ensure the year range is generated each time the year view is toggled
+        this.viewMode = 'year'; // Show year range from 1990 to 3000
+      } else {
+        this.viewMode = 'month'; // Show 12 months when you click the month
+      }
+    }
+    
+    selectMonth(month: string) {
+      this.currentMonth = month;
+      if (this.currentMonth !== new Date().toLocaleString('default', { month: 'long' })) {
+        this.showHoverIcon = true;  // Display hover icon if month is not the current month
+      }
+      this.viewMode = 'date'; // After selecting a month, show the date grid
+      this.generateDates();
+    }
+    
+    selectYear(year: number) {
+      this.currentYear = year;
+      if (this.currentYear !== new Date().getFullYear()) {
+        this.showHoverIcon = true;  // Display hover icon if year is not the current year
+      }
+      this.viewMode = 'date'; // After selecting a year, show the 12 months
+      this.generateDates();
+    }
+    
+    resetToCurrentDate() {
+      this.currentMonth = new Date().toLocaleString('default', { month: 'long' });
+      this.currentYear = new Date().getFullYear();
+      this.showHoverIcon = false;  // Hide the hover icon after resetting
+      this.generateDates();
+    }
+    
+
+
+  // 
   // Theme switching logic
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('theme');
@@ -166,7 +259,7 @@ export class NavComponent implements OnInit {
   }
 
   // ? modal ----------------------------------------------------------
-  openModal(isSettings: boolean = false, isKey: boolean = false) {
+  openModal(isSettings: boolean = false, isKey: boolean = false, isCalendar: boolean = false) {
     if (isSettings) {
       // Open settings modal
       this.settingsModal.nativeElement.style.display = 'block';
@@ -175,6 +268,10 @@ export class NavComponent implements OnInit {
       // Open key modal
       this.keyModal.nativeElement.style.display = 'block';
       this.isKeyActive = true;
+    } else if (isCalendar) {
+      // Open calendar modal
+      this.calendarModal.nativeElement.style.display = 'block';
+      this.isCalendarActive = true;
     } else {
       // Open label modal
       this.modalContainer.nativeElement.style.display = 'block';
@@ -183,7 +280,8 @@ export class NavComponent implements OnInit {
     document.addEventListener('mousedown', this.mouseDownEvent);
   }
   
-  hideModal(isSettings: boolean = false, isKey: boolean = false) {
+  
+  hideModal(isSettings: boolean = false, isKey: boolean = false, isCalendar: boolean = false) {
     if (isSettings) {
       // Hide settings modal
       this.settingsModal.nativeElement.style.display = 'none';
@@ -192,6 +290,10 @@ export class NavComponent implements OnInit {
       // Hide key modal
       this.keyModal.nativeElement.style.display = 'none';
       this.isKeyActive = false;
+    } else if (isCalendar) {
+      // Hide key modal
+      this.calendarModal.nativeElement.style.display = 'none';
+      this.isCalendarActive = false;
     } else {
       // Hide label modal
       this.modalContainer.nativeElement.style.display = 'none';
@@ -204,6 +306,7 @@ export class NavComponent implements OnInit {
     const modalEl = this.modal.nativeElement;
     const settingsModalEl = this.settingsModal.nativeElement;
     const keyModalEl = this.keyModal.nativeElement;
+    const calendarModalEl = this.calendarModal.nativeElement;
   
     // Handle click outside label modal
     if (this.isLabelsActive && !modalEl.contains(event.target as Node)) {
@@ -218,6 +321,11 @@ export class NavComponent implements OnInit {
     // Handle click outside key modal
     if (this.isKeyActive && !keyModalEl.contains(event.target as Node)) {
       this.hideModal(false, true);
+    }
+  
+    // Handle click outside calendar modal
+    if (this.isCalendarActive && !calendarModalEl.contains(event.target as Node)) {
+      this.hideModal(false, false, true); // Pass correct arguments for calendar modal
     }
   };
   
