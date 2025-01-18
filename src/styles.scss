@@ -276,6 +276,14 @@ body::-webkit-scrollbar {
 
 @media screen and (min-width: 350px) and (max-width: 767px) {
 
+  
+  .modal-container .modal,
+  .modal1,
+  .modal2 {
+    box-shadow: 50px 0px 100px var(--bgColor) !important;
+  }
+  
+
   .TopSecDown {
     display: none;
   }
@@ -649,6 +657,7 @@ body::-webkit-scrollbar {
     }
 
 
+
   }
 
 
@@ -658,6 +667,7 @@ body::-webkit-scrollbar {
 }
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
+
 
   .AppInput {
     min-height: 25vh !important;

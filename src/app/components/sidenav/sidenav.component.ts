@@ -78,7 +78,7 @@ export class NavComponent implements OnInit {
     generateYearRange() {
       // Generate a year range from 1990 to 3000
       this.yearRange = [];
-      for (let year = 1990; year <= 3000; year++) {
+      for (let year = 1890; year <= 2399; year++) {
         this.yearRange.push(year);
       }
     }
