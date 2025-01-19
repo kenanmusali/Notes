@@ -5,6 +5,8 @@ import { SharedService } from 'src/app/services/shared.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { LabelI } from 'src/app/interfaces/labels';
 
+
+
 type InputLengthI = { title?: number, body?: number, cb?: number }
 
 @Component({
@@ -64,6 +66,7 @@ export class InputComponent implements OnInit {
   @ViewChild("cboxInput") cboxInput!: ElementRef<HTMLDivElement>;
   @ViewChild("cboxPh") cboxPh?: ElementRef<HTMLDivElement>;
   @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement>;
+  @ViewChild("moreMenuTtBtnShortcut") moreMenuTtBtnShortcut?: ElementRef<HTMLDivElement>;
   @ViewChild('noteTemplate') noteTemplate!: ElementRef<HTMLDivElement>;
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
   @ViewChild('labelMenuTt', { static: false }) labelMenuTt!: ElementRef;
@@ -331,6 +334,9 @@ export class InputComponent implements OnInit {
   }
 
 
+
+
+
   toggleNoteVisibility(condition: boolean) {
     if (condition) {
       this.notePlaceholder.nativeElement.hidden = true; this.noteMain.nativeElement.hidden = false
@@ -547,17 +553,6 @@ export class InputComponent implements OnInit {
     return actions
   }
 
-  colorMenu = {
-    bgColor: (data: bgColors) => {
-      this.noteMain.nativeElement.style.backgroundColor = data
-      this.noteMain.nativeElement.style.borderColor = data
-    },
-    bgImage: (data: bgImages) => {
-      this.noteContainer.nativeElement.style.backgroundImage = `url(${data})`
-    }
-  }
-
-
   saveNoteSubscription?: Subscription
   ngAfterViewInit() {
     if (this.isEditing) { this.saveNoteSubscription = this.Shared.saveNote.subscribe(x => { if (x) this.saveNote() }) }
@@ -580,6 +575,18 @@ export class InputComponent implements OnInit {
       this.innerData(this.noteToEdit)
     }
   }
+  
+  colorMenu = {
+    bgColor: (data: bgColors) => {
+      this.noteMain.nativeElement.style.backgroundColor = data
+      this.noteMain.nativeElement.style.borderColor = data
+    },
+    bgImage: (data: bgImages) => {
+      this.noteContainer.nativeElement.style.backgroundImage = `url(${data})`
+    }
+  }
+
+
 
   // ngOnInit(): void { }
 
@@ -588,6 +595,10 @@ export class InputComponent implements OnInit {
   selectedSkin: string = 'SkinDefault';  // Set default skin as 'SkinDefault'
 
   ngOnInit() {
+
+    
+
+
     document.addEventListener('click', this.handleClickOutside.bind(this));
     this.setActiveCategory('emotions');
     // Always set the default skin when the component is initialized

@@ -54,11 +54,12 @@
                     <img src="./assets/images/Icon/Archive.svg">
                 </div>
 
-                <div class="MenuDiv MenuHoverBottom" [class.active]="isCalendarActive" (click)="openModal(false, false, true)">
+                <div class="MenuDiv MenuHoverBottom" [class.active]="isCalendarActive"
+                    (click)="openModal(false, false, true)">
                     <p>Calendar</p>
                     <img class='IconHover' src="./assets/images/Icon/Calendar.svg" draggable="false" />
                 </div>
-                
+
 
             </div>
 
@@ -95,7 +96,7 @@
                 </div>
                 <div [class.active]="isSettingsActive" class="MenuHoverBottom MenuDiv" (click)="openModal(true)">
                     <p>Settings</p>
-                    <img src="./assets/images/Icon/Settings.svg" draggable="false" >
+                    <img src="./assets/images/Icon/Settings.svg" draggable="false">
                 </div>
             </div>
         </div>
@@ -271,7 +272,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="MenuDiv MenuHoverBottom">
                 <p>Open trash</p>
                 <div class="divKeyText">
@@ -288,9 +289,9 @@
                     </p>
                 </div>
             </div>
-            
 
-        
+
+
 
         </div>
     </div>
@@ -302,22 +303,18 @@
             <div class="calendar-container">
                 <!-- Month and Year Navigation -->
                 <div class="calendar-header">
-                   
+
                     <div class="month-year">
                         <span class="month" (click)="toggleView('month')">{{ currentMonth }}</span>
                         <span class="year" (click)="toggleView('year')">{{ currentYear }}</span>
                     </div>
-                    <img 
-  class="HoverIconSigle" 
-  src="./assets/images/Icon/Reset.svg" 
-  draggable="false" 
-  [style.display]="showHoverIcon ? 'flex' : 'none'" 
-  (click)="resetToCurrentDate()">
+                    <img class="HoverIconSigle" src="./assets/images/Icon/Reset.svg" draggable="false"
+                        [style.display]="showHoverIcon ? 'flex' : 'none'" (click)="resetToCurrentDate()">
 
                 </div>
 
-                
-                
+
+
 
                 <!-- Month Selector (if in month selection mode) -->
                 <div *ngIf="viewMode === 'month'" class="month-selector">
@@ -327,15 +324,15 @@
                 </div>
 
                 <!-- Year Range (if in year selection mode) -->
-                 
-                
-                 
+
+
+
                 <div *ngIf="viewMode === 'year'" class="year-selector divScrollArea">
                     <div *ngFor="let year of yearRange" class="year-item" (click)="selectYear(year)">
                         {{ year }}
                     </div>
                 </div>
-                
+
 
                 <!-- Date Grid (If no month or year view selected) -->
                 <div *ngIf="viewMode === 'date'" class="date-grid">
@@ -349,10 +346,11 @@
                         <div class="weekday">Sa</div>
                     </div>
                     <div class="dates">
-                        <div *ngFor="let date of dates" class="date-item" [ngClass]="{'current-day': date.isCurrentDay}">
+                        <div *ngFor="let date of dates" class="date-item"
+                            [ngClass]="{'current-day': date.isCurrentDay}">
                             {{ date.date }}
-                          </div>
-                          
+                        </div>
+
                     </div>
                 </div>
             </div>

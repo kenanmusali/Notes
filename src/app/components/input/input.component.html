@@ -3020,12 +3020,33 @@
                             </div>
                         </span>
 
-                        <span class="ItemHoverAlt">
+
+
+
+
+                        <!-- <span class="ItemHoverAlt noIcon noIconMore" >
                             <div class="item itemHover noSelect ">
                                 <img src="./assets/images/Icon/Menu.svg" draggable="false" />
                             </div>
                             <p class="AltText">More</p>
-                        </span>
+                        </span> -->
+
+                        <div class="ItemHoverAlt noIconMore" #moreMenuTtBtn data-pop="More"
+                            (click)="openTooltip(moreMenuTtBtn, moreMenuTt)">
+                            <div class="item itemHover noSelect">
+                                <img src="./assets/images/Icon/Menu.svg" draggable="false" />
+                            </div>
+                            <p class="AltText AltText1">More</p>
+                        </div>
+
+                        <!-- <div class="ItemHoverAlt noIcon" #moreMenuTtShortcut data-pop="More" (click)="openTooltip(moreMenuTtShortcut, moreMenuTtShortcut)">
+                            <div class="item itemHover noSelect">
+                                <img src="./assets/images/Icon/Menu.svg" draggable="false" />
+                            </div>
+                            <p class="AltText AltText1">More Shortcut</p>
+                        </div> -->
+
+
                     </div>
                 </div>
 
@@ -3201,25 +3222,21 @@
 <!--* cboxes template -->
 <ng-template #checkboxesTemplate>
     <!--? isDone: false -->
-    <ng-container [ngTemplateOutlet]="cboxTemplate" [ngTemplateOutletContext]="{ isDone: false }">
-    </ng-container>
     <div class="cbox-ph-container">
-        <div class="cbox-plus-icon"></div>
+        <img src="./assets/images/Icon/Plus.svg" draggable="false" />
         <div class="cbox-note-container">
-            <div class="cbox-note ph">List item</div>
+            <div class="cbox-note ph">Add list</div>
             <div #cboxPh (keydown)="cboxPhKeyDown($event)" class="cbox-note" contenteditable="true" spellcheck="true">
             </div>
         </div>
     </div>
+    <div class="hr"></div>
+    <ng-container [ngTemplateOutlet]="cboxTemplate" [ngTemplateOutletContext]="{ isDone: false }">
+    </ng-container>
+
     <!--? isDone: true -->
     <ng-container *ngIf="(checkBoxes | cboxDone:true).length">
-        <div class="hr"></div>
-        <div class="cbox-done-container" (click)="isCboxCompletedListCollapsed = !isCboxCompletedListCollapsed">
-            <div [class.rotate]="!isCboxCompletedListCollapsed" class="cbox-arrow"></div>
-            <div>
-                <span>({{(checkBoxes | cboxDone:true).length}}) Completed item</span>
-            </div>
-        </div>
+
     </ng-container>
     <ng-container *ngIf="!isCboxCompletedListCollapsed" [ngTemplateOutlet]="cboxTemplate"
         [ngTemplateOutletContext]="{ isDone: true }">
@@ -3227,26 +3244,37 @@
 
     <!--* cbox template -->
     <ng-template let-isDone="isDone" #cboxTemplate>
-        <ng-container *ngFor="let cb of checkBoxes | cboxDone:isDone;let last = last">
-            <div class="cbox-container">
-                <div class="cbox-move-icon"></div>
-                <div [class.done]="cb.done" class="cbox-icon" (click)="cboxTools(cb.id).check()"></div>
+        <ng-container *ngFor="let cb of checkBoxes | cboxDone:isDone; let last = last">
+            <div class="cbox-container" [ngClass]="{'done': isDone}">
+                <div [class.done]="cb.done" class="cbox-icon" (click)="cboxTools(cb.id).check()">
+                    <img [src]="cb.done ? './assets/images/Icon/CheckMark.svg' : './assets/images/Icon/NoCheckMark.svg'"
+                        draggable="false" />
+                </div>
                 <div class="cbox-note-container">
                     <div #cboxInput [attr.data-cbox-last]="last" [class.cbox-done]="cb.done"
-                        (blur)="cboxTools(cb.id).update(cboxInput)" (keydown)="cBoxKeyDown($event,cb.id)"
+                        (blur)="cboxTools(cb.id).update(cboxInput)" (keydown)="cBoxKeyDown($event, cb.id)"
                         class="cbox-note" contenteditable="true" spellcheck="true" [innerHTML]="cb.data">
                     </div>
                 </div>
-                <div class="cbox-cancel-icon H" (click)="cboxTools(cb.id!).remove()"></div>
+                <div class="cbox-icon" (click)="cboxTools(cb.id!).remove()">
+                    <img src="./assets/images/Icon/False.svg" draggable="false" />
+                </div>
             </div>
         </ng-container>
     </ng-template>
+
 </ng-template>
 
 <!--? --------tooltips-------- -->
 
 <!--? more MENU -->
-<div #moreMenuTt data-tooltip="true" data-is-tooltip-open="false" class="moreMenu">
+<!-- <div #moreMenuTtShortcut data-tooltip="true" data-is-tooltip-open="false" class="moreMenu">
+<p>shortcut</p>
+
+</div> -->
+
+<!--? more MENU -->
+<!-- <div #moreMenuTt data-tooltip="true" data-is-tooltip-open="false" class="moreMenu">
     <div [hidden]="moreMenuEls.delete.disabled" (click)="moreMenu(moreMenuTt).trash()">
         Delete note
     </div>
@@ -3254,12 +3282,24 @@
         (click)="this.Shared.closeTooltip(moreMenuTt);openTooltip(moreMenuTtBtn!.nativeElement,labelMenuTt)">
         Add label
     </div>
-    <!-- <div [hidden]="moreMenuEls.drawing.disabled">{{moreMenuEls.drawing.value}}</div> -->
     <div [hidden]="moreMenuEls.copy.disabled" (click)="moreMenu(moreMenuTt).clone()">
         Make a copy
     </div>
     <div (click)="moreMenu(moreMenuTt).toggleCbox()">
         {{moreMenuEls.checkbox.value}}
+    </div>
+</div> -->
+
+
+<div #moreMenuTt data-tooltip="true" data-is-tooltip-open="false" class="moreMenu">
+    <div class="MenuDiv MenuHoverBottom">
+        <p>Size</p>
+    </div>
+    <div class="MenuDiv MenuHoverBottom">
+        <p>List style</p>
+    </div>
+    <div class="MenuDiv MenuHoverBottom">
+        <p>Shortcut</p>
     </div>
 </div>
 

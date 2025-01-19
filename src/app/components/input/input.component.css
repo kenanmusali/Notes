@@ -84,7 +84,7 @@
 }
 
 .note-main {
-  /* background-color: var(--white); */
+  box-shadow: 0px 0px 150px var(--bgColor);
   background-color: var(--white);
   border: 1px solid var(--lightGrayStroke);
   border-radius: 12px;
@@ -296,7 +296,7 @@ position: relative;
 /* Style for FormatText when it is visible */
 .FormatText {
   display: flex;
-  /* Only shown when isFormatTextVisible is true */
+  box-shadow: 0px 0px 150px var(--bgColor);
   transition: all 0.4s;
 }
 

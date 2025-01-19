@@ -151,7 +151,7 @@ body::-webkit-scrollbar {
   background-color: var(--white);
   font-size: 12px;
   font-weight: 500;
-  padding: 0.2rem 0.7rem 0.5rem 0.7rem;
+  padding: 0.3rem 0.7rem 0.3rem 0.7rem;
   border-radius: 5px;
   color: var(--grayText);
   top: calc(35px + 0.5rem);
@@ -270,7 +270,9 @@ body::-webkit-scrollbar {
   height: 100%;
 }
 
-
+.noIconMore {
+  display: none;
+}
 
 // @media screen and (max-width: 350px) {}
 
@@ -303,7 +305,10 @@ body::-webkit-scrollbar {
     filter: var(--gray-filter);
   }
 
+  .noIconMore {
+    display: flex !important;
 
+  }
 
   .close-btn:hover img {
     width: 21px;
