@@ -17,6 +17,8 @@
 <section *ngIf="!(this.Shared.note.all | notesTools:currentPageName).length">
     <div class="no-notes">
         <div class="image"></div>
+        <!-- <div class="image"><img  src="../../../assets/images/Intro/AddNoteWhite.svg" draggable="false"></div> -->
+        
         <div>
             <span class="text">Notes you {{ currentPage.archive? 'archive' : ( currentPage.trash?'trash':'add')}}
                 appear here</span>

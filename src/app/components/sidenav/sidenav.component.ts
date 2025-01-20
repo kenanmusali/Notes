@@ -29,96 +29,98 @@ export class NavComponent implements OnInit {
   isDarkMode: boolean = false;
   isContainerVisible: boolean = true;  // New property to track container visibility
 
-  constructor(public Shared: SharedService, public router: Router) { this.generateDates();
-    this.generateYearRange();}
+  constructor(public Shared: SharedService, public router: Router) {
+    this.generateDates();
+    this.generateYearRange();
+  }
 
-    currentMonth: string = 'January';
-    currentYear: number = new Date().getFullYear();
-    dates: { date: number, isCurrentDay: boolean }[] = [];
-    months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    yearRange: number[] = []; // Range of years from 1990 to 3000
-    viewMode: 'month' | 'year' | 'date' = 'date'; // toggle between month, year, and date views
-  
-    generateDates() {
-      const firstDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth), 1);
-      const lastDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth) + 1, 0);
-    
-      this.dates = [];
-      const startDay = firstDay.getDay();
-    
-      // Get the previous month's last day
-      const prevMonth = this.months.indexOf(this.currentMonth) === 0 ? 11 : this.months.indexOf(this.currentMonth) - 1;
-      const prevMonthLastDate = new Date(this.currentYear, prevMonth + 1, 0).getDate();
-    
-      // Add days from the previous month to fill in the empty spaces
-      for (let i = prevMonthLastDate - startDay + 1; i <= prevMonthLastDate; i++) {
-        this.dates.push({ date: i, isCurrentDay: false }); // Add previous month's dates
-      }
-    
-      // Add current month's dates
-      for (let i = 1; i <= lastDay.getDate(); i++) {
-        const isToday = i === new Date().getDate() && this.currentMonth === this.months[new Date().getMonth()] && this.currentYear === new Date().getFullYear();
-        this.dates.push({ date: i, isCurrentDay: isToday }); // Add current month's dates with current day check
-      }
-    
-      // Calculate if there are remaining slots after the last day of the current month
-      const remainingSlots = 7 - (this.dates.length % 7);
-    
-      // If there are remaining slots (space left in the current row), fill them with "slot" values
-      if (remainingSlots < 7) {
-        for (let i = 1; i <= remainingSlots; i++) {
-          this.dates.push({ date: i, isCurrentDay: false }); // Add slots at the end of the calendar to fill the row
-        }
-      }
-    }
-    
-    
+  currentMonth: string = 'January';
+  currentYear: number = new Date().getFullYear();
+  dates: { date: number, isCurrentDay: boolean }[] = [];
+  months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  yearRange: number[] = []; // Range of years from 1990 to 3000
+  viewMode: 'month' | 'year' | 'date' = 'date'; // toggle between month, year, and date views
 
-  
-    generateYearRange() {
-      // Generate a year range from 1990 to 3000
-      this.yearRange = [];
-      for (let year = 1890; year <= 2399; year++) {
-        this.yearRange.push(year);
-      }
-    }
-  
+  generateDates() {
+    const firstDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth), 1);
+    const lastDay = new Date(this.currentYear, this.months.indexOf(this.currentMonth) + 1, 0);
 
-  
-    toggleView(view: 'month' | 'year') {
-      if (view === 'year') {
-        this.generateYearRange(); // Ensure the year range is generated each time the year view is toggled
-        this.viewMode = 'year'; // Show year range from 1990 to 3000
-      } else {
-        this.viewMode = 'month'; // Show 12 months when you click the month
+    this.dates = [];
+    const startDay = firstDay.getDay();
+
+    // Get the previous month's last day
+    const prevMonth = this.months.indexOf(this.currentMonth) === 0 ? 11 : this.months.indexOf(this.currentMonth) - 1;
+    const prevMonthLastDate = new Date(this.currentYear, prevMonth + 1, 0).getDate();
+
+    // Add days from the previous month to fill in the empty spaces
+    for (let i = prevMonthLastDate - startDay + 1; i <= prevMonthLastDate; i++) {
+      this.dates.push({ date: i, isCurrentDay: false }); // Add previous month's dates
+    }
+
+    // Add current month's dates
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      const isToday = i === new Date().getDate() && this.currentMonth === this.months[new Date().getMonth()] && this.currentYear === new Date().getFullYear();
+      this.dates.push({ date: i, isCurrentDay: isToday }); // Add current month's dates with current day check
+    }
+
+    // Calculate if there are remaining slots after the last day of the current month
+    const remainingSlots = 7 - (this.dates.length % 7);
+
+    // If there are remaining slots (space left in the current row), fill them with "slot" values
+    if (remainingSlots < 7) {
+      for (let i = 1; i <= remainingSlots; i++) {
+        this.dates.push({ date: i, isCurrentDay: false }); // Add slots at the end of the calendar to fill the row
       }
     }
-    
-    selectMonth(month: string) {
-      this.currentMonth = month;
-      if (this.currentMonth !== new Date().toLocaleString('default', { month: 'long' })) {
-        this.showHoverIcon = true;  // Display hover icon if month is not the current month
-      }
-      this.viewMode = 'date'; // After selecting a month, show the date grid
-      this.generateDates();
+  }
+
+
+
+
+  generateYearRange() {
+    // Generate a year range from 1990 to 3000
+    this.yearRange = [];
+    for (let year = 1890; year <= 2399; year++) {
+      this.yearRange.push(year);
     }
-    
-    selectYear(year: number) {
-      this.currentYear = year;
-      if (this.currentYear !== new Date().getFullYear()) {
-        this.showHoverIcon = true;  // Display hover icon if year is not the current year
-      }
-      this.viewMode = 'date'; // After selecting a year, show the 12 months
-      this.generateDates();
+  }
+
+
+
+  toggleView(view: 'month' | 'year') {
+    if (view === 'year') {
+      this.generateYearRange(); // Ensure the year range is generated each time the year view is toggled
+      this.viewMode = 'year'; // Show year range from 1990 to 3000
+    } else {
+      this.viewMode = 'month'; // Show 12 months when you click the month
     }
-    
-    resetToCurrentDate() {
-      this.currentMonth = new Date().toLocaleString('default', { month: 'long' });
-      this.currentYear = new Date().getFullYear();
-      this.showHoverIcon = false;  // Hide the hover icon after resetting
-      this.generateDates();
+  }
+
+  selectMonth(month: string) {
+    this.currentMonth = month;
+    if (this.currentMonth !== new Date().toLocaleString('default', { month: 'long' })) {
+      this.showHoverIcon = true;  // Display hover icon if month is not the current month
     }
-    
+    this.viewMode = 'date'; // After selecting a month, show the date grid
+    this.generateDates();
+  }
+
+  selectYear(year: number) {
+    this.currentYear = year;
+    if (this.currentYear !== new Date().getFullYear()) {
+      this.showHoverIcon = true;  // Display hover icon if year is not the current year
+    }
+    this.viewMode = 'date'; // After selecting a year, show the 12 months
+    this.generateDates();
+  }
+
+  resetToCurrentDate() {
+    this.currentMonth = new Date().toLocaleString('default', { month: 'long' });
+    this.currentYear = new Date().getFullYear();
+    this.showHoverIcon = false;  // Hide the hover icon after resetting
+    this.generateDates();
+  }
+
 
 
   // 
@@ -203,10 +205,12 @@ export class NavComponent implements OnInit {
       '--ColorMenuI': '#D3BFDB',
       '--ColorMenuJ': '#F6E2DD',
       '--ColorMenuK': '#E9E3D4',
-      
+
+      '--image-path': "url('./assets/images/Intro/AddNoteWhite.svg')"
+
     });
     localStorage.setItem('theme', 'light');
-//  document.body.style.backgroundImage = `url(${bgImages.B})`;
+    //  document.body.style.backgroundImage = `url(${bgImages.B})`;
   }
 
   setDarkMode() {
@@ -243,7 +247,8 @@ export class NavComponent implements OnInit {
       '--ColorMenuI': '#472e5b',
       '--ColorMenuJ': '#6c394f',
       '--ColorMenuK': '#4b443a',
-  
+
+       '--image-path': "url('./assets/images/Intro/AddNoteDark.svg')"
     });
     localStorage.setItem('theme', 'dark');
 
@@ -279,8 +284,8 @@ export class NavComponent implements OnInit {
     }
     document.addEventListener('mousedown', this.mouseDownEvent);
   }
-  
-  
+
+
   hideModal(isSettings: boolean = false, isKey: boolean = false, isCalendar: boolean = false) {
     if (isSettings) {
       // Hide settings modal
@@ -301,34 +306,34 @@ export class NavComponent implements OnInit {
     }
     document.removeEventListener('mousedown', this.mouseDownEvent);
   }
-  
+
   mouseDownEvent = (event: Event) => {
     const modalEl = this.modal.nativeElement;
     const settingsModalEl = this.settingsModal.nativeElement;
     const keyModalEl = this.keyModal.nativeElement;
     const calendarModalEl = this.calendarModal.nativeElement;
-  
+
     // Handle click outside label modal
     if (this.isLabelsActive && !modalEl.contains(event.target as Node)) {
       this.hideModal();
     }
-  
+
     // Handle click outside settings modal
     if (this.isSettingsActive && !settingsModalEl.contains(event.target as Node)) {
       this.hideModal(true);
     }
-  
+
     // Handle click outside key modal
     if (this.isKeyActive && !keyModalEl.contains(event.target as Node)) {
       this.hideModal(false, true);
     }
-  
+
     // Handle click outside calendar modal
     if (this.isCalendarActive && !calendarModalEl.contains(event.target as Node)) {
       this.hideModal(false, false, true); // Pass correct arguments for calendar modal
     }
   };
-  
+
 
   // ? labels ----------------------------------------------------
   addLabel(el: HTMLInputElement) {

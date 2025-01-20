@@ -61,6 +61,7 @@
   --bgImageJ: url('/src/assets/images/backgrounds/Light/i9_ph.svg');
   --bgImageK: url('/src/assets/images/backgrounds/Light/i95_ph.svg');
 
+  --image-path: url('./assets/images/Intro/AddNoteWhite.svg');
 }
 
 
@@ -278,13 +279,19 @@ body::-webkit-scrollbar {
 
 @media screen and (min-width: 350px) and (max-width: 767px) {
 
-  
+  .no-notes .image  {
+    width: 17rem !important;
+    height: 15rem !important;
+    margin-top: 3rem !important;
+
+  }
+
   .modal-container .modal,
   .modal1,
   .modal2 {
     box-shadow: 50px 0px 100px var(--bgColor) !important;
   }
-  
+
 
   .TopSecDown {
     display: none;
@@ -416,7 +423,8 @@ body::-webkit-scrollbar {
     display: none !important;
   }
 
-  .modal-container .modal1, .modal-container .modal2 {
+  .modal-container .modal1,
+  .modal-container .modal2 {
 
     width: 15rem !important;
   }
@@ -673,6 +681,13 @@ body::-webkit-scrollbar {
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
 
+
+  .no-notes .image {
+    width: 30rem !important;
+    height: 26rem !important;
+    margin-top: -5rem !important;
+
+  }
 
   .AppInput {
     min-height: 25vh !important;

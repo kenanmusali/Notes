@@ -8,7 +8,7 @@
     <div class="Flex">
         <div class="Flex">
             <div class="divGroupSidenav">
-                <app-sidenav #sidenav class="SideNavFixed"></app-sidenav>
+                <app-sidenav #sidenav class="SideNavFixed"z></app-sidenav>
                 <div class="BarRight"></div>
             </div>
             <span class="EmptyBar"></span>
@@ -50,7 +50,7 @@
                 <img src="../../../assets/images/Icon/UpArrow.svg" draggable="false" (click)="scrollToTop()">
             </div>
 
-            <app-notes [isToggled]="sidenav.isToggled"></app-notes>
+            <app-notes [isToggled]="sidenav.isToggled" ></app-notes>
 
 
         </div>

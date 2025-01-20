@@ -106,7 +106,12 @@ buildMasonry() {
   }, 300); 
 }
 
+isDarkMode: boolean = false; // or get this from the parent component, depending on your implementation
 
+  toggleTheme(event: any) {
+    this.isDarkMode = event.target.checked;
+  }
+  
 handleResize() {
 
   if (!this.isBuildingMasonry) {

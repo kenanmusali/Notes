@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  HostListener } from '@angular/core';
 @Component({
+  
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
@@ -35,4 +36,12 @@ export class MainComponent implements OnInit {
       this.isToggled = false;  // Close the sidebar if click happens outside
     }
   }
+
+
+  isDarkMode = false;
+
+  toggleTheme(event: any) {
+    this.isDarkMode = event.target.checked;
+  }
+
 }

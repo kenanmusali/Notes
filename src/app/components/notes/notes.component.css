@@ -137,10 +137,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 99;
+
+}
+
+.no-notes .image img {
+  width: 33rem;
+  margin-top: -12rem;
+
+
+}
+
+.no-notes .image {
+  width: 33rem;
+  margin-top: -12rem;
+  height: 28rem;
+  background-image: var(--image-path);
+  background-size: contain;
+  background-repeat: no-repeat;
+
 }
 
 .no-notes .text {
-  color: var(--grayText);
+  color: var(--black);
   font-size: 20px;
   font-weight: 500;
 
@@ -182,9 +201,9 @@
 
 
 .itemHover img {
-  mix-blend-mode: difference ;
-  filter: var(--gray-filter) ;
-  -webkit-filter: var(--gray-filter) ;
+  mix-blend-mode: difference;
+  filter: var(--gray-filter);
+  -webkit-filter: var(--gray-filter);
 }
 
 
@@ -256,7 +275,7 @@
   font-size: 12px;
   color: var(--grayText);
   margin-right: 2rem;
-  
+
 }
 
 .divSelectIcon {
@@ -281,6 +300,7 @@
   outline: 1px solid var(--mainYellow1);
   border: 1px solid var(--bgColor);
 }
+
 .divEditNote.selected {
   display: flex;
 }
